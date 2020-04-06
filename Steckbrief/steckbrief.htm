@@ -1,17 +1,87 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8" />
-<title>Steckbrief</title>
-<style>
-body {
-	font-family: arial;
-	font-size: small;
-	background: #eeeee
-}
-</style>
+	<meta charset="utf-8" />
+	<title>Steckbrief</title>
+	<style>
+		body {
+			font-family: arial;
+			font-size: small;
+			background-color: #000000;
+			margin-left: 50px;
+		}
+
+		h1 {
+			font-family: 'Courier New', Courier, monospace;
+			color: #e1e7e5;
+			font-size: 3em;
+		}
+
+		h2 {
+			font-family: 'Courier New', Courier, monospace;
+			color: #fff;
+			text-shadow: 0px 0px 10px black;
+
+		}
+
+		.tasks {
+			width: 800px;
+			height: 200px;
+			padding-top: 5px;
+			padding-left: 20px;
+			border-radius: 10px;
+			background-color: rgba(255, 255, 255, 0.3);
+			box-shadow: 2px 2px 20px #dad6d6;
+		}
+
+		.profile {
+			width: 800px;
+			height: 220px;
+			padding-top: 5px;
+			padding-left: 20px;
+			margin-top: 40px;
+			border-radius: 10px;
+			background-color: rgba(255, 255, 255, 0.3);
+			box-shadow: 2px 2px 20px #dad6d6;
+		}
+
+		ul{
+			float: left;
+		}
+		#list{
+			font-family: 'Courier New', Courier, monospace;
+			font-size: 1.5em;
+			color: #fff;
+			list-style-type: none;
+			line-height: 50px;
+		}
+
+		img{
+			margin-left: 100px;
+			margin-top: 10px;
+		}
+	</style>
+
 </head>
+
 <body>
 	<!-- Hier die Links zu den gelösten Aufgaben einstellen, aktuelle oben, alte stehen lassen! Format: Aufgabenbezeichnung, Datum -->
+
+	<header>
+		<h1>Kristin Poschmann</h1>
+	</header>
+	<section class="tasks">
+		<h2>Tasks:</h2>
+	</section>
+	<section class="profile">
+		<ul>
+			<li id="list">Alter: 23</li>
+			<li id="list">Wohnort: Furtwangen | Glienicke</li>
+			<li id="list">Studiengang: Medienkonzeption</li>
+		</ul>
+		<img src="foto.jpg">
+	</section>
 </body>
+
 </html>
