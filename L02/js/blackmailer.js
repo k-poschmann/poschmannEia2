@@ -1,10 +1,11 @@
+"use strict";
 var L02_BlackmailerCompanion;
 (function (L02_BlackmailerCompanion) {
     console.log("Hallo");
-    var chosenCharacter = "A";
+    let chosenCharacter = "A";
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
-        var mail = document.querySelector("div#mail");
+        let mail = document.querySelector("div#mail");
         mail.addEventListener("click", placeLetter);
         document.addEventListener("keydown", chooseLetter);
     }
@@ -14,10 +15,10 @@ var L02_BlackmailerCompanion;
     }
     function placeLetter(_event) {
         //console.log(_event);
-        var x = _event.offsetX;
-        var y = _event.offsetY;
-        var mail = _event.target;
-        var letter = document.createElement("span");
+        let x = _event.offsetX;
+        let y = _event.offsetY;
+        let mail = _event.target;
+        let letter = document.createElement("span");
         mail.appendChild(letter);
         letter.textContent = chosenCharacter;
         letter.style.left = x + "px";
@@ -25,8 +26,8 @@ var L02_BlackmailerCompanion;
         letter.addEventListener("click", deleteLetter);
     }
     function deleteLetter(_event) {
-        var target = _event.target;
-        var parent = target.parentNode;
+        let target = _event.target;
+        let parent = target.parentNode;
         parent.removeChild(target);
     }
 })(L02_BlackmailerCompanion || (L02_BlackmailerCompanion = {}));
