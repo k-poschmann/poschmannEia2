@@ -21,14 +21,19 @@ namespace L02_BlackmailerCompanion {
 
 
         let mail: HTMLElement = <HTMLElement>_event.target;
-        let letter: HTMLSpanElement = document.createElement("span");
-        mail.appendChild(letter);
+        if (_event.target == _event.currentTarget) {
+            let letter: HTMLSpanElement = document.createElement("span");
+            mail.appendChild(letter);
+    
+            letter.textContent = chosenCharacter;
+            letter.style.left = x + "px";
+            letter.style.top = y + "px";
+            letter.addEventListener("click", deleteLetter);
+        }
+        
 
-        letter.textContent = chosenCharacter;
-        letter.style.left = x + "px";
-        letter.style.top = y + "px";
+        _event.stopPropagation();
 
-        letter.addEventListener("click", deleteLetter);
     }
 
     function deleteLetter(_event: MouseEvent): void {

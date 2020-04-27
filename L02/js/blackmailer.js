@@ -18,12 +18,15 @@ var L02_BlackmailerCompanion;
         let x = _event.offsetX;
         let y = _event.offsetY;
         let mail = _event.target;
-        let letter = document.createElement("span");
-        mail.appendChild(letter);
-        letter.textContent = chosenCharacter;
-        letter.style.left = x + "px";
-        letter.style.top = y + "px";
-        letter.addEventListener("click", deleteLetter);
+        if (_event.target == _event.currentTarget) {
+            let letter = document.createElement("span");
+            mail.appendChild(letter);
+            letter.textContent = chosenCharacter;
+            letter.style.left = x + "px";
+            letter.style.top = y + "px";
+            letter.addEventListener("click", deleteLetter);
+        }
+        _event.stopPropagation();
     }
     function deleteLetter(_event) {
         let target = _event.target;
