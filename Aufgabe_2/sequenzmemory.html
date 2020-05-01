@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>SEQUENZMEMORIE</h1>
+    <div id="enterdata">
+        <p id="choose">Select a sequence or write one:</p>
+        <select id="options">
+            <option></option>
+            <option value="Butter">Butter</option>
+            <option value="Sugar">Sugar</option>
+            <option value="Tomato">Tomato</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Butterfly">Butterfly</option>
+            <option value="Caterpillar">Caterpillar</option>
+            <option value="Laryox">Laryox</option>
+            <option value="Piano">Piano</option>
+            <option value="Mood">Mood</option>
+            <option value="EIA">EIA</option>
+        </select>
+        <input type="text" id="ownsequence" placeholder="Write one yourself">
+
+        <div id="wrappererror">
+            <p id="errorchoose">Number of errors allowed:</p> 
+            <input type="number" id="errors">
+            <button id="enter">ENTER</button>
+        </div>
+
+    </div>
+    <div id="game">
+        <div id="errorcounter"></div>
+        <div id="sequence"></div>
+        <div id="playground"></div>
+        <button id="start">Aufdecken</button>
+    </div>    
+</body>
+</html>
