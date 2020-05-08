@@ -6,95 +6,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haushaltshilfe</title>
     <link rel="stylesheet" href="style.css">
-   
+
 </head>
 
 <body>
     <header>
         <h1>Haushaltshilfe</h1>
-        <p>Worin können wir Sie unterstzützen?</p>
     </header>
 
 
-    
+
     <form>
         <div id="form">
-            <div id="tasks">
+            <fieldset id="grocery">
+                <legend>Worin können wir Sie untersützen?</legend>
                 <input type="checkbox" name=" Auswahl" value="Einkaufen" id="selectshopping">Einkaufen
                 <input type="checkbox" name=" Auswahl" value="Haushaltshilfe" id="selecthelp">Haushaltshilfe
                 <input type="checkbox" name=" Auswahl" value="Geld abheben" id="selectmoney"> Geld abheben
                 <button type="button" id="confirm">Übernehmen</button>
-            </div>
+            </fieldset>
+
             <!-- Einkaufen -->
-            <h3>Einkaufen:</h3>
-            <div id="einkauf">
-                <p class="mengeh1">Menge:</p>
-                <p class="placeh1">Von Wo?</p>
-                <div id="mengen">
-                    <input type="number" name="Item1" class="menge" >
-                    <input type="number" name="Item2" class="menge" >
-                    <input type="number" name="Item3" class="menge" >
-                    <input type="number" name="Item4" class="menge" >
-                    <input type="number" name="Item5" class="menge" >
-                    <input type="number" name="Item6" class="menge" >
+
+            <fieldset id="einkauf">
+                <legend>Einkaufen: </legend>
+                <div id="slider">
+                    <span>
+                        Menge:
+                        1
+                        <input  type="range" min="1.0" max="10.0" name="Menge" step="1.0" value="1.0">
+                        10
+                    </span>
                 </div>
+
                 <div id="artikel">
-                    <input type="checkbox" name="Item1" id="butter" class="article" value="Butter" price="1.59">
+                    <input type="checkbox" name="Items" id="butter" class="article" value="Butter" price="1.59">
                     <label for="butter">Butter | 1.59€ | (Stk.)</label>
-                    <input type="checkbox" name="Item2" id="milk" class="article" value="Milch" price="0.79">
+                    <input type="checkbox" name="Items" id="milk" class="article" value="Milch" price="0.79">
                     <label for="milk">Milch | 0.79€ | (1.5 Liter)</label>
-                    <input type="checkbox" name="Item3" id="eggs" class="article" value="Eier" price="1.69">
+                    <input type="checkbox" name="Items" id="eggs" class="article" value="Eier" price="1.69">
                     <label for="eggs">Eier | 1.69€ | Pk.)</label>
-                    <input type="checkbox" name="Item4" id="bread" class="article" value="Brot" price="1.29">
+                    <input type="checkbox" name="Items" id="bread" class="article" value="Brot" price="1.29">
                     <label for="bread">Brot | 1.29€ | (Stk.)</label>
-                    <input type="checkbox" name="Item5" id="sausage" class="article" value="Wurst" price="1.49">
+                    <input type="checkbox" name="Items" id="sausage" class="article" value="Wurst" price="1.49">
                     <label for="sausage">Wurst | 1.49€ | (Pk.)</label>
-                    <input type="checkbox" name="Item6" id="cheese" class="article" value="Käse" price="1.99">
+                    <input type="checkbox" name="Items" id="cheese" class="article" value="Käse" price="1.99">
                     <label for="cheese">Käse | 1.99€ | (Pk.)</label>
                 </div>
                 <div id="selectplace">
-                    <select id="groceryplace">
-                        <option value="ALDI">ALDI</option>
-                        <option value="EDEKA">EDEKA</option>
-                        <option value="NETTO">NETTO</option>
-                        <option value="REWE">REWE</option>
-                    </select>
+                    <input name="maerkte" list="market" placeholder="Supermarkt wählen" value="" />
+                    <datalist id="market">
+                        <option name="REWE" value="REWE">REWE</option>
+                        <option name="NETTO" value="NETTO">NETTO</option>
+                        <option name="ALDI" value="ALDI">ALDI</option>
+                        <option name="EDEKA" value="EDEKA">EDEKA</option>
+                    </datalist>
                 </div>
                 <button id="btn1" type="button">Übernehmen</button>
-            </div>
+            </fieldset>
 
             <!-- Haushaltshilfe -->
 
-            <h3>Haushaltshilfe:</h3>
-            <div id="hilfe">
-                <input type="checkbox" id="rasen" value="Rasen mähen" price="10">
+            <fieldset id="hilfe">
+                <legend>Haushaltshilfe:</legend>
+                <input type="checkbox" id="rasen" value="Rasen mähen" price="10" name="toDo">
                 <label for="rasen">Rasen mähen (10€)</label>
-                <input type="checkbox" id="putzen" value="Putzen" price="20">
-                <label for="putzen">Rasen mähen (20€)</label>
-                <input type="checkbox" id="post" value="Rasen mähen" price="5">
+                <input type="checkbox" id="putzen" value="Putzen" price="20" name="toDo">
+                <label for="putzen">Putzen (20€)</label>
+                <input type="checkbox" id="post" value="Rasen mähen" price="5" name="toDo">
                 <label for="post">Post wegbringen (5€)</label>
                 <button id="btn2" type="button">Übernehmen</button>
-            </div>
+            </fieldset>
 
             <!-- Geld -->
-            <h3>Geld abheben:</h3>
-            <div id="geld">
-                0 €<input type="range" min="0" max="200" id="money" value="0">200 €
-                <div id="geldoutput">Ihr Wert:<span id="cash"></span></div>
+    
+            <fieldset id="geld">
+                <legend>Geld abheben:</legend>
+                0 €<input type="range" min="0" max="200" id="money" value="0" step="5" name="money">200 €
                 <button id="btn3" type="button">Übernehmen</button>
-            </div>
+            </fieldset>
 
             <!-- Zahlungsart -->
-            <h3>Zahlungsart:</h3>
-            <div id="bezahlung">
-                <input type="radio" name="Radiogroup" value="Bar" id="bar">
+            
+            <fieldset id="bezahlung">
+                <input type="radio" name="Radiogroup" value="Bar" id="bar" name="cash">
                 <label for="bar">Bar</label>
-                <input type="radio" name="Radiogroup" value="PayPal" id="paypal">
+                <input type="radio" name="Radiogroup" value="PayPal" id="paypal" name="cash">
                 <label for="paypal">PayPal</label>
-                <input type="radio" name="Radiogroup" value="Überweisung" id="ueberweisung">
+                <input type="radio" name="Radiogroup" value="Überweisung" id="ueberweisung" name="cash">
                 <label for="ueberweisung">Überweisung</label>
                 <button type="button" id="btn4">Übernehmen</button>
-            </div>
+            </fieldset>
         </div>
     </form>
 

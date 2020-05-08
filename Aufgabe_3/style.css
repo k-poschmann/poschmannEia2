@@ -1,4 +1,4 @@
-#form{
+/* #form{
     width: 60%;
     height: auto;
     border: 1px solid black;
@@ -36,7 +36,7 @@
 .menge{
     width: 40px;
     height: 15px;
-    /* display: block; */
+    /* display: block; 
     margin-top: 5px;
 }
 
@@ -83,13 +83,18 @@ label::after{
     width: 500px;
     height: 90px;
     border: 2px solid black;
+}*/
+
+#list{
+    border: 1px solid black;
 }
 
-#list
+.red{
+    color: red;
+}
 
 
-
-.headlines{
+/*.headlines{
     font-size: 20px;
     color: blue;
-}
+} */
