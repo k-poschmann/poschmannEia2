@@ -1,0 +1,95 @@
+#form{
+    width: 60%;
+    height: auto;
+    border: 1px solid black;
+    float: left;
+
+}
+
+#tasks{
+    margin-bottom: 20px;
+}
+
+#einkauf{
+    width: 500px;
+    height: 250px;
+    border: 2px solid black;
+}
+
+#mengen{
+    width: 60px;
+    height: auto;
+    float: left;
+}
+
+.mengeh1{
+    float: left;
+    margin-right: 210px;
+    font-weight: bolder;
+}
+
+.placeh1{
+    font-weight: bolder;
+}
+
+
+.menge{
+    width: 40px;
+    height: 15px;
+    /* display: block; */
+    margin-top: 5px;
+}
+
+#artikel{
+    width: 200px;
+    float: left;
+}
+
+.article {
+    margin: 11.5px 0 0px 0;
+}
+
+
+label::after{
+    content: "";
+    display: block;
+}
+
+#hilfe{
+    width: 500px;
+    height: 90px;
+    border: 2px solid black;
+}
+
+#btn1{
+    margin-top: 130px;
+}
+
+#btn2{
+    margin-left: 200px;
+}
+
+#btn3{
+    margin-left: 200px;
+}
+
+#geld{
+    width: 500px;
+    height: 90px;
+    border: 2px solid black;
+}
+
+#bezahlung{
+    width: 500px;
+    height: 90px;
+    border: 2px solid black;
+}
+
+#list
+
+
+
+.headlines{
+    font-size: 20px;
+    color: blue;
+}
