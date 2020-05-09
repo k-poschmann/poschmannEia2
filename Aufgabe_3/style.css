@@ -1,100 +1,161 @@
-/* #form{
-    width: 60%;
-    height: auto;
-    border: 1px solid black;
+h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: lighter;
+    text-align: center;
+}
+
+#danke{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    color: grey;
+    text-align: center;
+}
+h4 {
+    color: green;
+    font-weight: lighter;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+#form{
+    width: 600px;
     float: left;
-
 }
 
-#tasks{
-    margin-bottom: 20px;
+#auswahl{
+    text-align: center;
 }
 
-#einkauf{
-    width: 500px;
-    height: 250px;
-    border: 2px solid black;
-}
+/*--------EINKAUF----------*/
 
-#mengen{
-    width: 60px;
-    height: auto;
+#slider{
     float: left;
-}
-
-.mengeh1{
-    float: left;
-    margin-right: 210px;
-    font-weight: bolder;
-}
-
-.placeh1{
-    font-weight: bolder;
-}
-
-
-.menge{
-    width: 40px;
-    height: 15px;
-    /* display: block; 
-    margin-top: 5px;
 }
 
 #artikel{
-    width: 200px;
     float: left;
+    margin-left: 15px;
 }
 
-.article {
-    margin: 11.5px 0 0px 0;
+#markt{
+    width: 150px;
+    height: 20px;
+    margin-left: 20px;
+}
+
+/*---Inputs anordnung*/
+input[type="radio"], input[type="checkbox"], label {
+	display: inline;
+}
+label::after {
+	content:"";
+	display: block;
 }
 
 
-label::after{
-    content: "";
-    display: block;
-}
 
-#hilfe{
-    width: 500px;
-    height: 90px;
-    border: 2px solid black;
-}
 
-#btn1{
-    margin-top: 130px;
-}
-
-#btn2{
-    margin-left: 200px;
-}
-
-#btn3{
-    margin-left: 200px;
-}
-
-#geld{
-    width: 500px;
-    height: 90px;
-    border: 2px solid black;
-}
-
-#bezahlung{
-    width: 500px;
-    height: 90px;
-    border: 2px solid black;
-}*/
+/*-------OUTPUT LISTE-------*/
 
 #list{
     border: 1px solid black;
+    margin-left: 50px;
+    width: 500px;
+    height: auto;
+    float: left;
 }
 
-.red{
-    color: red;
+
+/*-------BUTTONS---------*/
+#confirm{
+    width: 100px;
+    height: 30px;
+    background-color: #0d2e0d;
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
 }
 
+#confirm:hover{
+    background-color: green;
+}
 
-/*.headlines{
-    font-size: 20px;
-    color: blue;
-} */
+#btn1{
+    width: 100px;
+    height: 30px;
+    background-color: #0d2e0d;
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+    position: relative;
+    top: 50px;
+    left: 70px;
+}
+
+#btn1:hover{
+    background-color: green;
+}
+
+#btn2{
+    width: 100px;
+    height: 30px;
+    background-color: #0d2e0d;
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+    position: relative;
+    left: 435px;
+    top: -30px;
+}
+
+#btn2:hover{
+    background-color: green;
+}
+
+#btn3{
+    width: 100px;
+    height: 30px;
+    background-color: #0d2e0d;
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+    position: relative;
+    left: 435px;
+    top: -30px;
+}
+
+#btn3:hover{
+    background-color: green;
+}
+
+#btn4{
+    width: 100px;
+    height: 30px;
+    background-color: #0d2e0d;
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+    position: relative;
+    left: 435px;
+    top: -30px;
+}
+
+#btn4:hover{
+    background-color: green;
+}
+
+#delete{
+    width: 100px;
+    height: 30px;
+    background-color: #0d2e0d;
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+    float: right;
+    
+}
+
+#delete:hover{
+    background-color: green;
+}

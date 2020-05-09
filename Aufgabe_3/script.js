@@ -9,25 +9,26 @@ var Haushaltshilfe;
     let selecthelp = document.querySelector("#selecthelp");
     let selectmoney = document.querySelector("#selectmoney");
     let confirm = document.querySelector("#confirm");
-    let einkauf = document.querySelector("#einkauf");
-    let hilfe = document.querySelector("#hilfe");
-    let geld = document.querySelector("#geld");
-    let bezahlung = document.querySelector("#bezahlung");
     let btn1 = document.querySelector("#btn1");
     let btn2 = document.querySelector("#btn2");
     let btn3 = document.querySelector("#btn3");
     let btn4 = document.querySelector("#btn4");
+    let deletebtn = document.querySelector("#delete");
     let totalprice = document.querySelector("#totalprice");
+    let bar = document.querySelector("#bar");
+    let paypal = document.querySelector("#paypal");
+    let ueberweisung = document.querySelector("#ueberweisung");
     function handleLoad(_event) {
         //console.log("Start");
         // Event-Listener werden auf alle Buttons gesetzt
-        //confirm.addEventListener("click", handleChange);
+        confirm.addEventListener("click", handleChange);
         btn1.addEventListener("click", handleChange);
         btn2.addEventListener("click", handleChange);
         btn3.addEventListener("click", handleChange);
         btn4.addEventListener("click", handleChange);
+        deletebtn.addEventListener("click", deleteList);
     }
-    function handleChange(_event) {
+    function handleChange() {
         //selektieren des Elements, wo am Ende alles 'reinkommt'
         let list = document.querySelector("#list");
         //Erstellen des FormData Elements
@@ -36,13 +37,17 @@ var Haushaltshilfe;
             let selector = "[value='" + entry[1] + "']";
             let item = document.querySelector(selector);
             let containershopping = document.createElement("div");
-            let containerplace = document.createElement("div");
             let toDocontainer = document.createElement("div");
             let moneycontainer = document.createElement("div");
             let cashcontainer = document.createElement("div");
-            let deletebtn = document.createElement("button");
+            let auswahlcontainer = document.createElement("div");
             switch (entry[0]) {
                 case "Auswahl":
+                    let auswahl = String(item.getAttribute("value"));
+                    auswahlcontainer.innerHTML = "" + auswahl;
+                    list.appendChild(auswahlcontainer);
+                    console.log(auswahlcontainer);
+                    break;
                 case "Menge":
                     break;
                 case "Items":
@@ -63,23 +68,33 @@ var Haushaltshilfe;
                     totalCost += price;
                     form.reset();
                     break;
-                case "money":
-                    let geld = Number(formData.get("money"));
+                case "Money":
+                    let geld = Number(formData.get("Money"));
                     moneycontainer.innerHTML = "<h4>Geld abheben</h4>" + geld + " €";
                     list.appendChild(moneycontainer);
+                    totalCost += geld;
                     form.reset();
                     break;
                 case "cash":
-                    let cash = String(item.getAttribute("value"));
-                    cashcontainer.innerHTML = "" + cash;
+                    if (bar.value == "checked") {
+                        cashcontainer.innerHTML = "" + bar.value;
+                    }
+                    else if (paypal.value == "checked") {
+                        cashcontainer.innerHTML = "" + paypal.value;
+                    }
+                    else {
+                        cashcontainer.innerHTML = "" + ueberweisung.value;
+                    }
+                    //cashcontainer.innerHTML = "" + zahlungsart;
                     list.appendChild(cashcontainer);
+                    form.reset();
+                    break;
             }
+            totalprice.innerHTML = "GESAMT: " + totalCost.toFixed(2) + " €";
+            list.appendChild(totalprice);
         }
     }
-    function displayAmount(_event) {
-        let progress = document.querySelector("progress");
-        let amount = _event.target.value;
-        progress.value = parseFloat(amount);
+    function deleteList() {
     }
 })(Haushaltshilfe || (Haushaltshilfe = {}));
 //# sourceMappingURL=script.js.map
