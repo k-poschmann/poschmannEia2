@@ -9,12 +9,6 @@ namespace Haushaltshilfe {
     let selecthelp: HTMLInputElement = <HTMLInputElement>document.querySelector("#selecthelp");
     let selectmoney: HTMLInputElement = <HTMLInputElement>document.querySelector("#selectmoney");
     let confirm: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#confirm");
-
-    
-    let btn1: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btn1");
-    let btn2: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btn2");
-    let btn3: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btn3");
-    let btn4: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btn4");
     let deletebtn: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#delete");
     let totalprice: HTMLLabelElement = <HTMLLabelElement>document.querySelector("#totalprice");
 
@@ -26,6 +20,10 @@ namespace Haushaltshilfe {
 
     function handleLoad(_event: Event): void {
         //console.log("Start");
+        let btn1: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btn1");
+        let btn2: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btn2");
+        let btn3: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btn3");
+        let btn4: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btn4");
 
         generateContent(data);
 
@@ -60,7 +58,7 @@ namespace Haushaltshilfe {
                     break;
                 case "einkauf":
                     let itemPrice: number = Number(item.getAttribute("price"));
-                    let menge: number = Number(formData.get("Menge"));
+                    let menge: number = Number(formData.get("einkauf"));
                     let market: string = String(formData.get("Ort"));
 
                     itemPrice = menge * itemPrice;
@@ -88,7 +86,7 @@ namespace Haushaltshilfe {
                     form.reset();
                     break;
 
-                case "Bezahlung":
+                case "bezahlung":
                     if (bar.value == "checked") {
                         cashcontainer.innerHTML = "" + bar.value;
                     } else if (paypal.value == "checked") {

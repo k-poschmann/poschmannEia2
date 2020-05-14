@@ -9,10 +9,6 @@ var Haushaltshilfe;
     let selecthelp = document.querySelector("#selecthelp");
     let selectmoney = document.querySelector("#selectmoney");
     let confirm = document.querySelector("#confirm");
-    let btn1 = document.querySelector("#btn1");
-    let btn2 = document.querySelector("#btn2");
-    let btn3 = document.querySelector("#btn3");
-    let btn4 = document.querySelector("#btn4");
     let deletebtn = document.querySelector("#delete");
     let totalprice = document.querySelector("#totalprice");
     let bar = document.querySelector("#bar");
@@ -20,6 +16,10 @@ var Haushaltshilfe;
     let ueberweisung = document.querySelector("#ueberweisung");
     function handleLoad(_event) {
         //console.log("Start");
+        let btn1 = document.querySelector("#btn1");
+        let btn2 = document.querySelector("#btn2");
+        let btn3 = document.querySelector("#btn3");
+        let btn4 = document.querySelector("#btn4");
         Haushaltshilfe.generateContent(Haushaltshilfe.data);
         // Event-Listener werden auf alle Buttons gesetzt
         btn1.addEventListener("click", handleChange);
@@ -46,7 +46,7 @@ var Haushaltshilfe;
                     break;
                 case "einkauf":
                     let itemPrice = Number(item.getAttribute("price"));
-                    let menge = Number(formData.get("Menge"));
+                    let menge = Number(formData.get("einkauf"));
                     let market = String(formData.get("Ort"));
                     itemPrice = menge * itemPrice;
                     let gesamt = itemPrice;
@@ -69,7 +69,7 @@ var Haushaltshilfe;
                     totalCost += geld;
                     form.reset();
                     break;
-                case "Bezahlung":
+                case "bezahlung":
                     if (bar.value == "checked") {
                         cashcontainer.innerHTML = "" + bar.value;
                     }

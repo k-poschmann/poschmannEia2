@@ -17,14 +17,14 @@ namespace Haushaltshilfe {
                 case "hilfe":
                     group = createMultiple(items, category);
                     break;
-                case "Bezahlung":
+                case "bezahlung":
                     group = createSingle(items, category);
                     break;
 
                 default:
                     break;
             }
-            let fieldset: HTMLFieldSetElement | null = document.querySelector("fieldset" + category);
+            let fieldset: HTMLFieldSetElement | null = document.querySelector("fieldset" + "#" + category);
             if (fieldset && group) {
                 fieldset.appendChild(group);
             }

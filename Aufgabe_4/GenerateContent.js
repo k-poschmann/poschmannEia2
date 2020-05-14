@@ -16,13 +16,13 @@ var Haushaltshilfe;
                 case "hilfe":
                     group = createMultiple(items, category);
                     break;
-                case "Bezahlung":
+                case "bezahlung":
                     group = createSingle(items, category);
                     break;
                 default:
                     break;
             }
-            let fieldset = document.querySelector("fieldset" + category);
+            let fieldset = document.querySelector("fieldset" + "#" + category);
             if (fieldset && group) {
                 fieldset.appendChild(group);
             }
