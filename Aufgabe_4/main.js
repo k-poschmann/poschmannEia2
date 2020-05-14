@@ -22,7 +22,6 @@ var Haushaltshilfe;
         //console.log("Start");
         Haushaltshilfe.generateContent(Haushaltshilfe.data);
         // Event-Listener werden auf alle Buttons gesetzt
-        confirm.addEventListener("click", handleChange);
         btn1.addEventListener("click", handleChange);
         btn2.addEventListener("click", handleChange);
         btn3.addEventListener("click", handleChange);
@@ -43,18 +42,12 @@ var Haushaltshilfe;
             let cashcontainer = document.createElement("div");
             let auswahlcontainer = document.createElement("div");
             switch (entry[0]) {
-                case "Auswahl":
-                    let auswahl = String(item.getAttribute("value"));
-                    auswahlcontainer.innerHTML = "" + auswahl;
-                    list.appendChild(auswahlcontainer);
-                    console.log(auswahlcontainer);
-                    break;
                 case "Menge":
                     break;
-                case "Items":
+                case "einkauf":
                     let itemPrice = Number(item.getAttribute("price"));
                     let menge = Number(formData.get("Menge"));
-                    let market = String(formData.get("maerkte"));
+                    let market = String(formData.get("Ort"));
                     itemPrice = menge * itemPrice;
                     let gesamt = itemPrice;
                     containershopping.innerHTML = "<h4>Einkauf</h4>" + menge + " " + entry[1] + " " + itemPrice.toFixed(2) + " €" + " " + market;
@@ -62,7 +55,7 @@ var Haushaltshilfe;
                     totalCost += itemPrice;
                     form.reset();
                     break;
-                case "toDo":
+                case "hilfe":
                     let price = Number(item.getAttribute("price"));
                     toDocontainer.innerHTML = "<h4>Haushaltshilfe</h4>" + entry[1] + price + " €";
                     list.appendChild(toDocontainer);
@@ -76,7 +69,7 @@ var Haushaltshilfe;
                     totalCost += geld;
                     form.reset();
                     break;
-                case "cash":
+                case "Bezahlung":
                     if (bar.value == "checked") {
                         cashcontainer.innerHTML = "" + bar.value;
                     }
@@ -91,6 +84,7 @@ var Haushaltshilfe;
                     form.reset();
                     break;
             }
+            console.log(entry[0]);
             totalprice.innerHTML = "GESAMT: " + totalCost.toFixed(2) + " €";
             list.appendChild(totalprice);
         }

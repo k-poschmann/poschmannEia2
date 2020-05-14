@@ -2,12 +2,7 @@
 var Haushaltshilfe;
 (function (Haushaltshilfe) {
     Haushaltshilfe.data = {
-        Auswahl: [
-            { name: "Einkaufen", price: 0 },
-            { name: "Haushaltshilfe", price: 0 },
-            { name: "Geld Abheben", price: 0 }
-        ],
-        Einkauf: [
+        einkauf: [
             { name: "Butter", price: 1.59 },
             { name: "Milch", price: 0.79 },
             { name: "Eier", price: 1.69 },
@@ -21,7 +16,7 @@ var Haushaltshilfe;
             { name: "Aldi", price: 0 },
             { name: "Edeka", price: 0 }
         ],
-        Haushaltshilfe: [
+        hilfe: [
             { name: "Rasen mähen", price: 10 },
             { name: "Putzenn", price: 20 },
             { name: "Post wegbringen", price: 5 }
@@ -29,7 +24,7 @@ var Haushaltshilfe;
         Bezahlung: [
             { name: "Bar", price: 0 },
             { name: "Paypal", price: 0 },
-            { name: "Überweisung", price: 0 },
+            { name: "Überweisung", price: 0 }
         ]
     };
 })(Haushaltshilfe || (Haushaltshilfe = {}));

@@ -7,16 +7,13 @@ var Haushaltshilfe;
             let items = Haushaltshilfe.data[category];
             let group = null;
             switch (category) {
-                case "Auswahl":
-                    group = createMultiple(items, category);
-                    break;
-                case "Einkauf":
+                case "einkauf":
                     group = createMultiple(items, category);
                     break;
                 case "Ort":
                     group = createList(items, category);
                     break;
-                case "Haushaltshilfe":
+                case "hilfe":
                     group = createMultiple(items, category);
                     break;
                 case "Bezahlung":
@@ -45,6 +42,42 @@ var Haushaltshilfe;
             label.textContent = item.name;
             label.htmlFor = item.name;
             group.appendChild(checkbox);
+            group.appendChild(label);
+        }
+        return group;
+    }
+    function createList(_items, _category) {
+        let group = document.createElement("div");
+        let input = document.createElement("input");
+        input.name = _category;
+        let selection = document.createElement("select");
+        for (let item of _items) {
+            let option = document.createElement("option");
+            option.setAttribute("name", item.name);
+            option.value = item.name;
+            option.setAttribute("price", item.price.toFixed(2));
+            let label = document.createElement("label");
+            label.textContent = item.name;
+            label.htmlFor = item.name;
+            group.appendChild(input);
+            group.appendChild(selection);
+            selection.appendChild(option);
+        }
+        return group;
+    }
+    function createSingle(_items, _category) {
+        let group = document.createElement("div");
+        for (let item of _items) {
+            let radio = document.createElement("input");
+            radio.type = "checkox";
+            radio.setAttribute("price", item.price.toFixed(2));
+            radio.value = item.name;
+            radio.name = _category;
+            radio.id = item.name;
+            let label = document.createElement("label");
+            label.textContent = item.name;
+            label.htmlFor = item.name;
+            group.appendChild(radio);
             group.appendChild(label);
         }
         return group;

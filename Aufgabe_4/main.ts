@@ -30,7 +30,6 @@ namespace Haushaltshilfe {
         generateContent(data);
 
         // Event-Listener werden auf alle Buttons gesetzt
-        confirm.addEventListener("click", handleChange);
         btn1.addEventListener("click", handleChange);
         btn2.addEventListener("click", handleChange);
         btn3.addEventListener("click", handleChange);
@@ -57,18 +56,12 @@ namespace Haushaltshilfe {
             let auswahlcontainer: HTMLDivElement = <HTMLDivElement>document.createElement("div");
 
             switch (entry[0]) {
-                case "Auswahl":
-                    let auswahl: string = String(item.getAttribute("value"));
-                    auswahlcontainer.innerHTML = "" + auswahl;
-                    list.appendChild(auswahlcontainer);
-                    console.log(auswahlcontainer);
-                    break;
                 case "Menge":
                     break;
-                case "Items":
+                case "einkauf":
                     let itemPrice: number = Number(item.getAttribute("price"));
                     let menge: number = Number(formData.get("Menge"));
-                    let market: string = String(formData.get("maerkte"));
+                    let market: string = String(formData.get("Ort"));
 
                     itemPrice = menge * itemPrice;
                     let gesamt: number = itemPrice;
@@ -79,7 +72,7 @@ namespace Haushaltshilfe {
                     form.reset();
                     break;
 
-                case "toDo":
+                case "hilfe":
                     let price: number = Number(item.getAttribute("price"));
                     toDocontainer.innerHTML = "<h4>Haushaltshilfe</h4>" + entry[1] + price + " €";
                     list.appendChild(toDocontainer);
@@ -95,7 +88,7 @@ namespace Haushaltshilfe {
                     form.reset();
                     break;
 
-                case "cash":
+                case "Bezahlung":
                     if (bar.value == "checked") {
                         cashcontainer.innerHTML = "" + bar.value;
                     } else if (paypal.value == "checked") {
@@ -109,6 +102,7 @@ namespace Haushaltshilfe {
                     form.reset();
                     break;
             }
+            console.log(entry[0]);
             totalprice.innerHTML = "GESAMT: " + totalCost.toFixed(2) + " €";
             list.appendChild(totalprice);
         }
