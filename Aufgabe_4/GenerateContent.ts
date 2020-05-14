@@ -36,26 +36,26 @@ namespace Haushaltshilfe {
 
         for (let item of _items) {
             let checkbox: HTMLInputElement = document.createElement("input");
-            checkbox.type = "checkox";
+            checkbox.type = "checkbox";
             checkbox.setAttribute("price", item.price.toFixed(2));
             checkbox.value = item.name;
             checkbox.name = _category;
             checkbox.id = item.name;
 
+            let br: HTMLElement = document.createElement("br");
             let label: HTMLLabelElement = document.createElement("label");
             label.textContent = item.name;
             label.htmlFor = item.name;
 
             group.appendChild(checkbox);
             group.appendChild(label);
+            group.appendChild(br);
         }
         return group;
     }
 
     function createList(_items: Item[], _category: string): HTMLElement | null {
         let group: HTMLDivElement = document.createElement("div");
-        let input: HTMLInputElement = document.createElement("input");
-        input.name = _category;
 
         let selection: HTMLSelectElement = document.createElement("select");
 
@@ -69,7 +69,7 @@ namespace Haushaltshilfe {
             label.textContent = item.name;
             label.htmlFor = item.name;
 
-            group.appendChild(input);
+            option.appendChild(label);
             group.appendChild(selection);
             selection.appendChild(option);
 
@@ -83,11 +83,13 @@ namespace Haushaltshilfe {
 
         for (let item of _items) {
             let radio: HTMLInputElement = document.createElement("input");
-            radio.type = "checkox";
+            radio.type = "radio";
             radio.setAttribute("price", item.price.toFixed(2));
             radio.value = item.name;
             radio.name = _category;
             radio.id = item.name;
+
+            let br: HTMLElement = document.createElement("br");
 
             let label: HTMLLabelElement = document.createElement("label");
             label.textContent = item.name;
@@ -95,7 +97,7 @@ namespace Haushaltshilfe {
 
             group.appendChild(radio);
             group.appendChild(label);
-
+            group.appendChild(br);
         }
         return group;
     }

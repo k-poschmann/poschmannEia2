@@ -33,23 +33,23 @@ var Haushaltshilfe;
         let group = document.createElement("div");
         for (let item of _items) {
             let checkbox = document.createElement("input");
-            checkbox.type = "checkox";
+            checkbox.type = "checkbox";
             checkbox.setAttribute("price", item.price.toFixed(2));
             checkbox.value = item.name;
             checkbox.name = _category;
             checkbox.id = item.name;
+            let br = document.createElement("br");
             let label = document.createElement("label");
             label.textContent = item.name;
             label.htmlFor = item.name;
             group.appendChild(checkbox);
             group.appendChild(label);
+            group.appendChild(br);
         }
         return group;
     }
     function createList(_items, _category) {
         let group = document.createElement("div");
-        let input = document.createElement("input");
-        input.name = _category;
         let selection = document.createElement("select");
         for (let item of _items) {
             let option = document.createElement("option");
@@ -59,7 +59,7 @@ var Haushaltshilfe;
             let label = document.createElement("label");
             label.textContent = item.name;
             label.htmlFor = item.name;
-            group.appendChild(input);
+            option.appendChild(label);
             group.appendChild(selection);
             selection.appendChild(option);
         }
@@ -69,16 +69,18 @@ var Haushaltshilfe;
         let group = document.createElement("div");
         for (let item of _items) {
             let radio = document.createElement("input");
-            radio.type = "checkox";
+            radio.type = "radio";
             radio.setAttribute("price", item.price.toFixed(2));
             radio.value = item.name;
             radio.name = _category;
             radio.id = item.name;
+            let br = document.createElement("br");
             let label = document.createElement("label");
             label.textContent = item.name;
             label.htmlFor = item.name;
             group.appendChild(radio);
             group.appendChild(label);
+            group.appendChild(br);
         }
         return group;
     }
