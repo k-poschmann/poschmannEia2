@@ -26,9 +26,9 @@ namespace Haushaltshilfe {
             { name: "Edeka", price: 0 }
         ],
         hilfe: [
-            { name: "Rasen mähen", price: 10 },
-            { name: "Putzenn", price: 20 },
-            { name: "Post wegbringen", price: 5 }
+            { name: "Rasen mähen | 10 €", price: 10 },
+            { name: "Putzen | 20 €", price: 20 },
+            { name: "Post wegbringen | 5 €", price: 5 }
         ],
         bezahlung: [
             { name: "Bar", price: 0 },

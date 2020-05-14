@@ -49,7 +49,6 @@ namespace Haushaltshilfe {
                 let containershopping: HTMLDivElement = <HTMLDivElement>document.createElement("div"); let toDocontainer: HTMLDivElement = <HTMLDivElement>document.createElement("div");
                 let moneycontainer: HTMLDivElement = <HTMLDivElement>document.createElement("div");
                 let cashcontainer: HTMLDivElement = <HTMLDivElement>document.createElement("div");
-                let auswahlcontainer: HTMLDivElement = <HTMLDivElement>document.createElement("div");
 
                 switch (entry[0]) {
                     case "Menge":
@@ -62,12 +61,11 @@ namespace Haushaltshilfe {
                         itemPrice = menge * itemPrice;
                         let gesamt: number = itemPrice;
 
-                        containershopping.innerHTML = "<h4>Einkauf</h4>" + menge + " " + entry[1] + " " + itemPrice.toFixed(2) + " €" + " " + market;
+                        containershopping.innerHTML = "" + menge + " " + entry[1] + " " + itemPrice.toFixed(2) + " €" + " " + market;
                         list.appendChild(containershopping);
                         totalCost += itemPrice;
                         form.reset();
                         break;
-
                     case "hilfe":
                         let price: number = Number(item.getAttribute("price"));
                         toDocontainer.innerHTML = "<h4>Haushaltshilfe</h4>" + entry[1] + price + " €";
@@ -76,7 +74,7 @@ namespace Haushaltshilfe {
                         form.reset();
                         break;
 
-                    case "Money":
+                    case "money":
                         let geld: number = Number(formData.get("Money"));
                         moneycontainer.innerHTML = "<h4>Geld abheben</h4>" + geld + " €";
                         list.appendChild(moneycontainer);
@@ -98,7 +96,7 @@ namespace Haushaltshilfe {
                         form.reset();
                         break;
                 }
-                console.log(entry[0]);
+                console.log(entry[1]);
                 totalprice.innerHTML = "GESAMT: " + totalCost.toFixed(2) + " €";
                 list.appendChild(totalprice);
             }
@@ -108,7 +106,6 @@ namespace Haushaltshilfe {
 
     });
 
-    // Die Variablen werden typisiert und deklariert
 
 
 

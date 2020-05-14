@@ -37,7 +37,6 @@ var Haushaltshilfe;
                 let toDocontainer = document.createElement("div");
                 let moneycontainer = document.createElement("div");
                 let cashcontainer = document.createElement("div");
-                let auswahlcontainer = document.createElement("div");
                 switch (entry[0]) {
                     case "Menge":
                         break;
@@ -47,7 +46,7 @@ var Haushaltshilfe;
                         let market = String(formData.get("Ort"));
                         itemPrice = menge * itemPrice;
                         let gesamt = itemPrice;
-                        containershopping.innerHTML = "<h4>Einkauf</h4>" + menge + " " + entry[1] + " " + itemPrice.toFixed(2) + " €" + " " + market;
+                        containershopping.innerHTML = "" + menge + " " + entry[1] + " " + itemPrice.toFixed(2) + " €" + " " + market;
                         list.appendChild(containershopping);
                         totalCost += itemPrice;
                         form.reset();
@@ -59,7 +58,7 @@ var Haushaltshilfe;
                         totalCost += price;
                         form.reset();
                         break;
-                    case "Money":
+                    case "money":
                         let geld = Number(formData.get("Money"));
                         moneycontainer.innerHTML = "<h4>Geld abheben</h4>" + geld + " €";
                         list.appendChild(moneycontainer);
@@ -81,12 +80,11 @@ var Haushaltshilfe;
                         form.reset();
                         break;
                 }
-                console.log(entry[0]);
+                console.log(entry[1]);
                 totalprice.innerHTML = "GESAMT: " + totalCost.toFixed(2) + " €";
                 list.appendChild(totalprice);
             }
         }
     });
-    // Die Variablen werden typisiert und deklariert
 })(Haushaltshilfe || (Haushaltshilfe = {}));
 //# sourceMappingURL=main.js.map
