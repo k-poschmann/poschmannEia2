@@ -24,7 +24,7 @@ var Haushaltshilfe;
         btn2.addEventListener("click", handleChange);
         btn3.addEventListener("click", handleChange);
         btn4.addEventListener("click", handleChange);
-        //deletebtn.addEventListener("click", deleteList);
+        deletebtn.addEventListener("click", deleteList);
         function handleChange() {
             //selektieren des Elements, wo am Ende alles 'reinkommt'
             let list = document.querySelector("#list");
@@ -49,6 +49,7 @@ var Haushaltshilfe;
                         containershopping.innerHTML = "" + menge + " " + entry[1] + " " + itemPrice.toFixed(2) + " €" + " " + market;
                         list.appendChild(containershopping);
                         totalCost += itemPrice;
+                        console.log(market);
                         form.reset();
                         break;
                     case "hilfe":
@@ -66,23 +67,34 @@ var Haushaltshilfe;
                         form.reset();
                         break;
                     case "bezahlung":
-                        if (bar.value == "checked") {
-                            cashcontainer.innerHTML = "" + bar.value;
+                        let paypal = document.getElementById("PayPal");
+                        let bar = document.getElementById("Bar");
+                        let zahlungsart;
+                        if (bar.checked == true) {
+                            zahlungsart = "Bar";
+                            cashcontainer.innerHTML = zahlungsart + " bezahlen";
                         }
-                        else if (paypal.value == "checked") {
-                            cashcontainer.innerHTML = "" + paypal.value;
+                        else if (paypal.checked == true) {
+                            zahlungsart = "PayPal";
+                            cashcontainer.innerHTML = "Mit " + zahlungsart + " zahlen";
                         }
                         else {
-                            cashcontainer.innerHTML = "" + ueberweisung.value;
+                            zahlungsart = "Überweisung";
+                            cashcontainer.innerHTML = "Per " + zahlungsart + " bezahlen";
                         }
                         //cashcontainer.innerHTML = "" + zahlungsart;
                         list.appendChild(cashcontainer);
                         form.reset();
                         break;
                 }
-                console.log(entry[1]);
                 totalprice.innerHTML = "GESAMT: " + totalCost.toFixed(2) + " €";
                 list.appendChild(totalprice);
+            }
+        }
+        function deleteList(_event) {
+            let mainlist = document.querySelector("div#list");
+            while (mainlist.firstChild) {
+                mainlist.removeChild(mainlist.firstChild);
             }
         }
     });

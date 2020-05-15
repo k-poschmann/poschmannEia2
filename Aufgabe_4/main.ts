@@ -29,7 +29,7 @@ namespace Haushaltshilfe {
         btn2.addEventListener("click", handleChange);
         btn3.addEventListener("click", handleChange);
         btn4.addEventListener("click", handleChange);
-        //deletebtn.addEventListener("click", deleteList);
+        deletebtn.addEventListener("click", deleteList);
 
 
 
@@ -46,7 +46,8 @@ namespace Haushaltshilfe {
                 let selector: string = "[value='" + entry[1] + "']";
                 let item: HTMLInputElement = <HTMLInputElement>document.querySelector(selector);
 
-                let containershopping: HTMLDivElement = <HTMLDivElement>document.createElement("div"); let toDocontainer: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                let containershopping: HTMLDivElement = <HTMLDivElement>document.createElement("div"); 
+                let toDocontainer: HTMLDivElement = <HTMLDivElement>document.createElement("div");
                 let moneycontainer: HTMLDivElement = <HTMLDivElement>document.createElement("div");
                 let cashcontainer: HTMLDivElement = <HTMLDivElement>document.createElement("div");
 
@@ -64,6 +65,7 @@ namespace Haushaltshilfe {
                         containershopping.innerHTML = "" + menge + " " + entry[1] + " " + itemPrice.toFixed(2) + " €" + " " + market;
                         list.appendChild(containershopping);
                         totalCost += itemPrice;
+                        console.log(market);
                         form.reset();
                         break;
                     case "hilfe":
@@ -83,12 +85,18 @@ namespace Haushaltshilfe {
                         break;
 
                     case "bezahlung":
-                        if (bar.value == "checked") {
-                            cashcontainer.innerHTML = "" + bar.value;
-                        } else if (paypal.value == "checked") {
-                            cashcontainer.innerHTML = "" + paypal.value;
+                        let paypal: HTMLInputElement = <HTMLInputElement>document.getElementById("PayPal");
+                        let bar: HTMLInputElement = <HTMLInputElement>document.getElementById("Bar");
+                        let zahlungsart: string;
+                        if (bar.checked == true) {
+                            zahlungsart = "Bar";
+                            cashcontainer.innerHTML = zahlungsart + " bezahlen";
+                        } else if (paypal.checked == true) {
+                            zahlungsart = "PayPal";
+                            cashcontainer.innerHTML = "Mit " + zahlungsart + " zahlen";
                         } else {
-                            cashcontainer.innerHTML = "" + ueberweisung.value;
+                            zahlungsart = "Überweisung";
+                            cashcontainer.innerHTML = "Per " + zahlungsart + " bezahlen";
                         }
 
                         //cashcontainer.innerHTML = "" + zahlungsart;
@@ -96,12 +104,20 @@ namespace Haushaltshilfe {
                         form.reset();
                         break;
                 }
-                console.log(entry[1]);
                 totalprice.innerHTML = "GESAMT: " + totalCost.toFixed(2) + " €";
                 list.appendChild(totalprice);
             }
 
 
+        }
+
+
+        function deleteList(_event: Event): void {
+                let mainlist: HTMLDivElement = <HTMLDivElement>document.querySelector("div#list");
+                while (mainlist.firstChild) {
+                    mainlist.removeChild(mainlist.firstChild);
+                }
+            
         }
 
     });

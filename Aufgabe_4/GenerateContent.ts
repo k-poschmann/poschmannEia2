@@ -69,9 +69,9 @@ namespace Haushaltshilfe {
             label.textContent = item.name;
             label.htmlFor = item.name;
 
+            selection.appendChild(option);
             option.appendChild(label);
             group.appendChild(selection);
-            selection.appendChild(option);
 
         }
 
