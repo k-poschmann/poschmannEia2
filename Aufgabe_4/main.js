@@ -61,7 +61,7 @@ var Haushaltshilfe;
                         break;
                     case "money":
                         let geld = Number(formData.get("Money"));
-                        moneycontainer.innerHTML = "<h4>Geld abheben</h4>" + geld + " €";
+                        moneycontainer.innerHTML = "<h4>Geld abheben</h4>" + item.value + " €";
                         list.appendChild(moneycontainer);
                         totalCost += geld;
                         form.reset();

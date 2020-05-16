@@ -56,6 +56,7 @@ var Haushaltshilfe;
             option.setAttribute("name", item.name);
             option.value = item.name;
             option.setAttribute("price", item.price.toFixed(2));
+            selection.setAttribute("name", "Ort");
             let label = document.createElement("label");
             label.textContent = item.name;
             label.htmlFor = item.name;
