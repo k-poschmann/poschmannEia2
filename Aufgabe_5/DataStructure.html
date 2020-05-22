@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haushaltshilfe</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="Data.js"></script>
+    <script src="GenerateContent.js"></script>
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <header>
+        <p id="danke">*Mit der Unterstützung von Alida Kohler entstanden. Danke nochmals :)</p>
+        <h1>Haushaltshilfe</h1>
+    </header>
+
+
+
+    <form id="form" method="GET">
+        <div>
+
+            <!-- Einkaufen -->
+
+            <fieldset id="einkauf">
+                <legend>Einkauf: </legend>
+                <div id="slider">
+                    <span>
+                        Menge: <br>
+                        1
+                        <input  type="range" min="1.0" max="10.0" name="Menge" step="1.0" value="1.0">
+                        10
+                    </span>
+                </div>
+
+                <legend>Artikel: </legend>
+
+                <button id="btn1" type="button">Übernehmen</button>
+            </fieldset>
+            <fieldset id="Ort" name="Ort">
+                <label>Supermarkt wählen:</label>
+            </fieldset>
+
+            <!-- Haushaltshilfe -->
+
+            <fieldset id="hilfe">
+                <legend>Haushaltshilfe:</legend>
+               
+                <button id="btn2" type="button">Übernehmen</button>
+            </fieldset>
+
+            
+
+            <!-- Zahlungsart -->
+            
+            <fieldset id="bezahlung">
+                <legend>Zahlungsart</legend>
+                <button id="btn4" type="button">Übernehmen</button>
+            </fieldset>
+        </div>
+    </form>
+
+    <div id="list">
+        <label id="totalprice"></label>
+    </div>
+    <button id="delete" type="reset" form="form">Liste löschen</button>
+    <button id="submit" type="button" form="form">Senden</button>
+    
+</body>
+
+</html>

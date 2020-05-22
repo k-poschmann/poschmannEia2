@@ -1,13 +1,14 @@
-namespace Haushaltshilfe {
-    window.addEventListener("load", function () {
+namespace Haushaltshilfe5 {
+    window.addEventListener("load", async function () {
         let totalCost: number = 0;
         let form: HTMLFormElement = <HTMLFormElement>document.querySelector("form");
         // let selectshopping: HTMLInputElement = <HTMLInputElement>document.querySelector("#selectshopping");
         // let selecthelp: HTMLInputElement = <HTMLInputElement>document.querySelector("#selecthelp");
         // let selectmoney: HTMLInputElement = <HTMLInputElement>document.querySelector("#selectmoney");
         // let confirm: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#confirm");
-        let deletebtn: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#delete");
+        let deletebtn: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button[type=reset]");
         let totalprice: HTMLLabelElement = <HTMLLabelElement>document.querySelector("#totalprice");
+        let submit: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#submit");
 
         // let bar: HTMLInputElement = <HTMLInputElement>document.querySelector("#bar");
         // let paypal: HTMLInputElement = <HTMLInputElement>document.querySelector("#paypal");
@@ -22,6 +23,10 @@ namespace Haushaltshilfe {
         let btn3: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btn3");
         let btn4: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btn4");
 
+        let response: Response = await fetch("Data.json");
+        let offer: string = await response.text();
+        let data: Data = JSON.parse(offer);
+
         generateContent(data);
 
         // Event-Listener werden auf alle Buttons gesetzt
@@ -29,10 +34,18 @@ namespace Haushaltshilfe {
         btn2.addEventListener("click", handleChange);
         btn3.addEventListener("click", handleChange);
         btn4.addEventListener("click", handleChange);
+        submit.addEventListener("click", sendOrder);
         deletebtn.addEventListener("click", deleteList);
 
 
 
+        async function sendOrder(_event: Event): Promise<void> {
+            console.log("send order");
+            let formData: FormData = new FormData(form);
+            let query: URLSearchParams = new URLSearchParams(<any>formData);
+            await fetch("DataStructure.html?" + query.toString());
+            alert("Order sent!");
+        }
 
 
         function handleChange(): void {
@@ -48,7 +61,6 @@ namespace Haushaltshilfe {
 
                 let containershopping: HTMLDivElement = <HTMLDivElement>document.createElement("div"); 
                 let toDocontainer: HTMLDivElement = <HTMLDivElement>document.createElement("div");
-                let moneycontainer: HTMLDivElement = <HTMLDivElement>document.createElement("div");
                 let cashcontainer: HTMLDivElement = <HTMLDivElement>document.createElement("div");
 
                 switch (entry[0]) {
@@ -74,15 +86,6 @@ namespace Haushaltshilfe {
                         totalCost += price;
                         form.reset();
                         break;
-
-                    case "money":
-                        let geld: number = Number(formData.get("Money"));
-                        moneycontainer.innerHTML = "<h4>Geld abheben</h4>" + item.value + " €";
-                        list.appendChild(moneycontainer);
-                        totalCost += geld;
-                        form.reset();
-                        break;
-
                     case "bezahlung":
                         let paypal: HTMLInputElement = <HTMLInputElement>document.getElementById("Paypal");
                         let bar: HTMLInputElement = <HTMLInputElement>document.getElementById("Bar");
@@ -113,9 +116,7 @@ namespace Haushaltshilfe {
 
         function deleteList(_event: Event): void {
                 let mainlist: HTMLDivElement = <HTMLDivElement>document.querySelector("div#list");
-                while (mainlist.firstChild) {
-                    mainlist.removeChild(mainlist.firstChild);
-                }
+                mainlist.innerHTML = "";
             
         }
 

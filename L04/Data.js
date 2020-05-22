@@ -11,7 +11,7 @@ var L04_CocktailBar;
             { name: "Ice", price: 0.50 },
             { name: "Lemon", price: 0.20 },
             { name: "Orange", price: 0.15 },
-            { name: "Mint", price: 0.50 }
+            { name: "Mint", price: 0.30 }
         ],
         Container: [
             { name: "Slim", price: 3.50 },
