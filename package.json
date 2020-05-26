@@ -1,0 +1,21 @@
+{
+  "name": "haushaltshilfe",
+  "version": "1.0.0",
+  "description": "EIA 2",
+  "main": "",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "node L06/CocktailBar/Server/Server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k-poschmann/poschmannEia2.git"
+  },
+  "author": "Kristin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k-poschmann/poschmannEia2/issues"
+  },
+  "homepage": "https://github.com/k-poschmann/poschmannEia2#readme"
+}
