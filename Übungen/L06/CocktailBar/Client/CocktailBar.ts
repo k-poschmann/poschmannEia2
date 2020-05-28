@@ -1,4 +1,4 @@
-namespace L05_CocktailBar {
+namespace L06_CocktailBar {
     window.addEventListener("load", handleLoad);
     let form: HTMLFormElement;
     let url: string = "http://localhost:5001";
