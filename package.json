@@ -6,7 +6,7 @@
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
-    "start": "node L06/CocktailBar/Server/Server.js"
+    "start": "node Aufgabe_6/Server/Server.js"
   },
   "repository": {
     "type": "git",
