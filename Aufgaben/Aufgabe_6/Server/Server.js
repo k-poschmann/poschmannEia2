@@ -18,14 +18,10 @@ var Haushaltshilfe_6;
         if (_request.url) {
             let url = Url.parse(_request.url, true);
             for (let key in url.query) {
-                switch (key) {
-                    case "einkauf":
-                        break;
-                    default:
-                        _response.write(key + ":" + url.query[key] + "<br>");
-                        break;
-                }
+                _response.write(key + ":" + url.query[key] + "<br>");
             }
+            let jsonString = JSON.stringify(url.query);
+            _response.write(jsonString);
         }
         _response.end();
     }
