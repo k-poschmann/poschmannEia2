@@ -1,4 +1,4 @@
-namespace Haushaltshilfe5 {
+namespace Haushaltshilfe_6 {
     window.addEventListener("load", handleLoad);
     let totalCost: number = 0;
     let form: HTMLFormElement = <HTMLFormElement>document.querySelector("#form");

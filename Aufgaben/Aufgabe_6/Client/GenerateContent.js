@@ -1,6 +1,6 @@
 "use strict";
-var Haushaltshilfe5;
-(function (Haushaltshilfe5) {
+var Haushaltshilfe_6;
+(function (Haushaltshilfe_6) {
     function generateContent(_data) {
         //console.log(_data);
         for (let category in _data) {
@@ -28,7 +28,7 @@ var Haushaltshilfe5;
             }
         }
     }
-    Haushaltshilfe5.generateContent = generateContent;
+    Haushaltshilfe_6.generateContent = generateContent;
     function createMultiple(_items, _category) {
         let group = document.createElement("div");
         for (let item of _items) {
@@ -85,5 +85,5 @@ var Haushaltshilfe5;
         }
         return group;
     }
-})(Haushaltshilfe5 || (Haushaltshilfe5 = {}));
+})(Haushaltshilfe_6 || (Haushaltshilfe_6 = {}));
 //# sourceMappingURL=GenerateContent.js.map

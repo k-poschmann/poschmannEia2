@@ -1,6 +1,6 @@
 "use strict";
-var Haushaltshilfe5;
-(function (Haushaltshilfe5) {
+var Haushaltshilfe_6;
+(function (Haushaltshilfe_6) {
     window.addEventListener("load", handleLoad);
     let totalCost = 0;
     let form = document.querySelector("#form");
@@ -15,7 +15,7 @@ var Haushaltshilfe5;
         let response = await fetch("Data.json");
         let offer = await response.text();
         let data = JSON.parse(offer);
-        Haushaltshilfe5.generateContent(data);
+        Haushaltshilfe_6.generateContent(data);
         // Event-Listener werden auf alle Buttons gesetzt
         btn1.addEventListener("click", handleChange);
         btn2.addEventListener("click", handleChange);
@@ -90,5 +90,5 @@ var Haushaltshilfe5;
         let mainlist = document.querySelector("div#list");
         mainlist.innerHTML = "";
     }
-})(Haushaltshilfe5 || (Haushaltshilfe5 = {}));
+})(Haushaltshilfe_6 || (Haushaltshilfe_6 = {}));
 //# sourceMappingURL=main.js.map

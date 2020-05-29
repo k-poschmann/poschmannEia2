@@ -1,4 +1,4 @@
-namespace Haushaltshilfe5 {
+namespace Haushaltshilfe_6 {
 
     export interface Item {
         name: string;
