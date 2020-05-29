@@ -5,7 +5,7 @@ var Haushaltshilfe_6;
     let totalCost = 0;
     let form = document.querySelector("#form");
     let totalprice = document.querySelector("#totalprice");
-    let url = "https://hfucocktailbar.herukoapp.com/";
+    let url = "https://hfucocktailbar.herokuapp.com/";
     async function handleLoad(_event) {
         let deletebtn = document.querySelector("button[type=reset]");
         let submit = document.querySelector("#submit");

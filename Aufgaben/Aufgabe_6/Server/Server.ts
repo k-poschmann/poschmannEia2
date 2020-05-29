@@ -15,7 +15,7 @@ export namespace Haushaltshilfe_6 {
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
         console.log("What's Up?");
 
-        _response.setHeader("content-type", "text/html; charset-utf-8");
+        _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
         if (_request.url) {

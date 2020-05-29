@@ -3,7 +3,7 @@ namespace Haushaltshilfe_6 {
     let totalCost: number = 0;
     let form: HTMLFormElement = <HTMLFormElement>document.querySelector("#form");
     let totalprice: HTMLLabelElement = <HTMLLabelElement>document.querySelector("#totalprice");
-    let url: string = "https://hfucocktailbar.herukoapp.com/";
+    let url: string = "https://hfucocktailbar.herokuapp.com/";
 
 
 
