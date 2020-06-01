@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "EIA 2",
   "main": "",
-  "dependencies": {},
+  "dependencies": {
+    "@types/mongodb": "^3.5.20",
+    "mongodb": "^3.5.8"
+  },
   "devDependencies": {},
   "scripts": {
-    "start": "node Aufgaben/Aufgabe_6/Server/Server.js"
+    "start": "node Übungen/L07/Server/Server.js"
   },
   "repository": {
     "type": "git",
