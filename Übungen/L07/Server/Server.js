@@ -10,7 +10,7 @@ var L07_CocktailBar;
     if (port == undefined)
         port = 5001;
     //mongodb+srv://dbPoschmann:<password>@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority
-    let databaseUrl = "mongodb+srv://dbPoschmann:<password>@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
+    let databaseUrl = "mongodb+srv://dbPoschmann:2ILoveMedia3@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
     startServer(port);
     connectToDatabase(databaseUrl);
     function startServer(_port) {

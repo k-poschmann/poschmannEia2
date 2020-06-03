@@ -16,7 +16,7 @@ export namespace L07_CocktailBar {
         port = 5001;
 
     //mongodb+srv://dbPoschmann:<password>@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority
-    let databaseUrl: string = "mongodb+srv://dbPoschmann:<password>@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
+    let databaseUrl: string = "mongodb+srv://dbPoschmann:2ILoveMedia3@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
 
     startServer(port);
     connectToDatabase(databaseUrl);
