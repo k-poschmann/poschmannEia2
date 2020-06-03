@@ -1,7 +1,7 @@
 namespace L07_CocktailBar {
     window.addEventListener("load", handleLoad);
     let form: HTMLFormElement;
-    let url: string = "mongodb+srv://dbPoschmann:<password>@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
+    let url: string = "https://hfucocktailbar.herokuapp.com/";
 
     async function handleLoad(_event: Event): Promise<void> {
         console.log("Init");
