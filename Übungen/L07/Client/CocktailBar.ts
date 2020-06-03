@@ -1,7 +1,7 @@
 namespace L07_CocktailBar {
     window.addEventListener("load", handleLoad);
     let form: HTMLFormElement;
-    let url: string = "http://localhost:5001";
+    let url: string = "mongodb+srv://dbPoschmann:<password>@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
 
     async function handleLoad(_event: Event): Promise<void> {
         console.log("Init");
