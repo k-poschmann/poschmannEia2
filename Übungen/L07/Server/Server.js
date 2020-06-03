@@ -23,7 +23,7 @@ var L07_CocktailBar;
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        orders = mongoClient.db("CocktailBar").collection("Orders");
+        orders = mongoClient.db("Cocktailbar").collection("Orders");
         console.log("Database connection ", orders != undefined);
     }
     function handleRequest(_request, _response) {

@@ -34,7 +34,7 @@ export namespace L07_CocktailBar {
         let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        orders = mongoClient.db("CocktailBar").collection("Orders");
+        orders = mongoClient.db("Cocktailbar").collection("Orders");
         console.log("Database connection ", orders != undefined);
     }
 
