@@ -3,14 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
 const Url = require("url");
 const Mongo = require("mongodb");
-//import { url } from "inspector";
 var L07_CocktailBar;
 (function (L07_CocktailBar) {
     let orders;
     let port = process.env.port;
     if (port == undefined)
         port = 5001;
-    let databaseUrl = "mongodb://localhost:27017";
+    //mongodb+srv://dbPoschmann:<password>@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority
+    let databaseUrl = "mongodb+srv://dbPoschmann:<password>@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
     startServer(port);
     connectToDatabase(databaseUrl);
     function startServer(_port) {

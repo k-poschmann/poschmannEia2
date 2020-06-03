@@ -1,12 +1,12 @@
 import * as Http from "http";
 import * as Url from "url";
 import * as Mongo from "mongodb";
-//import { url } from "inspector";
+import { url } from "inspector";
 
 export namespace L07_CocktailBar {
 
     interface Order {
-        [type: string]: string | string[];
+        [type: string]: string | undefined | string[];
     }
 
     let orders: Mongo.Collection;
@@ -15,7 +15,8 @@ export namespace L07_CocktailBar {
     if (port == undefined)
         port = 5001;
 
-    let databaseUrl: string = "mongodb://localhost:27017";
+    //mongodb+srv://dbPoschmann:<password>@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority
+    let databaseUrl: string = "mongodb+srv://dbPoschmann:<password>@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
 
     startServer(port);
     connectToDatabase(databaseUrl);
