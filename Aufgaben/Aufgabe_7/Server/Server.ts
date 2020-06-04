@@ -1,25 +1,23 @@
 import * as Http from "http";
 import * as Url from "url";
 import * as Mongo from "mongodb";
-//import { url } from "inspector";
 
-export namespace L07_CocktailBar {
 
+export namespace Haushaltshilfe_7 {
     interface Order {
         [type: string]: string | undefined | string[];
     }
 
     let orders: Mongo.Collection;
 
-    let port: number | string | undefined = process.env.port;
+    let port: number | string | undefined = process.env.PORT;
     if (port == undefined)
-        port = 5001;
+    port = 5002;
 
-    //mongodb+srv://dbPoschmann:<password>@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority
     let databaseUrl: string = "mongodb+srv://dbPoschmann:2ILoveMedia3@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
 
     startServer(port);
-    connectToDatabase(databaseUrl);
+    connectDatabase(databaseUrl);
 
     function startServer(_port: number | string): void {
 
@@ -30,23 +28,30 @@ export namespace L07_CocktailBar {
         server.addListener("request", handleRequest);
     }
 
-    async function connectToDatabase(_url: string): Promise<void> {
+    async function connectDatabase(_url: string): Promise<void> {
         let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        orders = mongoClient.db("Cocktailbar").collection("Orders");
+        orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
     }
 
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
-        console.log("what's up?");
+        console.log("What's Up?");
 
-        _response.setHeader("content-type", "text/html; charset-utf-8");
+        _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
             for (let key in url.query) {
+                // switch (key) {
+                //     case "einkauf":
+                //     break;
+                //     default:
+                //     _response.write(key + ":" + url.query[key] + "<br>");
+                //     break;
+                // }
                 _response.write(key + ":" + url.query[key] + "<br>");
             }
 
@@ -56,11 +61,9 @@ export namespace L07_CocktailBar {
             storeOrder(url.query);
         }
 
-
         _response.end();
     }
     function storeOrder(_order: Order): void {
         orders.insert(_order);
     }
 }
-

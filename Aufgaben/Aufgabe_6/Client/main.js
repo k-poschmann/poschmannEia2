@@ -3,7 +3,7 @@ var Haushaltshilfe_6;
 (function (Haushaltshilfe_6) {
     window.addEventListener("load", handleLoad);
     let totalCost = 0;
-    let form = document.querySelector("#form");
+    //let form: HTMLFormElement = <HTMLFormElement>document.querySelector("#form");
     let totalprice = document.querySelector("#totalprice");
     let url = "https://hfucocktailbar.herokuapp.com/";
     async function handleLoad(_event) {

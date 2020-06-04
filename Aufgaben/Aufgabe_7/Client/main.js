@@ -1,10 +1,11 @@
 "use strict";
-var Haushaltshilfe5;
-(function (Haushaltshilfe5) {
+var Haushaltshilfe_7;
+(function (Haushaltshilfe_7) {
     window.addEventListener("load", handleLoad);
     let totalCost = 0;
     //let form: HTMLFormElement = <HTMLFormElement>document.querySelector("#form");
     let totalprice = document.querySelector("#totalprice");
+    let url = "https://hfucocktailbar.herokuapp.com/";
     async function handleLoad(_event) {
         let deletebtn = document.querySelector("button[type=reset]");
         let submit = document.querySelector("#submit");
@@ -14,7 +15,7 @@ var Haushaltshilfe5;
         let response = await fetch("Data.json");
         let offer = await response.text();
         let data = JSON.parse(offer);
-        Haushaltshilfe5.generateContent(data);
+        Haushaltshilfe_7.generateContent(data);
         // Event-Listener werden auf alle Buttons gesetzt
         btn1.addEventListener("click", handleChange);
         btn2.addEventListener("click", handleChange);
@@ -26,8 +27,10 @@ var Haushaltshilfe5;
         console.log("send order");
         let formData = new FormData(document.forms[0]);
         let query = new URLSearchParams(formData);
-        await fetch("index.html?" + query.toString());
-        alert("Order sent!");
+        let response = await fetch(url + "?" + query.toString());
+        let responseText = await response.text();
+        //await fetch("index.html?" + query.toString());
+        alert(responseText);
     }
     function handleChange(_event) {
         //selektieren des Elements, wo am Ende alles 'reinkommt'
@@ -87,5 +90,5 @@ var Haushaltshilfe5;
         let mainlist = document.querySelector("div#list");
         mainlist.innerHTML = "";
     }
-})(Haushaltshilfe5 || (Haushaltshilfe5 = {}));
+})(Haushaltshilfe_7 || (Haushaltshilfe_7 = {}));
 //# sourceMappingURL=main.js.map

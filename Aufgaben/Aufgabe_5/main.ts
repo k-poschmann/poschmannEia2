@@ -1,7 +1,7 @@
 namespace Haushaltshilfe5 {
     window.addEventListener("load", handleLoad);
     let totalCost: number = 0;
-    let form: HTMLFormElement = <HTMLFormElement>document.querySelector("#form");
+    //let form: HTMLFormElement = <HTMLFormElement>document.querySelector("#form");
     let totalprice: HTMLLabelElement = <HTMLLabelElement>document.querySelector("#totalprice");
 
 

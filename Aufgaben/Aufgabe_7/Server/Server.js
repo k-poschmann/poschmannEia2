@@ -3,37 +3,42 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
 const Url = require("url");
 const Mongo = require("mongodb");
-//import { url } from "inspector";
-var L07_CocktailBar;
-(function (L07_CocktailBar) {
+var Haushaltshilfe_7;
+(function (Haushaltshilfe_7) {
     let orders;
-    let port = process.env.port;
+    let port = process.env.PORT;
     if (port == undefined)
-        port = 5001;
-    //mongodb+srv://dbPoschmann:<password>@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority
+        port = 5002;
     let databaseUrl = "mongodb+srv://dbPoschmann:2ILoveMedia3@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
     startServer(port);
-    connectToDatabase(databaseUrl);
+    connectDatabase(databaseUrl);
     function startServer(_port) {
         let server = Http.createServer();
         console.log("Server starting on port: " + _port);
         server.listen(_port);
         server.addListener("request", handleRequest);
     }
-    async function connectToDatabase(_url) {
+    async function connectDatabase(_url) {
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        orders = mongoClient.db("Cocktailbar").collection("Orders");
+        orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
     }
     function handleRequest(_request, _response) {
-        console.log("what's up?");
-        _response.setHeader("content-type", "text/html; charset-utf-8");
+        console.log("What's Up?");
+        _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
             let url = Url.parse(_request.url, true);
             for (let key in url.query) {
+                // switch (key) {
+                //     case "einkauf":
+                //     break;
+                //     default:
+                //     _response.write(key + ":" + url.query[key] + "<br>");
+                //     break;
+                // }
                 _response.write(key + ":" + url.query[key] + "<br>");
             }
             let jsonString = JSON.stringify(url.query);
@@ -45,5 +50,5 @@ var L07_CocktailBar;
     function storeOrder(_order) {
         orders.insert(_order);
     }
-})(L07_CocktailBar = exports.L07_CocktailBar || (exports.L07_CocktailBar = {}));
+})(Haushaltshilfe_7 = exports.Haushaltshilfe_7 || (exports.Haushaltshilfe_7 = {}));
 //# sourceMappingURL=Server.js.map
