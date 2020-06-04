@@ -4,7 +4,7 @@ var Haushaltshilfe_7;
     window.addEventListener("load", handleLoad);
     let totalCost = 0;
     //let form: HTMLFormElement = <HTMLFormElement>document.querySelector("#form");
-    let totalprice = document.querySelector("#totalprice");
+    let totalprice = document.getElementById("totalprice");
     let url = "https://hfucocktailbar.herokuapp.com/";
     async function handleLoad(_event) {
         let deletebtn = document.querySelector("button[type=reset]");
