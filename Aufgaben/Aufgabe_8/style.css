@@ -2,3 +2,18 @@ body{
     margin: 0;
     padding: 0;
 }
+
+
+@media (max-width: 400px){
+    canvas {
+        height: 100%;
+        width: 100%;
+    }
+
+}
+@media (min-width: 400px){
+    canvas {
+        height: 100%;
+        width: 100%;
+    }
+}

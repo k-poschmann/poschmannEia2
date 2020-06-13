@@ -1,26 +1,15 @@
 "use strict";
 var Virus;
 (function (Virus) {
-    window.addEventListener("resize", resizeWindow, false);
     window.addEventListener("load", handleLoad);
     let canvas = document.querySelector("canvas");
     let crc2 = canvas.getContext("2d");
-    let width;
-    let height;
-    function resizeWindow() {
-        let myWidth = window.innerWidth - 5;
-        let myHeight = window.innerHeight - 5;
-        crc2.canvas.width = myWidth;
-        crc2.canvas.height = myHeight;
-        drawBackground();
-        crc2.fillRect(0, 0, myWidth, myHeight);
-    }
     function handleLoad(_event) {
-        resizeWindow();
         drawBackground();
-        drawCells();
-        drawCoronaVirus({ x: 200, y: 400 }, { x: 70, y: 70 });
-        drawAntibody({ x: 400, y: 300 }, { x: 100, y: 120 });
+        drawCells({ x: 50, y: 50 }, { x: 150, y: 275 });
+        drawCoronaVirus({ x: 60, y: 120 }, { x: 70, y: 70 });
+        drawAntibody({ x: 240, y: 120 }, { x: 70, y: 70 });
+        drawParticle({ x: 130, y: 490 }, { x: 70, y: 70 });
     }
     function drawBackground() {
         let pattern = document.createElement("canvas").getContext("2d");
@@ -50,47 +39,36 @@ var Virus;
         crc2.fillStyle = crc2.createPattern(pattern.canvas, "repeat");
         crc2.fillRect(0, 0, canvas.width, canvas.height);
     }
-    function drawCells() {
-        console.log("Zellen");
-        let minR;
-        let maxR;
-        let posX;
-        let posY;
-        let radius;
-        let nCells = (width + height) / 5;
-        crc2.beginPath();
-        crc2.ellipse(100, 100, 50, 75, Math.PI / 4, 0, 2 * Math.PI);
-        crc2.fillStyle = "#ccccff";
-        crc2.strokeStyle = "#6666ff";
-        crc2.fill();
-        crc2.stroke();
-        // Zellkern zeichnen
-        crc2.beginPath();
-        crc2.arc(100, 100, 20, 0, 2 * Math.PI);
-        crc2.fillStyle = "#9999ff";
-        crc2.strokeStyle = "#fff";
-        crc2.fill();
-        crc2.stroke();
-        for (let i = 0; i < nCells; i++) {
-            posX = Math.random() * canvas.width;
-            posY = Math.random() * canvas.height;
-            radius = minR + (Math.random() * (maxR - minR));
+    function drawCells(_position, _size) {
+        let nCells = 20;
+        for (let drawn = 0; drawn < nCells; drawn++) {
+            crc2.save();
+            let radiusCell = ((Math.random() + 0.5) * 20);
+            let cell = new Path2D();
+            crc2.save();
+            crc2.translate(_position.x, _position.y);
+            crc2.fillStyle = "#ccccff";
+            crc2.strokeStyle = "#6666ff";
+            cell.ellipse(100, 100, radiusCell, 35, Math.PI / 4, 0, 2 * Math.PI);
+            let x = (Math.random() - 0.5) * _size.x;
+            let y = -(Math.random() * _size.y);
+            crc2.translate(x, y);
+            crc2.fill(cell);
+            // Zellkern zeichnen
+            crc2.beginPath();
+            crc2.arc(100, 100, 5, 0, 2 * Math.PI);
+            crc2.fillStyle = "#9999ff";
+            crc2.strokeStyle = "#fff";
+            crc2.fill();
+            crc2.stroke();
+            crc2.restore();
         }
+        crc2.restore();
     }
     function drawCoronaVirus(_position, _size) {
-        // let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 30, 0, 0, 0);
-        // gradient.addColorStop(0, "#0000ff");
-        // gradient.addColorStop(0.7, "#00cc00");
-        // gradient.addColorStop(1, "#00cc00");
-        // crc2.beginPath();
-        // crc2.arc(0, 0, 40, 0, 2 * Math.PI);
-        // crc2.fillStyle = gradient;
-        // crc2.fill();
-        // crc2.strokeStyle = "black";
-        // crc2.stroke();
-        let r1 = 20;
-        let r2 = 30;
-        let nVirus = 5;
+        let r1 = 5;
+        let r2 = 10;
+        let nVirus = 10;
         let virus = new Path2D();
         let gradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
         virus.arc(0, 0, r2, 0, 2 * Math.PI);
@@ -99,7 +77,6 @@ var Virus;
         crc2.save();
         crc2.translate(_position.x, _position.y);
         crc2.fillStyle = gradient;
-        crc2.strokeStyle = "black";
         crc2.stroke();
         crc2.fill();
         for (let drawn = 0; drawn < nVirus; drawn++) {
@@ -113,17 +90,8 @@ var Virus;
         crc2.restore();
     }
     function drawAntibody(_position, _size) {
-        // let radiusAntibody: number = 50;
-        // let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusAntibody);
-        // gradient.addColorStop(0, "red");
-        // gradient.addColorStop(1, "white");
-        // crc2.beginPath();
-        // crc2.arc(300, 400, 60, 0, 2 * Math.PI);
-        // crc2.fillStyle = gradient;
-        // crc2.fill();
-        // crc2.closePath()
-        let r1 = 20;
-        let r2 = 30;
+        let r1 = 5;
+        let r2 = 10;
         let nAntibody = 5;
         let antibody = new Path2D();
         let gradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
@@ -133,7 +101,6 @@ var Virus;
         crc2.save();
         crc2.translate(_position.x, _position.y);
         crc2.fillStyle = gradient;
-        crc2.strokeStyle = "black";
         crc2.stroke();
         crc2.fill();
         for (let drawn = 0; drawn < nAntibody; drawn++) {
@@ -142,6 +109,25 @@ var Virus;
             let y = -(Math.random() * _size.y);
             crc2.translate(x, y);
             crc2.fill(antibody);
+            crc2.restore();
+        }
+        crc2.restore();
+    }
+    function drawParticle(_position, _size) {
+        let r1 = 1;
+        let r2 = 8;
+        let nParticles = 50;
+        let particle = new Path2D();
+        particle.arc(0, 0, r2, 0, 2 * Math.PI);
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+        crc2.fillStyle = "yellow";
+        for (let drawn = 0; drawn < nParticles; drawn++) {
+            crc2.save();
+            let x = (Math.random() - 0.5) * _size.x;
+            let y = -(Math.random() * _size.y);
+            crc2.translate(x, y);
+            crc2.fill(particle);
             crc2.restore();
         }
         crc2.restore();
