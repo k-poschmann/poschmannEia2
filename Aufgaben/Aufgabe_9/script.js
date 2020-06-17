@@ -6,7 +6,7 @@ var Virus;
     let crc2 = canvas.getContext("2d");
     function handleLoad(_event) {
         drawBackground();
-        drawCells({ x: 120, y: 690 });
+        drawCells({ x: 0, y: 0 }, { x: 150, y: 275 });
         drawCoronaVirus({ x: 60, y: 120 }, { x: 70, y: 70 });
         drawAntibody({ x: 280, y: 520 }, { x: 70, y: 70 });
         drawParticle({ x: 130, y: 490 });
@@ -31,7 +31,7 @@ var Virus;
         pattern.strokeStyle = "#80bfff";
         pattern.stroke();
         pattern.closePath();
-        //Zellkern zeichnen und einfärben 
+        //Zellkern zeichnen und einfärben
         pattern.beginPath();
         pattern.arc(30, 30, 5, 0, 2 * Math.PI);
         pattern.fillStyle = "#80bfff";
@@ -41,39 +41,42 @@ var Virus;
     }
     // ----- MENSCHLICHE ZELLEN WERDEN ERSTELLT ---- \\
     function createCells(_position) {
-        crc2.restore();
-        crc2.save();
+        // crc2.restore();
+        // crc2.save();
         // Mit Math.random werden zufällige Positionen erzeugt
-        let x = 50 * Math.random() + 5;
-        let y = 50 * Math.random() + 5;
-        console.log(x, y);
+        // let x: number = 50 * Math.random() + 5;
+        // let y: number = 50 * Math.random() + 5;
+        // console.log(x, y);
         // Koordinatensystem wird verschoben
-        crc2.translate(_position.x, _position.y);
+        // crc2.translate(_position.x, _position.y);
         // Zelle wird erstellt
         crc2.beginPath();
-        crc2.ellipse(100, 50, x, y, 5, 90, 10, true);
+        crc2.ellipse(100, 50, 70, 30, 5, 90, 10, true);
         crc2.strokeStyle = "#6666ff";
         crc2.fillStyle = "#9999ff";
         crc2.fill();
-        crc2.closePath();
         crc2.stroke();
         //Zellkern wird erstellt
         crc2.beginPath();
-        crc2.arc(100, 100, 5, 0, 2 * Math.PI);
-        crc2.fillStyle = "#9999ff";
-        crc2.strokeStyle = "#fff";
+        crc2.arc(100, 60, 10, 0, 2 * Math.PI);
+        crc2.fillStyle = "blue";
+        crc2.strokeStyle = "orange";
         crc2.fill();
         crc2.stroke();
+        crc2.save();
     }
-    function drawCells(_size) {
+    function drawCells(_position, _size) {
         // For Schleife generiert die zu platzierende Zellen
-        // Mit Math.random werden zufällige größen erstellt 
+        // Mit Math.random werden zufällige größen erstellt
         let nCells = 10;
         for (let drawn = 0; drawn < nCells; drawn++) {
             crc2.save();
-            let x = (Math.random()) * _size.x;
-            let y = ((Math.random()) * _size.y);
+            let x = (Math.random()) * _position.x;
+            let y = (Math.random() * _position.y);
             crc2.translate(x, y);
+            let xsize = (Math.random() - 0.5) * _size.x;
+            let ysize = -(Math.random() * _size.y);
+            crc2.translate(xsize, ysize);
             // FKT. zeichnet erstellte Zellen auf die Canvas
             createCells({ x, y });
             crc2.restore();
@@ -149,7 +152,7 @@ var Virus;
     }
     function drawParticle(_size) {
         // For Schleife generiert die zu platzierende Zellen
-        // Mit Math.random werden zufällige größen erstellt 
+        // Mit Math.random werden zufällige größen erstellt
         let nParticle = 80;
         for (let drawn = 0; drawn < nParticle; drawn++) {
             crc2.save();
