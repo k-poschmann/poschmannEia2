@@ -4,11 +4,12 @@ var Virus_Classes;
     window.addEventListener("load", handleLoad);
     Virus_Classes.canvas = document.querySelector("canvas");
     Virus_Classes.crc2 = Virus_Classes.canvas.getContext("2d");
+    let coronaCells = [];
     // { x: 150, y: 275 }
     function handleLoad(_event) {
         drawBackground();
         drawCells({ x: 150, y: 375 });
-        // drawCoronaVirus({ x: 60, y: 120 }, { x: 70, y: 70 });
+        drawCoronaVirus({ x: 60, y: 120 }, { x: 70, y: 70 });
         drawAntibody({ x: 280, y: 520 }, { x: 70, y: 70 });
         //drawParticle({ x: 130, y: 490 });
         animation();
@@ -79,30 +80,20 @@ var Virus_Classes;
         }
     }
     // ---- CORONA VIREN WERDEN ERSTELLT ---- \\
-    // function drawCoronaVirus(_position: Vector, _size: Vector): void {
-    //     let r1: number = 5;
-    //     let r2: number = 10;
-    //     let nVirus: number = 10;
-    //     let virus: Path2D = new Path2D();
-    //     let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
-    //     virus.arc(0, 0, r2, 0, 2 * Math.PI);
-    //     gradient.addColorStop(0, "red");
-    //     gradient.addColorStop(1, "orange");
-    //     crc2.save();
-    //     crc2.translate(_position.x, _position.y);
-    //     crc2.fillStyle = gradient;
-    //     crc2.stroke();
-    //     crc2.fill();
-    //     for (let drawn: number = 0; drawn < nVirus; drawn++) {
-    //         crc2.save();
-    //         let x: number = (Math.random() - 0.5) * _size.x;
-    //         let y: number = - (Math.random() * _size.y);
-    //         crc2.translate(x, y);
-    //         crc2.fill(virus);
-    //         crc2.restore();
-    //     }
-    //     crc2.restore();
-    // }
+    function drawCoronaVirus(_position, _size) {
+        let nVirus = 10;
+        let virus = new Path2D();
+        for (let drawn = 0; drawn < nVirus; drawn++) {
+            Virus_Classes.crc2.save();
+            Virus_Classes.crc2.fill(virus);
+            let position = new Virus_Classes.Vector(_position.x, _position.y);
+            let corona = new Virus_Classes.Corona(position);
+            corona.draw(position);
+            coronaCells.push(corona);
+            Virus_Classes.crc2.restore();
+        }
+        Virus_Classes.crc2.restore();
+    }
     // ---- ANTIKÖRPER WERDEN ERSTELLT ---- \\
     function drawAntibody(_position, _size) {
         let r1 = 5;
@@ -160,11 +151,8 @@ var Virus_Classes;
     //     crc2.restore();
 })(Virus_Classes || (Virus_Classes = {}));
 // ------ ANIMATION ------ \\
-let coronaCells = [];
 function animation() {
     for (let corona of coronaCells) {
-        corona.draw(corona.position);
-        corona.move(1 / 30);
     }
 }
 //# sourceMappingURL=script.js.map
