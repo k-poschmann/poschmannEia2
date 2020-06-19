@@ -13,7 +13,7 @@ namespace Virus_Classes {
             this.velocity.random(50, 100);
         }
 
-        draw(_size: Vector): void {
+        draw(): void {
             console.log("Corona draw");
             // crc2.save();
             // crc2.translate(this.position.x, this.position.y);
@@ -26,9 +26,9 @@ namespace Virus_Classes {
             gradient.addColorStop(0, "red");
             gradient.addColorStop(1, "orange");
 
-            let x: number = (Math.random() - 0.5) * _size.x;
-            let y: number = - (Math.random() * _size.y);
-            crc2.translate(x, y);
+            // let x: number = (Math.random() - 0.5) * _size.x;
+            // let y: number = - (Math.random() * _size.y);
+            // crc2.translate(x, y);
 
             crc2.save();
             crc2.translate(this.position.x, this.position.y);

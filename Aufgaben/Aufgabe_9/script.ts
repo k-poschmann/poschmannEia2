@@ -152,5 +152,10 @@ namespace Virus_Classes {
             corona.draw();
         }
 
+        for (let antibody of antibodyCells) {
+            antibody.move(1 / 50);
+            antibody.draw();
+        }
+
     }
 }

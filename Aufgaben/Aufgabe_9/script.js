@@ -107,6 +107,10 @@ var Virus_Classes;
             corona.move(1 / 50);
             corona.draw();
         }
+        for (let antibody of antibodyCells) {
+            antibody.move(1 / 50);
+            antibody.draw();
+        }
     }
 })(Virus_Classes || (Virus_Classes = {}));
 //# sourceMappingURL=script.js.map

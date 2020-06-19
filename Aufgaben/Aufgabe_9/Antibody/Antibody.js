@@ -10,7 +10,7 @@ var Virus_Classes;
             this.velocity = new Virus_Classes.Vector(0, 0);
             this.velocity.random(50, 100);
         }
-        draw(_size) {
+        draw() {
             console.log("Corona draw");
             // crc2.save();
             // crc2.translate(this.position.x, this.position.y);
@@ -21,9 +21,9 @@ var Virus_Classes;
             virus.arc(0, 0, r2, 0, 2 * Math.PI);
             gradient.addColorStop(0, "red");
             gradient.addColorStop(1, "orange");
-            let x = (Math.random() - 0.5) * _size.x;
-            let y = -(Math.random() * _size.y);
-            Virus_Classes.crc2.translate(x, y);
+            // let x: number = (Math.random() - 0.5) * _size.x;
+            // let y: number = - (Math.random() * _size.y);
+            // crc2.translate(x, y);
             Virus_Classes.crc2.save();
             Virus_Classes.crc2.translate(this.position.x, this.position.y);
             Virus_Classes.crc2.fillStyle = gradient;
