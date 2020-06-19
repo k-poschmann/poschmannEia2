@@ -3,14 +3,17 @@ var Virus_Classes;
 (function (Virus_Classes) {
     class Corona {
         constructor(_position) {
-            this.position = _position;
+            if (_position)
+                this.position = _position;
+            else
+                this.position = new Virus_Classes.Vector(0, 0);
             this.velocity = new Virus_Classes.Vector(0, 0);
-            this.velocity.random(100, 200);
+            this.velocity.random(50, 100);
         }
-        draw(_position, _size) {
+        draw(_size) {
             console.log("Corona draw");
-            Virus_Classes.crc2.save();
-            Virus_Classes.crc2.translate(this.position.x, this.position.y);
+            // crc2.save();
+            // crc2.translate(this.position.x, this.position.y);
             let r1 = 5;
             let r2 = 10;
             let virus = new Path2D();
@@ -22,7 +25,7 @@ var Virus_Classes;
             let y = -(Math.random() * _size.y);
             Virus_Classes.crc2.translate(x, y);
             Virus_Classes.crc2.save();
-            Virus_Classes.crc2.translate(_position.x, _position.y);
+            Virus_Classes.crc2.translate(this.position.x, this.position.y);
             Virus_Classes.crc2.fillStyle = gradient;
             Virus_Classes.crc2.stroke();
             Virus_Classes.crc2.fill();

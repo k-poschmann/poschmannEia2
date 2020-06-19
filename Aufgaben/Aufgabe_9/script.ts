@@ -1,29 +1,31 @@
 namespace Virus_Classes {
 
-
-    interface Vector {
-        x: number;
-        y: number;
-    }
-
     window.addEventListener("load", handleLoad);
     export let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
-    export let crc2: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
+    export let crc2: CanvasRenderingContext2D;
 
 
     let coronaCells: Corona[] = [];
-
+    let antibodyCells: Corona[] = [];
 
     // { x: 150, y: 275 }
     function handleLoad(_event: Event): void {
+        let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
+        if (!canvas)
+            return;
+        crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
+
+
         drawBackground();
         drawCells({ x: 150, y: 375 });
-        drawCoronaVirus({ x: 60, y: 120 }, { x: 70, y: 70 });
-        drawAntibody({ x: 280, y: 520 }, { x: 70, y: 70 });
+        drawCoronaVirus(10);
+        drawAntibody(10);
         //drawParticle({ x: 130, y: 490 });
 
-        animation();
+        window.setInterval(animation, 20);
     }
+
+
 
     function drawBackground(): void {
 
@@ -109,106 +111,46 @@ namespace Virus_Classes {
 
     // ---- CORONA VIREN WERDEN ERSTELLT ---- \\
 
-    function drawCoronaVirus(_position: Vector, _size: Vector): void {
-
-    let nVirus: number = 10;
-    let virus: Path2D = new Path2D();
-
-    for (let drawn: number = 0; drawn < nVirus; drawn++) {
-        crc2.save();
-        crc2.fill(virus);
-
-        let position: Vector = new Vector(_position.x, _position.y);
-        let corona: Corona = new Corona(position);
-        corona.draw(position);
-        coronaCells.push(corona);
-
+    function drawCoronaVirus(_nCorona: number): void {
+        for (let i: number = 0; i < _nCorona; i++) {
+            let corona: Corona = new Corona();
+            coronaCells.push(corona);
+        }
         crc2.restore();
     }
-    crc2.restore();
-
-    }
-
-
 
     // ---- ANTIKÖRPER WERDEN ERSTELLT ---- \\
 
-
-    function drawAntibody(_position: Vector, _size: Vector): void {
-        let r1: number = 5;
-        let r2: number = 10;
-        let nAntibody: number = 10;
-        let antibody: Path2D = new Path2D();
-        let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
-        antibody.arc(0, 0, r2, 0, 2 * Math.PI);
-        gradient.addColorStop(0, "green");
-        gradient.addColorStop(1, "white");
-
-        crc2.save();
-        crc2.translate(_position.x, _position.y);
-        crc2.fillStyle = gradient;
-        crc2.stroke();
-        crc2.fill();
-
-        for (let drawn: number = 0; drawn < nAntibody; drawn++) {
-            crc2.save();
-            let x: number = (Math.random() - 0.5) * _size.x;
-            let y: number = - (Math.random() * _size.y);
-            crc2.translate(x, y);
-            crc2.fill(antibody);
-            crc2.restore();
-
+    function drawAntibody(_nAntibody: number): void {
+        for (let i: number = 0; i < _nAntibody; i++) {
+            let antibody: Antibody = new Antibody();
+            antibodyCells.push(antibody);
         }
         crc2.restore();
-
     }
+
+
+
+
+
+
 
     // ----- PARTIKEL WERDEN ERSTELLT ---- \\
 
-    // function createParticle(_position: Vector): void {
-    //     crc2.restore();
-    //     crc2.save();
-    //     // Mit Math.random werden zufällige Positionen erzeugt
-    //     let x: number = 1 * Math.random() + 5;
-    //     let y: number = 1 * Math.random() + 5;
-    //     // Koordinatensystem wird verschoben
-    //     crc2.translate(_position.x, _position.y);
-
-    //     // Zelle wird erstellt
-    //     crc2.beginPath();
-    //     crc2.ellipse(100, 50, x, y, 5, 90, 10, true);
-    //     crc2.strokeStyle = "orange";
-    //     crc2.closePath();
-    //     crc2.stroke();
-
-    // }
 
 
 
-    // function drawParticle(_size: Vector): void {
-    //     // For Schleife generiert die zu platzierende Zellen
-    //     // Mit Math.random werden zufällige größen erstellt
-    //     let nParticle: number = 80;
-    //     for (let drawn: number = 0; drawn < nParticle; drawn++) {
-    //         crc2.save();
-    //         let x: number = (Math.random()) * _size.x;
-    //         let y: number = ((Math.random()) * _size.y);
-    //         crc2.translate(x, y);
-    //         // FKT. zeichnet erstellte Zellen auf die Canvas
-    //         createParticle({ x, y });
-    //         crc2.restore();
-    //     }
-    //     crc2.restore();
-}
 
 
+    // ------ ANIMATION ------ \\
 
-// ------ ANIMATION ------ \\
+    function animation(): void {
+        crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
 
+        for (let corona of coronaCells) {
+            corona.move(1 / 50);
+            corona.draw();
+        }
 
-function animation(): void {
-    for (let corona of coronaCells) {
-       
     }
 }
-
