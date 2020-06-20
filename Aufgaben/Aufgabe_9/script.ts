@@ -5,8 +5,8 @@ namespace Virus_Classes {
     export let crc2: CanvasRenderingContext2D;
 
 
-    let coronaCells: Corona[] = [];
-    let antibodyCells: Antibody[] = [];
+    export let coronaCells: Corona[] = [];
+    export let antibodyCells: Antibody[] = [];
     let particleCells: Particle[] = [];
 
 
@@ -110,6 +110,7 @@ namespace Virus_Classes {
             // FKT. zeichnet erstellte Zellen auf die Canvas
             createCells(z);
             crc2.restore();
+            console.log(drawn);
         }
 
         backgroudnImage = crc2.getImageData(0, 0, canvas.width, canvas.height);
@@ -135,7 +136,11 @@ namespace Virus_Classes {
 
     function drawAntibody(_nAntibody: number): void {
         for (let i: number = 0; i < _nAntibody; i++) {
-            let antibody: Antibody = new Antibody();
+            let positionX: number = Math.random() * canvas.width;
+            let positionY: number = Math.random() * canvas.height;
+            let postion: Vector = new Vector(positionX, positionY);
+            let antibody: Antibody = new Antibody(postion);
+            antibody.draw();
             antibodyCells.push(antibody);
         }
     }
@@ -158,6 +163,7 @@ namespace Virus_Classes {
 
     function animation(): void {
         crc2.putImageData(backgroudnImage, 0, 0);
+
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
 
         for (let corona of coronaCells) {
@@ -166,7 +172,7 @@ namespace Virus_Classes {
         }
 
         for (let antibody of antibodyCells) {
-            antibody.move(1 / 500);
+            // antibody.move(1 / 500);
             antibody.draw();
         }
 

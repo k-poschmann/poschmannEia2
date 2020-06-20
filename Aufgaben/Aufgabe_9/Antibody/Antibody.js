@@ -27,19 +27,6 @@ var Virus_Classes;
             Virus_Classes.crc2.closePath();
             Virus_Classes.crc2.restore();
         }
-        move(_timeslice) {
-            let offset = new Virus_Classes.Vector(this.velocity.x, this.velocity.y);
-            offset.scale(_timeslice);
-            this.position.add(offset);
-            if (this.position.x < 0)
-                this.position.x += Virus_Classes.crc2.canvas.width;
-            if (this.position.y < 0)
-                this.position.y += Virus_Classes.crc2.canvas.height;
-            if (this.position.x > Virus_Classes.crc2.canvas.width)
-                this.position.x -= Virus_Classes.crc2.canvas.width;
-            if (this.position.y > Virus_Classes.crc2.canvas.height)
-                this.position.y -= Virus_Classes.crc2.canvas.height;
-        }
     }
     Virus_Classes.Antibody = Antibody;
 })(Virus_Classes || (Virus_Classes = {}));

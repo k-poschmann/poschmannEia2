@@ -3,8 +3,8 @@ var Virus_Classes;
 (function (Virus_Classes) {
     window.addEventListener("load", handleLoad);
     Virus_Classes.canvas = document.querySelector("canvas");
-    let coronaCells = [];
-    let antibodyCells = [];
+    Virus_Classes.coronaCells = [];
+    Virus_Classes.antibodyCells = [];
     let particleCells = [];
     let backgroudnImage;
     // Variable ImageData deklarieren <-- UNBEDINGT MACHEN!!!!
@@ -84,6 +84,7 @@ var Virus_Classes;
             // FKT. zeichnet erstellte Zellen auf die Canvas
             createCells(z);
             Virus_Classes.crc2.restore();
+            console.log(drawn);
         }
         backgroudnImage = Virus_Classes.crc2.getImageData(0, 0, Virus_Classes.canvas.width, Virus_Classes.canvas.height);
     }
@@ -95,14 +96,18 @@ var Virus_Classes;
             let postion = new Virus_Classes.Vector(positionX, positionY);
             let corona = new Virus_Classes.Corona(postion);
             corona.draw();
-            coronaCells.push(corona);
+            Virus_Classes.coronaCells.push(corona);
         }
     }
     // ---- ANTIKÖRPER WERDEN ERSTELLT ---- \\
     function drawAntibody(_nAntibody) {
         for (let i = 0; i < _nAntibody; i++) {
-            let antibody = new Virus_Classes.Antibody();
-            antibodyCells.push(antibody);
+            let positionX = Math.random() * Virus_Classes.canvas.width;
+            let positionY = Math.random() * Virus_Classes.canvas.height;
+            let postion = new Virus_Classes.Vector(positionX, positionY);
+            let antibody = new Virus_Classes.Antibody(postion);
+            antibody.draw();
+            Virus_Classes.antibodyCells.push(antibody);
         }
     }
     function drawParticle(_nParticle) {
@@ -120,12 +125,12 @@ var Virus_Classes;
     function animation() {
         Virus_Classes.crc2.putImageData(backgroudnImage, 0, 0);
         Virus_Classes.crc2.fillRect(0, 0, Virus_Classes.crc2.canvas.width, Virus_Classes.crc2.canvas.height);
-        for (let corona of coronaCells) {
+        for (let corona of Virus_Classes.coronaCells) {
             corona.move(1 / 200);
             corona.draw();
         }
-        for (let antibody of antibodyCells) {
-            antibody.move(1 / 500);
+        for (let antibody of Virus_Classes.antibodyCells) {
+            // antibody.move(1 / 500);
             antibody.draw();
         }
         for (let particle of particleCells) {
