@@ -52,7 +52,7 @@ namespace Virus_Classes {
 
         // infects(): boolean {
         //     if ()
-        //         let hitsize: number = 50 * this.size;
+        //     let hitsize: number = 50 * this.size;
         //     let difference: Vector = new Vector(_hotspot.x - this.position.x, _hotspot.y - this.position.y);
         //     return (Math.abs(difference.x) < hitsize && Math.abs(difference.y) < hitsize);
         // }
