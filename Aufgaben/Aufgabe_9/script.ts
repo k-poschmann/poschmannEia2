@@ -6,9 +6,12 @@ namespace Virus_Classes {
 
 
     let coronaCells: Corona[] = [];
-    let antibodyCells: Corona[] = [];
+    let antibodyCells: Antibody[] = [];
+    let particleCells: Particle[] = [];
 
-    // { x: 150, y: 275 }
+
+    // Variable ImageData deklarieren <-- UNBEDINGT MACHEN!!!!
+
     function handleLoad(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
         if (!canvas)
@@ -17,12 +20,13 @@ namespace Virus_Classes {
 
 
         drawBackground();
-        drawCells({ x: 150, y: 375 });
+        let p: Vector = new Vector(150, 375);
+        drawCells(p);
         drawCoronaVirus(10);
         drawAntibody(10);
         //drawParticle({ x: 130, y: 490 });
 
-        window.setInterval(animation, 20);
+        // window.setInterval(animation, 20);
     }
 
 
@@ -101,22 +105,30 @@ namespace Virus_Classes {
             crc2.save();
             let x: number = (Math.random()) * _size.x;
             let y: number = ((Math.random()) * _size.y);
-            //crc2.translate(x, y);
+            let z: Vector = new Vector(x, y);
             // FKT. zeichnet erstellte Zellen auf die Canvas
-            createCells({ x, y });
+            createCells(z);
             crc2.restore();
         }
+
+        // BackgroundImage (put);
     }
 
 
     // ---- CORONA VIREN WERDEN ERSTELLT ---- \\
 
     function drawCoronaVirus(_nCorona: number): void {
+        let positionX: number = Math.random() * canvas.width;
+        let positionY: number = Math.random() * canvas.height;
+
         for (let i: number = 0; i < _nCorona; i++) {
-            let corona: Corona = new Corona();
+            let postion: Vector = new Vector(positionX, positionY);
+            let corona: Corona = new Corona(postion);
+            corona.draw();
             coronaCells.push(corona);
         }
-        crc2.restore();
+
+        // console.log(coronaCells);
     }
 
     // ---- ANTIKÖRPER WERDEN ERSTELLT ---- \\
@@ -126,20 +138,7 @@ namespace Virus_Classes {
             let antibody: Antibody = new Antibody();
             antibodyCells.push(antibody);
         }
-        crc2.restore();
     }
-
-
-
-
-
-
-
-    // ----- PARTIKEL WERDEN ERSTELLT ---- \\
-
-
-
-
 
 
     // ------ ANIMATION ------ \\

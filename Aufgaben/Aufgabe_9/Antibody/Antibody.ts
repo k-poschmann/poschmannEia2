@@ -14,9 +14,6 @@ namespace Virus_Classes {
         }
 
         draw(): void {
-            //console.log("Corona draw");
-            // crc2.save();
-            // crc2.translate(this.position.x, this.position.y);
 
             let r1: number = 5;
             let r2: number = 10;
@@ -26,15 +23,12 @@ namespace Virus_Classes {
             gradient.addColorStop(0, "red");
             gradient.addColorStop(1, "orange");
 
-            // let x: number = (Math.random() - 0.5) * _size.x;
-            // let y: number = - (Math.random() * _size.y);
-            // crc2.translate(x, y);
-
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
             crc2.fillStyle = gradient;
             crc2.stroke();
             crc2.fill();
+            crc2.restore();
         }
 
         move(_timeslice: number): void {

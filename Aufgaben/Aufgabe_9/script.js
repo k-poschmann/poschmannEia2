@@ -5,18 +5,20 @@ var Virus_Classes;
     Virus_Classes.canvas = document.querySelector("canvas");
     let coronaCells = [];
     let antibodyCells = [];
-    // { x: 150, y: 275 }
+    let particleCells = [];
+    // Variable ImageData deklarieren <-- UNBEDINGT MACHEN!!!!
     function handleLoad(_event) {
         let canvas = document.querySelector("canvas");
         if (!canvas)
             return;
         Virus_Classes.crc2 = canvas.getContext("2d");
         drawBackground();
-        drawCells({ x: 150, y: 375 });
+        let p = new Virus_Classes.Vector(150, 375);
+        drawCells(p);
         drawCoronaVirus(10);
         drawAntibody(10);
         //drawParticle({ x: 130, y: 490 });
-        window.setInterval(animation, 20);
+        // window.setInterval(animation, 20);
     }
     function drawBackground() {
         let pattern = document.createElement("canvas").getContext("2d");
@@ -77,19 +79,24 @@ var Virus_Classes;
             Virus_Classes.crc2.save();
             let x = (Math.random()) * _size.x;
             let y = ((Math.random()) * _size.y);
-            //crc2.translate(x, y);
+            let z = new Virus_Classes.Vector(x, y);
             // FKT. zeichnet erstellte Zellen auf die Canvas
-            createCells({ x, y });
+            createCells(z);
             Virus_Classes.crc2.restore();
         }
+        // BackgroundImage (put);
     }
     // ---- CORONA VIREN WERDEN ERSTELLT ---- \\
     function drawCoronaVirus(_nCorona) {
+        let positionX = Math.random() * Virus_Classes.canvas.width;
+        let positionY = Math.random() * Virus_Classes.canvas.height;
         for (let i = 0; i < _nCorona; i++) {
-            let corona = new Virus_Classes.Corona();
+            let postion = new Virus_Classes.Vector(positionX, positionY);
+            let corona = new Virus_Classes.Corona(postion);
+            corona.draw();
             coronaCells.push(corona);
         }
-        Virus_Classes.crc2.restore();
+        // console.log(coronaCells);
     }
     // ---- ANTIKÖRPER WERDEN ERSTELLT ---- \\
     function drawAntibody(_nAntibody) {
@@ -97,9 +104,7 @@ var Virus_Classes;
             let antibody = new Virus_Classes.Antibody();
             antibodyCells.push(antibody);
         }
-        Virus_Classes.crc2.restore();
     }
-    // ----- PARTIKEL WERDEN ERSTELLT ---- \\
     // ------ ANIMATION ------ \\
     function animation() {
         Virus_Classes.crc2.fillRect(0, 0, Virus_Classes.crc2.canvas.width, Virus_Classes.crc2.canvas.height);

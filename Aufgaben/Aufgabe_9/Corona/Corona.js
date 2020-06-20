@@ -11,24 +11,23 @@ var Virus_Classes;
             this.velocity.random(50, 100);
         }
         draw() {
-            //console.log("Antibody draw");
-            // crc2.save();
-            // crc2.translate(this.position.x, this.position.y);
+            console.log("Draw Corona");
             let r1 = 5;
             let r2 = 10;
-            let virus = new Path2D();
             let gradient = Virus_Classes.crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
-            virus.arc(0, 0, r2, 0, 2 * Math.PI);
+            Virus_Classes.crc2.arc(0, 0, r2, 0, 2 * Math.PI);
             gradient.addColorStop(0, "red");
             gradient.addColorStop(1, "orange");
-            // let x: number = (Math.random() - 0.5) * _size.x;
-            // let y: number = - (Math.random() * _size.y);
-            // crc2.translate(x, y);
+            Virus_Classes.crc2.beginPath();
             Virus_Classes.crc2.save();
             Virus_Classes.crc2.translate(this.position.x, this.position.y);
             Virus_Classes.crc2.fillStyle = gradient;
+            Virus_Classes.crc2.strokeStyle = "black";
             Virus_Classes.crc2.stroke();
             Virus_Classes.crc2.fill();
+            Virus_Classes.crc2.closePath();
+            Virus_Classes.crc2.restore();
+            console.log(this.position.x, this.position.y);
         }
         move(_timeslice) {
             let offset = new Virus_Classes.Vector(this.velocity.x, this.velocity.y);
