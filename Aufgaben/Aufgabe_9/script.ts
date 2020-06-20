@@ -25,7 +25,7 @@ namespace Virus_Classes {
         drawCells(p);
         drawCoronaVirus(10);
         drawAntibody(10);
-        //drawParticle({ x: 130, y: 490 });
+        drawParticle(80);
 
         window.setInterval(animation, 20);
     }
@@ -129,7 +129,6 @@ namespace Virus_Classes {
             coronaCells.push(corona);
         }
 
-        // console.log(coronaCells);
     }
 
     // ---- ANTIKÖRPER WERDEN ERSTELLT ---- \\
@@ -141,6 +140,19 @@ namespace Virus_Classes {
         }
     }
 
+
+    function drawParticle(_nParticle: number): void {
+        for (let drawn: number = 0; drawn < _nParticle; drawn++) {
+            crc2.save();
+            let x: number = (Math.random()) * canvas.width;
+            let y: number = (Math.random() * canvas.height);
+            let postion: Vector = new Vector(x, y); 
+            let particle: Particle = new Particle(postion);
+            particle.draw();
+            particleCells.push(particle);
+            
+        }
+    }
 
     // ------ ANIMATION ------ \\
 
@@ -154,8 +166,13 @@ namespace Virus_Classes {
         }
 
         for (let antibody of antibodyCells) {
-            antibody.move(1 / 50);
+            antibody.move(1 / 500);
             antibody.draw();
+        }
+
+        for (let particle of particleCells) {
+            particle.move(1 / 100);
+            particle.draw();
         }
 
     }

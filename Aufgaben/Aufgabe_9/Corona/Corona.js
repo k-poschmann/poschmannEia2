@@ -22,7 +22,7 @@ var Virus_Classes;
             Virus_Classes.crc2.translate(this.position.x, this.position.y);
             Virus_Classes.crc2.arc(0, 0, r2, 0, 2 * Math.PI);
             Virus_Classes.crc2.fillStyle = gradient;
-            Virus_Classes.crc2.strokeStyle = "black";
+            Virus_Classes.crc2.strokeStyle = "orange";
             Virus_Classes.crc2.stroke();
             Virus_Classes.crc2.fill();
             Virus_Classes.crc2.closePath();

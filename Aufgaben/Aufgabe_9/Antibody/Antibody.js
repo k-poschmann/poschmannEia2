@@ -13,16 +13,18 @@ var Virus_Classes;
         draw() {
             let r1 = 5;
             let r2 = 10;
-            let virus = new Path2D();
             let gradient = Virus_Classes.crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
-            virus.arc(0, 0, r2, 0, 2 * Math.PI);
-            gradient.addColorStop(0, "red");
-            gradient.addColorStop(1, "orange");
+            gradient.addColorStop(0, "green");
+            gradient.addColorStop(1, "white");
+            Virus_Classes.crc2.beginPath();
             Virus_Classes.crc2.save();
             Virus_Classes.crc2.translate(this.position.x, this.position.y);
+            Virus_Classes.crc2.arc(0, 0, r2, 0, 2 * Math.PI);
             Virus_Classes.crc2.fillStyle = gradient;
+            Virus_Classes.crc2.strokeStyle = "white";
             Virus_Classes.crc2.stroke();
             Virus_Classes.crc2.fill();
+            Virus_Classes.crc2.closePath();
             Virus_Classes.crc2.restore();
         }
         move(_timeslice) {

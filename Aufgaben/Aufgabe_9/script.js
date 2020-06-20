@@ -18,7 +18,7 @@ var Virus_Classes;
         drawCells(p);
         drawCoronaVirus(10);
         drawAntibody(10);
-        //drawParticle({ x: 130, y: 490 });
+        drawParticle(80);
         window.setInterval(animation, 20);
     }
     function drawBackground() {
@@ -97,13 +97,23 @@ var Virus_Classes;
             corona.draw();
             coronaCells.push(corona);
         }
-        // console.log(coronaCells);
     }
     // ---- ANTIKÖRPER WERDEN ERSTELLT ---- \\
     function drawAntibody(_nAntibody) {
         for (let i = 0; i < _nAntibody; i++) {
             let antibody = new Virus_Classes.Antibody();
             antibodyCells.push(antibody);
+        }
+    }
+    function drawParticle(_nParticle) {
+        for (let drawn = 0; drawn < _nParticle; drawn++) {
+            Virus_Classes.crc2.save();
+            let x = (Math.random()) * Virus_Classes.canvas.width;
+            let y = (Math.random() * Virus_Classes.canvas.height);
+            let postion = new Virus_Classes.Vector(x, y);
+            let particle = new Virus_Classes.Particle(postion);
+            particle.draw();
+            particleCells.push(particle);
         }
     }
     // ------ ANIMATION ------ \\
@@ -115,8 +125,12 @@ var Virus_Classes;
             corona.draw();
         }
         for (let antibody of antibodyCells) {
-            antibody.move(1 / 50);
+            antibody.move(1 / 500);
             antibody.draw();
+        }
+        for (let particle of particleCells) {
+            particle.move(1 / 100);
+            particle.draw();
         }
     }
 })(Virus_Classes || (Virus_Classes = {}));
