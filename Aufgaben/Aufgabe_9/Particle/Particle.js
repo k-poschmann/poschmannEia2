@@ -13,7 +13,7 @@ var Virus_Classes;
         draw() {
             // console.log("Particle draw");
             Virus_Classes.crc2.save();
-            // Mit Math.random werden zufällige Positionen erzeugt
+            // Mit Math.random werden zufällige Größen erzeugt
             let x = 1 * Math.random() + 2;
             let y = 1 * Math.random() + 3;
             // Zelle wird erstellt

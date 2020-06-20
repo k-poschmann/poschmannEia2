@@ -16,7 +16,7 @@ namespace Virus_Classes {
         draw(): void {
             // console.log("Particle draw");
             crc2.save();
-            // Mit Math.random werden zufällige Positionen erzeugt
+            // Mit Math.random werden zufällige Größen erzeugt
             let x: number = 1 * Math.random() + 2;
             let y: number = 1 * Math.random() + 3;
 
