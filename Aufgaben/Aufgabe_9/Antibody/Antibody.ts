@@ -14,7 +14,7 @@ namespace Virus_Classes {
         }
 
         draw(): void {
-            console.log("Corona draw");
+            //console.log("Corona draw");
             // crc2.save();
             // crc2.translate(this.position.x, this.position.y);
 

@@ -11,7 +11,7 @@ var Virus_Classes;
             this.velocity.random(50, 100);
         }
         draw() {
-            console.log("Corona draw");
+            //console.log("Corona draw");
             // crc2.save();
             // crc2.translate(this.position.x, this.position.y);
             let r1 = 5;
