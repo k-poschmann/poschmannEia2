@@ -10,6 +10,7 @@ namespace Virus_Classes {
     let particleCells: Particle[] = [];
 
 
+    let backgroudnImage: ImageData;
     // Variable ImageData deklarieren <-- UNBEDINGT MACHEN!!!!
 
     function handleLoad(_event: Event): void {
@@ -26,7 +27,7 @@ namespace Virus_Classes {
         drawAntibody(10);
         //drawParticle({ x: 130, y: 490 });
 
-        // window.setInterval(animation, 20);
+        window.setInterval(animation, 20);
     }
 
 
@@ -111,17 +112,17 @@ namespace Virus_Classes {
             crc2.restore();
         }
 
-        // BackgroundImage (put);
+        backgroudnImage = crc2.getImageData(0, 0, canvas.width, canvas.height);
     }
 
 
     // ---- CORONA VIREN WERDEN ERSTELLT ---- \\
 
     function drawCoronaVirus(_nCorona: number): void {
-        let positionX: number = Math.random() * canvas.width;
-        let positionY: number = Math.random() * canvas.height;
 
         for (let i: number = 0; i < _nCorona; i++) {
+            let positionX: number = Math.random() * canvas.width;
+            let positionY: number = Math.random() * canvas.height;
             let postion: Vector = new Vector(positionX, positionY);
             let corona: Corona = new Corona(postion);
             corona.draw();
@@ -144,10 +145,11 @@ namespace Virus_Classes {
     // ------ ANIMATION ------ \\
 
     function animation(): void {
+        crc2.putImageData(backgroudnImage, 0, 0);
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
 
         for (let corona of coronaCells) {
-            corona.move(1 / 50);
+            corona.move(1 / 200);
             corona.draw();
         }
 

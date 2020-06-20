@@ -6,6 +6,7 @@ var Virus_Classes;
     let coronaCells = [];
     let antibodyCells = [];
     let particleCells = [];
+    let backgroudnImage;
     // Variable ImageData deklarieren <-- UNBEDINGT MACHEN!!!!
     function handleLoad(_event) {
         let canvas = document.querySelector("canvas");
@@ -18,7 +19,7 @@ var Virus_Classes;
         drawCoronaVirus(10);
         drawAntibody(10);
         //drawParticle({ x: 130, y: 490 });
-        // window.setInterval(animation, 20);
+        window.setInterval(animation, 20);
     }
     function drawBackground() {
         let pattern = document.createElement("canvas").getContext("2d");
@@ -84,13 +85,13 @@ var Virus_Classes;
             createCells(z);
             Virus_Classes.crc2.restore();
         }
-        // BackgroundImage (put);
+        backgroudnImage = Virus_Classes.crc2.getImageData(0, 0, Virus_Classes.canvas.width, Virus_Classes.canvas.height);
     }
     // ---- CORONA VIREN WERDEN ERSTELLT ---- \\
     function drawCoronaVirus(_nCorona) {
-        let positionX = Math.random() * Virus_Classes.canvas.width;
-        let positionY = Math.random() * Virus_Classes.canvas.height;
         for (let i = 0; i < _nCorona; i++) {
+            let positionX = Math.random() * Virus_Classes.canvas.width;
+            let positionY = Math.random() * Virus_Classes.canvas.height;
             let postion = new Virus_Classes.Vector(positionX, positionY);
             let corona = new Virus_Classes.Corona(postion);
             corona.draw();
@@ -107,9 +108,10 @@ var Virus_Classes;
     }
     // ------ ANIMATION ------ \\
     function animation() {
+        Virus_Classes.crc2.putImageData(backgroudnImage, 0, 0);
         Virus_Classes.crc2.fillRect(0, 0, Virus_Classes.crc2.canvas.width, Virus_Classes.crc2.canvas.height);
         for (let corona of coronaCells) {
-            corona.move(1 / 50);
+            corona.move(1 / 200);
             corona.draw();
         }
         for (let antibody of antibodyCells) {
