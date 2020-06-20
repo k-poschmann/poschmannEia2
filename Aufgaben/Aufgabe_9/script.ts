@@ -110,7 +110,6 @@ namespace Virus_Classes {
             // FKT. zeichnet erstellte Zellen auf die Canvas
             createCells(z);
             crc2.restore();
-            console.log(drawn);
         }
 
         backgroudnImage = crc2.getImageData(0, 0, canvas.width, canvas.height);
@@ -149,9 +148,9 @@ namespace Virus_Classes {
     function drawParticle(_nParticle: number): void {
         for (let drawn: number = 0; drawn < _nParticle; drawn++) {
             crc2.save();
-            let x: number = (Math.random()) * canvas.width;
-            let y: number = (Math.random() * canvas.height);
-            let postion: Vector = new Vector(x, y); 
+            let positionX: number = Math.random() * canvas.width;
+            let positionY: number = Math.random() * canvas.height;
+            let postion: Vector = new Vector(positionX, positionY); 
             let particle: Particle = new Particle(postion);
             particle.draw();
             particleCells.push(particle);
@@ -163,9 +162,6 @@ namespace Virus_Classes {
 
     function animation(): void {
         crc2.putImageData(backgroudnImage, 0, 0);
-
-        crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-
         for (let corona of coronaCells) {
             corona.move(1 / 200);
             corona.draw();

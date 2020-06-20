@@ -84,7 +84,6 @@ var Virus_Classes;
             // FKT. zeichnet erstellte Zellen auf die Canvas
             createCells(z);
             Virus_Classes.crc2.restore();
-            console.log(drawn);
         }
         backgroudnImage = Virus_Classes.crc2.getImageData(0, 0, Virus_Classes.canvas.width, Virus_Classes.canvas.height);
     }
@@ -113,9 +112,9 @@ var Virus_Classes;
     function drawParticle(_nParticle) {
         for (let drawn = 0; drawn < _nParticle; drawn++) {
             Virus_Classes.crc2.save();
-            let x = (Math.random()) * Virus_Classes.canvas.width;
-            let y = (Math.random() * Virus_Classes.canvas.height);
-            let postion = new Virus_Classes.Vector(x, y);
+            let positionX = Math.random() * Virus_Classes.canvas.width;
+            let positionY = Math.random() * Virus_Classes.canvas.height;
+            let postion = new Virus_Classes.Vector(positionX, positionY);
             let particle = new Virus_Classes.Particle(postion);
             particle.draw();
             particleCells.push(particle);
@@ -124,7 +123,6 @@ var Virus_Classes;
     // ------ ANIMATION ------ \\
     function animation() {
         Virus_Classes.crc2.putImageData(backgroudnImage, 0, 0);
-        Virus_Classes.crc2.fillRect(0, 0, Virus_Classes.crc2.canvas.width, Virus_Classes.crc2.canvas.height);
         for (let corona of Virus_Classes.coronaCells) {
             corona.move(1 / 200);
             corona.draw();

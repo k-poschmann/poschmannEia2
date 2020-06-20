@@ -14,13 +14,13 @@ var Virus_Classes;
             // console.log("Particle draw");
             Virus_Classes.crc2.save();
             // Mit Math.random werden zufällige Positionen erzeugt
-            let x = 1 * Math.random() + 5;
-            let y = 1 * Math.random() + 5;
+            let x = 1 * Math.random() + 2;
+            let y = 1 * Math.random() + 3;
             // Zelle wird erstellt
             Virus_Classes.crc2.beginPath();
             Virus_Classes.crc2.translate(this.position.x, this.position.y);
             Virus_Classes.crc2.ellipse(100, 50, x, y, 5, 90, 10, true);
-            Virus_Classes.crc2.strokeStyle = "orange";
+            Virus_Classes.crc2.strokeStyle = "#dc143c";
             Virus_Classes.crc2.stroke();
             Virus_Classes.crc2.closePath();
             Virus_Classes.crc2.restore();
