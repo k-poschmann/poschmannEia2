@@ -128,6 +128,7 @@ var Virus_Inheritance;
         Virus_Inheritance.crc2.putImageData(backgroudnImage, 0, 0);
         for (let corona of moveableAr) {
             corona.move(1 / 200);
+            corona.draw();
         }
         for (let antibody of Virus_Inheritance.antibodyCells) {
             // antibody.move(1 / 500);
@@ -135,6 +136,7 @@ var Virus_Inheritance;
         }
         for (let particle of moveableAr) {
             particle.move(1 / 100);
+            particle.draw();
         }
     }
 })(Virus_Inheritance || (Virus_Inheritance = {}));
