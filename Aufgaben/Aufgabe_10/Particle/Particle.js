@@ -1,13 +1,9 @@
 "use strict";
 var Virus_Inheritance;
 (function (Virus_Inheritance) {
-    class Particle {
+    class Particle extends Virus_Inheritance.Moveable {
         constructor(_position) {
-            if (_position)
-                this.position = _position;
-            else
-                this.position = new Virus_Inheritance.Vector(0, 0);
-            this.velocity = new Virus_Inheritance.Vector(0, 0);
+            super(_position);
             this.velocity.random(50, 100);
         }
         draw() {
@@ -26,17 +22,7 @@ var Virus_Inheritance;
             Virus_Inheritance.crc2.restore();
         }
         move(_timeslice) {
-            let offset = new Virus_Inheritance.Vector(this.velocity.x, this.velocity.y);
-            offset.scale(_timeslice);
-            this.position.add(offset);
-            if (this.position.x < 0)
-                this.position.x += Virus_Inheritance.crc2.canvas.width;
-            if (this.position.y < 0)
-                this.position.y += Virus_Inheritance.crc2.canvas.height;
-            if (this.position.x > Virus_Inheritance.crc2.canvas.width)
-                this.position.x -= Virus_Inheritance.crc2.canvas.width;
-            if (this.position.y > Virus_Inheritance.crc2.canvas.height)
-                this.position.y -= Virus_Inheritance.crc2.canvas.height;
+            super.move(_timeslice);
         }
     }
     Virus_Inheritance.Particle = Particle;
