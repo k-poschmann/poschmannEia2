@@ -1,7 +1,8 @@
 namespace Virus_Advanced {
     export class BodyCell {
         position: Vector;
-        size: number;
+        sizeX: number;
+        sizeY: number;
 
         constructor(_position: Vector) {
             if (_position)
@@ -9,8 +10,8 @@ namespace Virus_Advanced {
             else
                 this.position = new Vector(0, 0);
 
-            this.size = Math.random() + 50;
-            this.size = Math.random() + 10;
+            this.sizeX = 10 * Math.random() + 70;
+            this.sizeY = 20 * Math.random() + 30;
         }
 
         draw(): void {
@@ -22,7 +23,7 @@ namespace Virus_Advanced {
         crc2.beginPath();
         crc2.save();
         crc2.translate(this.position.x, this.position.y);
-        crc2.ellipse(100, 50, this.size, this.size , 5, 90, 10, true);
+        crc2.ellipse(100, 50, this.sizeX, this.sizeY , 5, 90, 10, true);
         crc2.strokeStyle = "#6666ff";
         crc2.fillStyle = "#9999ff";
         crc2.fill();

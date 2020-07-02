@@ -7,8 +7,8 @@ var Virus_Advanced;
                 this.position = _position;
             else
                 this.position = new Virus_Advanced.Vector(0, 0);
-            this.size = Math.random() + 50;
-            this.size = Math.random() + 10;
+            this.sizeX = 10 * Math.random() + 70;
+            this.sizeY = 20 * Math.random() + 30;
         }
         draw() {
             // Mit Math.random werden zufällige Positionen erzeugt
@@ -18,7 +18,7 @@ var Virus_Advanced;
             Virus_Advanced.crc2.beginPath();
             Virus_Advanced.crc2.save();
             Virus_Advanced.crc2.translate(this.position.x, this.position.y);
-            Virus_Advanced.crc2.ellipse(100, 50, this.size, this.size, 5, 90, 10, true);
+            Virus_Advanced.crc2.ellipse(100, 50, this.sizeX, this.sizeY, 5, 90, 10, true);
             Virus_Advanced.crc2.strokeStyle = "#6666ff";
             Virus_Advanced.crc2.fillStyle = "#9999ff";
             Virus_Advanced.crc2.fill();
