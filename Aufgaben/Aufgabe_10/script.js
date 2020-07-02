@@ -53,8 +53,8 @@ var Virus_Inheritance;
     // ----- MENSCHLICHE ZELLEN WERDEN ERSTELLT ---- \\
     function drawCells(_nBodyCells) {
         for (let drawn = 0; drawn < _nBodyCells; drawn++) {
-            let positionX = 60 * Math.random() + 10;
-            let positionY = 50 * Math.random() + 10;
+            let positionX = Math.random() * Virus_Inheritance.canvas.width;
+            let positionY = Math.random() * Virus_Inheritance.canvas.height;
             let position = new Virus_Inheritance.Vector(positionX, positionY);
             let bodycells = new Virus_Inheritance.BodyCell(position);
             bodycells.draw();

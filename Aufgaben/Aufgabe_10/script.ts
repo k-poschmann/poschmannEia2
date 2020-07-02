@@ -20,7 +20,7 @@ namespace Virus_Inheritance {
             return;
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
 
-
+        
         drawBackground();
         drawCells(5);
         drawCoronaVirus(10);
@@ -75,8 +75,8 @@ namespace Virus_Inheritance {
 
     function drawCells(_nBodyCells: number): void {
         for (let drawn: number = 0; drawn < _nBodyCells; drawn++) {
-            let positionX: number = 60 * Math.random() + 10;
-            let positionY: number = 50 * Math.random() + 10;
+            let positionX: number = Math.random() * canvas.width;
+            let positionY: number = Math.random() * canvas.height;
             let position: Vector = new Vector(positionX, positionY);
             let bodycells: BodyCell = new BodyCell(position);
             bodycells.draw();
