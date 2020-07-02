@@ -1,22 +1,24 @@
 namespace Virus_Advanced {
     export class Particle extends Moveable {
+        private sizeX: number;
+        private sizeY: number;
 
-        constructor(_position: Vector) {
+        public constructor(_position: Vector) {
             super(_position);
             this.velocity.random(50, 100);
+
+            this.sizeX = (Math.random()) * 3;
+            this.sizeY = ((Math.random()) * 3);
         }
 
-        draw(): void {
+        public draw(): void {
             // console.log("Particle draw");
             crc2.save();
-            // Mit Math.random werden zufällige Größen erzeugt
-            let x: number = (Math.random()) * 2;
-            let y: number = ((Math.random()) * 3);
 
             // Zelle wird erstellt
             crc2.beginPath();
             crc2.translate(this.position.x, this.position.y);
-            crc2.ellipse(100, 50, x, y, 5, 90, 10, true);
+            crc2.ellipse(0, 0, this.sizeX, this.sizeY, 5, 90, 10, true);
             crc2.strokeStyle = "#dc143c";
             crc2.stroke();
             crc2.closePath();
@@ -25,7 +27,7 @@ namespace Virus_Advanced {
 
         }
 
-        move(_timeslice: number): void {
+        public move(_timeslice: number): void {
             super.move(_timeslice);
         }
     }

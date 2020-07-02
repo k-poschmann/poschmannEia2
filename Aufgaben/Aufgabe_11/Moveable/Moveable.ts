@@ -1,9 +1,9 @@
 namespace Virus_Advanced {
     export class Moveable {
-        position: Vector;
-        velocity: Vector;
+        public position: Vector;
+        public velocity: Vector;
 
-        constructor(_position?: Vector) {
+        public constructor(_position?: Vector) {
             if (_position)
                 this.position = _position;
             else
@@ -13,7 +13,7 @@ namespace Virus_Advanced {
             this.velocity.random(50, 100);
         }
 
-        move(_timeslice: number): void {
+        public move(_timeslice: number): void {
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
@@ -28,7 +28,7 @@ namespace Virus_Advanced {
                 this.position.y -= crc2.canvas.height;
         }
 
-        draw(): void {
+        public draw(): void {
             // Hiii
         }
     }

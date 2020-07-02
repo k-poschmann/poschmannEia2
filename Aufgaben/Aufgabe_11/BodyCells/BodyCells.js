@@ -18,7 +18,7 @@ var Virus_Advanced;
             Virus_Advanced.crc2.beginPath();
             Virus_Advanced.crc2.save();
             Virus_Advanced.crc2.translate(this.position.x, this.position.y);
-            Virus_Advanced.crc2.ellipse(100, 50, this.sizeX, this.sizeY, 5, 90, 10, true);
+            Virus_Advanced.crc2.ellipse(0, 0, this.sizeX, this.sizeY, 5, 90, 10, true);
             Virus_Advanced.crc2.strokeStyle = "#6666ff";
             Virus_Advanced.crc2.fillStyle = "#9999ff";
             Virus_Advanced.crc2.fill();
@@ -26,7 +26,7 @@ var Virus_Advanced;
             Virus_Advanced.crc2.closePath();
             //Zellkern wird erstellt
             Virus_Advanced.crc2.beginPath();
-            Virus_Advanced.crc2.arc(100, 60, 7, 0, 2 * Math.PI);
+            Virus_Advanced.crc2.arc(0, 0, 7, 0, 2 * Math.PI);
             Virus_Advanced.crc2.fillStyle = "#9999ff";
             Virus_Advanced.crc2.strokeStyle = "#fff";
             Virus_Advanced.crc2.fill();

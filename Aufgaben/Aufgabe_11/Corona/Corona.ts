@@ -1,12 +1,12 @@
 namespace Virus_Advanced {
     export class Corona extends Moveable {
 
-        constructor(_position: Vector) {
+        public constructor(_position: Vector) {
             super(_position);
             this.velocity.random(30, 80);
         }
 
-        draw(): void {
+        public draw(): void {
             let r1: number = 5;
             let r2: number = 10;
             let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
@@ -28,7 +28,7 @@ namespace Virus_Advanced {
         }
 
         //babla
-        move(_timeslice: number): void {
+        public move(_timeslice: number): void {
             super.move(_timeslice);
         }
     }

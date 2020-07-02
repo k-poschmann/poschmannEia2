@@ -1,9 +1,9 @@
 namespace Virus_Advanced {
     export class Antibody {
-        position: Vector;
-        velocity: Vector;
+        public position: Vector;
+        public velocity: Vector;
 
-        constructor(_position?: Vector) {
+        public constructor(_position?: Vector) {
             if (_position)
                 this.position = _position;
             else
@@ -13,7 +13,7 @@ namespace Virus_Advanced {
             this.velocity.random(50, 100);
         }
 
-        draw(): void {
+        public draw(): void {
             let r1: number = 5;
             let r2: number = 10;
             let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
