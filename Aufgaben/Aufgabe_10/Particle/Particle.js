@@ -10,8 +10,8 @@ var Virus_Inheritance;
             // console.log("Particle draw");
             Virus_Inheritance.crc2.save();
             // Mit Math.random werden zufällige Größen erzeugt
-            let x = 1 * Math.random() + 2;
-            let y = 1 * Math.random() + 3;
+            let x = (Math.random()) * 2;
+            let y = ((Math.random()) * 3);
             // Zelle wird erstellt
             Virus_Inheritance.crc2.beginPath();
             Virus_Inheritance.crc2.translate(this.position.x, this.position.y);

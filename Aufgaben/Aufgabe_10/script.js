@@ -4,7 +4,7 @@ var Virus_Inheritance;
     window.addEventListener("load", handleLoad);
     Virus_Inheritance.canvas = document.querySelector("canvas");
     let moveableAr = [];
-    Virus_Inheritance.coronaCells = [];
+    Virus_Inheritance.bodycellsAR = [];
     Virus_Inheritance.antibodyCells = [];
     // let particleCells: Particle[] = [];
     let backgroudnImage;
@@ -15,8 +15,7 @@ var Virus_Inheritance;
             return;
         Virus_Inheritance.crc2 = canvas.getContext("2d");
         drawBackground();
-        let p = new Virus_Inheritance.Vector(150, 375);
-        drawCells(p);
+        drawCells(5);
         drawCoronaVirus(10);
         drawAntibody(10);
         drawParticle(80);
@@ -49,44 +48,18 @@ var Virus_Inheritance;
         pattern.fill();
         Virus_Inheritance.crc2.fillStyle = Virus_Inheritance.crc2.createPattern(pattern.canvas, "repeat");
         Virus_Inheritance.crc2.fillRect(0, 0, Virus_Inheritance.canvas.width, Virus_Inheritance.canvas.height);
+        backgroudnImage = Virus_Inheritance.crc2.getImageData(0, 0, Virus_Inheritance.canvas.width, Virus_Inheritance.canvas.height);
     }
     // ----- MENSCHLICHE ZELLEN WERDEN ERSTELLT ---- \\
-    function createCells(_position) {
-        // Mit Math.random werden zufällige Positionen erzeugt
-        let x = 60 * Math.random() + 10;
-        let y = 50 * Math.random() + 10;
-        // Koordinatensystem wird verschoben
-        Virus_Inheritance.crc2.translate(_position.x, _position.y);
-        // Zelle wird erstellt
-        Virus_Inheritance.crc2.beginPath();
-        Virus_Inheritance.crc2.ellipse(100, 50, x, y, 5, 90, 10, true);
-        Virus_Inheritance.crc2.strokeStyle = "#6666ff";
-        Virus_Inheritance.crc2.fillStyle = "#9999ff";
-        Virus_Inheritance.crc2.fill();
-        Virus_Inheritance.crc2.closePath();
-        Virus_Inheritance.crc2.stroke();
-        //Zellkern wird erstellt
-        Virus_Inheritance.crc2.beginPath();
-        Virus_Inheritance.crc2.arc(100, 60, 7, 0, 2 * Math.PI);
-        Virus_Inheritance.crc2.fillStyle = "#9999ff";
-        Virus_Inheritance.crc2.strokeStyle = "#fff";
-        Virus_Inheritance.crc2.fill();
-        Virus_Inheritance.crc2.stroke();
-    }
-    function drawCells(_size) {
-        // For Schleife generiert die zu platzierende Zellen
-        // Mit Math.random werden zufällige größen erstellt
-        let nCells = 5;
-        for (let drawn = 0; drawn < nCells; drawn++) {
-            Virus_Inheritance.crc2.save();
-            let x = (Math.random()) * _size.x;
-            let y = ((Math.random()) * _size.y);
-            let z = new Virus_Inheritance.Vector(x, y);
-            // FKT. zeichnet erstellte Zellen auf die Canvas
-            createCells(z);
-            Virus_Inheritance.crc2.restore();
+    function drawCells(_nBodyCells) {
+        for (let drawn = 0; drawn < _nBodyCells; drawn++) {
+            let positionX = 60 * Math.random() + 10;
+            let positionY = 50 * Math.random() + 10;
+            let position = new Virus_Inheritance.Vector(positionX, positionY);
+            let bodycells = new Virus_Inheritance.BodyCell(position);
+            bodycells.draw();
+            Virus_Inheritance.bodycellsAR.push(bodycells);
         }
-        backgroudnImage = Virus_Inheritance.crc2.getImageData(0, 0, Virus_Inheritance.canvas.width, Virus_Inheritance.canvas.height);
     }
     // ---- CORONA VIREN WERDEN ERSTELLT ---- \\
     function drawCoronaVirus(_nCorona) {
@@ -111,6 +84,7 @@ var Virus_Inheritance;
             Virus_Inheritance.antibodyCells.push(antibody);
         }
     }
+    // ---- Partikel WERDEN ERSTELLT ---- \\
     function drawParticle(_nParticle) {
         for (let drawn = 0; drawn < _nParticle; drawn++) {
             Virus_Inheritance.crc2.save();
@@ -126,6 +100,9 @@ var Virus_Inheritance;
     // ------ ANIMATION ------ \\
     function animation() {
         Virus_Inheritance.crc2.putImageData(backgroudnImage, 0, 0);
+        for (let bodycell of Virus_Inheritance.bodycellsAR) {
+            bodycell.draw();
+        }
         for (let corona of moveableAr) {
             corona.move(1 / 200);
             corona.draw();

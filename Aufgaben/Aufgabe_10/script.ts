@@ -6,7 +6,7 @@ namespace Virus_Inheritance {
 
     let moveableAr: Moveable[] = [];
 
-    export let coronaCells: Corona[] = [];
+    export let bodycellsAR: BodyCell[] = []; 
     export let antibodyCells: Antibody[] = [];
     // let particleCells: Particle[] = [];
 
@@ -22,8 +22,7 @@ namespace Virus_Inheritance {
 
 
         drawBackground();
-        let p: Vector = new Vector(150, 375);
-        drawCells(p);
+        drawCells(5);
         drawCoronaVirus(10);
         drawAntibody(10);
         drawParticle(80);
@@ -68,52 +67,21 @@ namespace Virus_Inheritance {
         crc2.fillStyle = <CanvasRenderingContext2D>crc2.createPattern(pattern.canvas, "repeat");
         crc2.fillRect(0, 0, canvas.width, canvas.height);
 
+        backgroudnImage = crc2.getImageData(0, 0, canvas.width, canvas.height);
     }
+    
 
     // ----- MENSCHLICHE ZELLEN WERDEN ERSTELLT ---- \\
 
-    function createCells(_position: Vector): void {
-        // Mit Math.random werden zufällige Positionen erzeugt
-        let x: number = 60 * Math.random() + 10;
-        let y: number = 50 * Math.random() + 10;
-        // Koordinatensystem wird verschoben
-        crc2.translate(_position.x, _position.y);
-
-        // Zelle wird erstellt
-        crc2.beginPath();
-        crc2.ellipse(100, 50, x, y, 5, 90, 10, true);
-        crc2.strokeStyle = "#6666ff";
-        crc2.fillStyle = "#9999ff";
-        crc2.fill();
-        crc2.closePath();
-        crc2.stroke();
-
-        //Zellkern wird erstellt
-        crc2.beginPath();
-        crc2.arc(100, 60, 7, 0, 2 * Math.PI);
-        crc2.fillStyle = "#9999ff";
-        crc2.strokeStyle = "#fff";
-        crc2.fill();
-        crc2.stroke();
-    }
-
-
-
-    function drawCells(_size: Vector): void {
-        // For Schleife generiert die zu platzierende Zellen
-        // Mit Math.random werden zufällige größen erstellt
-        let nCells: number = 5;
-        for (let drawn: number = 0; drawn < nCells; drawn++) {
-            crc2.save();
-            let x: number = (Math.random()) * _size.x;
-            let y: number = ((Math.random()) * _size.y);
-            let z: Vector = new Vector(x, y);
-            // FKT. zeichnet erstellte Zellen auf die Canvas
-            createCells(z);
-            crc2.restore();
+    function drawCells(_nBodyCells: number): void {
+        for (let drawn: number = 0; drawn < _nBodyCells; drawn++) {
+            let positionX: number = 60 * Math.random() + 10;
+            let positionY: number = 50 * Math.random() + 10;
+            let position: Vector = new Vector(positionX, positionY);
+            let bodycells: BodyCell = new BodyCell(position);
+            bodycells.draw();
+            bodycellsAR.push(bodycells);
         }
-
-        backgroudnImage = crc2.getImageData(0, 0, canvas.width, canvas.height);
     }
 
 
@@ -147,19 +115,20 @@ namespace Virus_Inheritance {
         }
     }
 
+    // ---- Partikel WERDEN ERSTELLT ---- \\
 
     function drawParticle(_nParticle: number): void {
         for (let drawn: number = 0; drawn < _nParticle; drawn++) {
             crc2.save();
             let positionX: number = Math.random() * canvas.width;
             let positionY: number = Math.random() * canvas.height;
-            let postion: Vector = new Vector(positionX, positionY); 
+            let postion: Vector = new Vector(positionX, positionY);
             let particle: Particle = new Particle(postion);
             particle.draw();
             moveableAr.push(particle);
             console.log(particle);
 
-            
+
         }
     }
 
@@ -167,6 +136,11 @@ namespace Virus_Inheritance {
 
     function animation(): void {
         crc2.putImageData(backgroudnImage, 0, 0);
+
+        for (let bodycell of bodycellsAR) {
+            bodycell.draw();
+        }
+
         for (let corona of moveableAr) {
             corona.move(1 / 200);
             corona.draw();

@@ -10,8 +10,8 @@ namespace Virus_Inheritance {
             // console.log("Particle draw");
             crc2.save();
             // Mit Math.random werden zufällige Größen erzeugt
-            let x: number = 1 * Math.random() + 2;
-            let y: number = 1 * Math.random() + 3;
+            let x: number = (Math.random()) * 2;
+            let y: number = ((Math.random()) * 3);
 
             // Zelle wird erstellt
             crc2.beginPath();
