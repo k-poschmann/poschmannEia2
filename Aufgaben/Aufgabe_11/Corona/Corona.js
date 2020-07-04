@@ -2,9 +2,10 @@
 var Virus_Advanced;
 (function (Virus_Advanced) {
     class Corona extends Virus_Advanced.Moveable {
-        constructor(_position) {
+        constructor(_position, _target) {
             super(_position);
             this.velocity.random(30, 80);
+            this.target = _target;
         }
         draw() {
             let r1 = 5;

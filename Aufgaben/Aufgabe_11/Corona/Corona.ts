@@ -1,9 +1,12 @@
 namespace Virus_Advanced {
     export class Corona extends Moveable {
+        target: BodyCell;
 
-        public constructor(_position: Vector) {
+        public constructor(_position: Vector, _target: BodyCell) {
             super(_position);
             this.velocity.random(30, 80);
+
+            this.target = _target;
         }
 
         public draw(): void {

@@ -3,6 +3,8 @@ var Virus_Advanced;
 (function (Virus_Advanced) {
     class Moveable {
         constructor(_position) {
+            this.expendable = false;
+            this.hitRadius = 0;
             if (_position)
                 this.position = _position;
             else
@@ -25,6 +27,16 @@ var Virus_Advanced;
         }
         draw() {
             // Hiii
+        }
+        isHitBy(_partner) {
+            let difference = Virus_Advanced.Vector.getDifference(this.position, _partner.position);
+            if (this.hitRadius + _partner.hitRadius < difference.length)
+                return false;
+            return true;
+        }
+        hit() {
+            console.log("Hit", this);
+            this.expendable = true;
         }
     }
     Virus_Advanced.Moveable = Moveable;

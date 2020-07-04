@@ -1,17 +1,17 @@
 namespace Virus_Advanced {
-    export class BodyCell {
+    export class BodyCell extends Moveable {
         public position: Vector;
         private sizeX: number;
         private sizeY: number;
+        //ublic size: number;
 
-        public constructor(_position: Vector) {
-            if (_position)
-                this.position = _position;
-            else
-                this.position = new Vector(0, 0);
+        public constructor(_position: Vector, _size: number) {
+            super(_position);
 
             this.sizeX = 10 * Math.random() + 70;
             this.sizeY = 20 * Math.random() + 30;
+
+            this.hitRadius = 50 * _size;
         }
 
         public draw(): void {
@@ -41,5 +41,7 @@ namespace Virus_Advanced {
 
         crc2.restore();
         }
+
+       
 }
 }

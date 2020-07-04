@@ -1,14 +1,13 @@
 "use strict";
 var Virus_Advanced;
 (function (Virus_Advanced) {
-    class BodyCell {
-        constructor(_position) {
-            if (_position)
-                this.position = _position;
-            else
-                this.position = new Virus_Advanced.Vector(0, 0);
+    class BodyCell extends Virus_Advanced.Moveable {
+        //ublic size: number;
+        constructor(_position, _size) {
+            super(_position);
             this.sizeX = 10 * Math.random() + 70;
             this.sizeY = 20 * Math.random() + 30;
+            this.hitRadius = 50 * _size;
         }
         draw() {
             // Mit Math.random werden zufällige Positionen erzeugt

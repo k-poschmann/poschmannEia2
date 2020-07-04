@@ -1,4 +1,5 @@
 "use strict";
+// versucht mit isHit() aber hat nicht geklappt
 var Virus_Advanced;
 (function (Virus_Advanced) {
     window.addEventListener("load", handleLoad);

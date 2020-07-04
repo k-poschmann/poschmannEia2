@@ -1,4 +1,8 @@
+
+// versucht mit isHit() aber hat nicht geklappt
+
 namespace Virus_Advanced {
+
 
     window.addEventListener("load", handleLoad);
     export let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
