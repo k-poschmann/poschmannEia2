@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <h1>Dein Zauberbild</h1>
+        <h5>Kreiere dein eigenes Zauberbild! Wähle einfach ein Symbol aus, platzeire es auf
+            der Canvas und gib diesem eine Animation/Farbe nach Wahl.
+        </h5>
+        <p>Wähle zunächst die Größe der Canvas:</p>
+        <input type="radio" id="sizeone" name="CanvasSize" value="Size One">
+        <label for="sizeone">400 x 400</label><br>
+        <input type="radio" id="sizetwo" name="CanvasSize" value="Size Two">
+        <label for="sizetwo">500 x 300</label><br>
+        <input type="radio" id="sizethree" name="CanvasSize" value="Size Three">
+        <label for="sizethree">600 x 400</label>
+        <button id="btnok">OK</button>
+
+        <button id="btncolor">Farbe</button>
+        <button id="btnrotation">Rotation</button>
+        <button id="btnsize">Größe</button>
+
+        <div id="stardiv"></div>
+        <div id="heartdiv"></div>
+        <div id="moondiv"></div>
+        <div id="sundiv"></div>
+
+        <!-- <canvas width="600" height="400"></canvas> -->
+        <canvas></canvas>
+
+        
+        <section>
+            <button id="btndelete">Form Löschen</button>
+            <input type="text" id="title" placeholder="Titel eingeben">
+            <button id="btnsave">Speichern</button>
+            <input id="album" name="YourPictures" list="yourpics" placeholder="deine Bilder Laden" />
+            <datalist id="yourpics">
+            </datalist>
+        </section>
+    </div>
+</body>
+
+</html>
