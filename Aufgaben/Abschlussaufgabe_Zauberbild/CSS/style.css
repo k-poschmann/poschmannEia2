@@ -17,7 +17,7 @@ body{
     
     width: 80%;
     height: 650px;
-    /* border: 1px solid red; */
+    border: 1px solid red;
     position: absolute;
     /* left:50%;
     top: 50%;
@@ -54,8 +54,8 @@ p{
     width: 5%;
     height: 30px;
     position: relative;
-    left: 45%;
-    top: -30px;
+    left: 37%;
+    top: -80px;
     border-radius: 4px;
     background: rgb(240, 248, 255);;
     border: 2px solid #562870;
@@ -72,8 +72,7 @@ p{
     width: 10%;
     height: 40px;
     position: relative;
-    left: 0%;
-    top: 50px;
+    left: -12.5%;
     border-radius: 4px;
     background: rgb(240, 248, 255);;
     border: 2px solid #562870;
@@ -90,7 +89,7 @@ p{
     width: 10%;
     height: 40px;
     position: relative;
-    top: 50px;
+    left: -12.5%;
     border-radius: 4px;
     background: rgb(240, 248, 255);;
     border: 2px solid #562870;
@@ -107,7 +106,7 @@ p{
     width: 10%;
     height: 40px;
     position: relative;
-    top: 50px;
+    left: -12.5%;
     border-radius: 4px;
     background: rgb(240, 248, 255);;
     border: 2px solid #562870;
@@ -120,53 +119,53 @@ p{
     color: rgb(240, 248, 255);
 }
 
-
-#stardiv{
-    background: rgb(219, 219, 219);
+#canvasstar{
+    background: #dbdbdb;
     position: relative;
-    top: 53px;
-    left: 6%;
+    top: 110px;
+    left: -53%;
     width: 80px;
     height: 80px;
 }
 
-#heartdiv{
+#canvasheart{
     background: rgb(255, 255, 255);
     position: relative;
-    top: 53px;
-    left: 6%;
+    top: 190px;
+    left: -61.4%;
     width: 80px;
     height: 80px;
 }
 
-#moondiv{
-    background: rgb(219, 219, 219);    position: relative;
-    top: 53px;
-    left: 6%;
+#canvasmoon{
+    background: rgb(219, 219, 219);    
+    position: relative;
+    top: 270px;
+    left: -69.7%;
     width: 80px;
     height: 80px;
 }
-#sundiv{
+#canvassun{
     background: rgb(255, 255, 255);
     position: relative;
-    top: 53px;
-    left: 6%;
+    top: 350px;
+    left: -8.2%;
     width: 80px;
     height: 80px;
     float: left;
 } 
 
 
-canvas{
+#maincanvas{
     background-image: linear-gradient(rgb(20, 59, 57),rgb(94, 25, 67));
     position: relative;
-    top: -187px;
-    left: 6.5%;
+    top: 5px;
+    left: 9.5%;
 }
+
 
 section{
     position: relative;
-    top: -187px;
     width: 25%;
     height: 400px;
     float: right;
@@ -229,3 +228,4 @@ section{
 
 #album::placeholder{
     color: rgb(94, 25, 67);
+}

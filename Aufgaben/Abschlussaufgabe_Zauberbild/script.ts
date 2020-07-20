@@ -2,22 +2,35 @@ namespace Zauberbild {
     window.addEventListener("load", handleLoad);
 
     let canvas: HTMLCanvasElement;
+    let canvasstar: HTMLCanvasElement;
     let size1: HTMLInputElement;
     let size2: HTMLInputElement;
     let size3: HTMLInputElement;
 
-    let ctx1: CanvasRenderingContext2D;
+    export let cxtstar: CanvasRenderingContext2D;
+    let cxtheart: CanvasRenderingContext2D;
+    let cxtmoon: CanvasRenderingContext2D;
+    let cxtsun: CanvasRenderingContext2D;
+
+    //Array
+    let symbols: string[] = [];
 
     function handleLoad(): void {
-        canvas = <HTMLCanvasElement>document.querySelector("canvas");
+        canvas = <HTMLCanvasElement>document.querySelector("#maincanvas");
+        canvasstar = <HTMLCanvasElement>document.querySelector("#canvasstar");
         size1 = <HTMLInputElement>document.querySelector("#sizeone");
         size2 = <HTMLInputElement>document.querySelector("#sizetwo");
         size3 = <HTMLInputElement>document.querySelector("#sizethree");
         let btnOK: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnok");
 
-        ctx1 = <CanvasRenderingContext2D>canvas.getContext("2d");
+        cxtstar = <CanvasRenderingContext2D>canvas.getContext("2d");
+        cxtheart = <CanvasRenderingContext2D>canvas.getContext("2d");
+        cxtmoon = <CanvasRenderingContext2D>canvas.getContext("2d");
+        cxtsun = <CanvasRenderingContext2D>canvas.getContext("2d");
 
         btnOK.addEventListener("click", resizeCanvas);
+
+        createStar();
     }
 
 
@@ -42,5 +55,14 @@ namespace Zauberbild {
         }
     }
 
-    
+    function createStar(): void {
+        let positionX: number = canvasstar.width;
+        let positionY: number = canvasstar.height;
+        let position: Vector = new Vector(positionX, positionY);
+        let star: Star = new Star(position);
+        star.draw();
+        console.log("I'm here!");
+    }
+
+
 }
