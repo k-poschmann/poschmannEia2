@@ -12,6 +12,7 @@ var Zauberbild;
             Zauberbild.cxtstar.beginPath();
             Zauberbild.cxtstar.save();
             Zauberbild.cxtstar.translate(this.position.x, this.position.y);
+            Zauberbild.cxtstar.scale(1.2, 0.6);
             Zauberbild.cxtstar.moveTo(108, 0.0);
             Zauberbild.cxtstar.lineTo(141, 70);
             Zauberbild.cxtstar.lineTo(218, 78.3);
@@ -24,8 +25,8 @@ var Zauberbild;
             Zauberbild.cxtstar.lineTo(75, 68);
             Zauberbild.cxtstar.lineTo(108, 0);
             Zauberbild.cxtstar.closePath();
-            Zauberbild.cxtstar.strokeStyle = "orange";
-            Zauberbild.cxtstar.stroke();
+            Zauberbild.cxtstar.fillStyle = "yellow";
+            Zauberbild.cxtstar.fill();
         }
     }
     Zauberbild.Star = Star;

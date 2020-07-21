@@ -15,6 +15,7 @@ namespace Zauberbild {
                 cxtstar.beginPath();
                 cxtstar.save();
                 cxtstar.translate(this.position.x, this.position.y);
+                cxtstar.scale(1.2, 0.6);
                 cxtstar.moveTo(108, 0.0);
                 cxtstar.lineTo(141, 70);
                 cxtstar.lineTo(218, 78.3);
@@ -27,9 +28,8 @@ namespace Zauberbild {
                 cxtstar.lineTo(75, 68);
                 cxtstar.lineTo(108, 0);
                 cxtstar.closePath();
-                cxtstar.strokeStyle = "orange";
-                cxtstar.stroke();
-
+                cxtstar.fillStyle = "yellow";
+                cxtstar.fill();
             }
         }
     }
