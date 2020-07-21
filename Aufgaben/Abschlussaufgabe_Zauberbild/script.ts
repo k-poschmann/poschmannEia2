@@ -8,9 +8,9 @@ namespace Zauberbild {
     let size3: HTMLInputElement;
 
     export let cxtstar: CanvasRenderingContext2D;
-    let cxtheart: CanvasRenderingContext2D;
-    let cxtmoon: CanvasRenderingContext2D;
-    let cxtsun: CanvasRenderingContext2D;
+    //let cxtheart: CanvasRenderingContext2D;
+    //let cxtmoon: CanvasRenderingContext2D;
+    //let cxtsun: CanvasRenderingContext2D;
 
     //Array
     let symbols: string[] = [];
@@ -24,9 +24,9 @@ namespace Zauberbild {
         let btnOK: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnok");
 
         cxtstar = <CanvasRenderingContext2D>canvas.getContext("2d");
-        cxtheart = <CanvasRenderingContext2D>canvas.getContext("2d");
-        cxtmoon = <CanvasRenderingContext2D>canvas.getContext("2d");
-        cxtsun = <CanvasRenderingContext2D>canvas.getContext("2d");
+        // cxtheart = <CanvasRenderingContext2D>canvas.getContext("2d");
+        // cxtmoon = <CanvasRenderingContext2D>canvas.getContext("2d");
+        // cxtsun = <CanvasRenderingContext2D>canvas.getContext("2d");
 
         btnOK.addEventListener("click", resizeCanvas);
 
@@ -36,8 +36,9 @@ namespace Zauberbild {
 
 
     // Leinwandgröße Ändern
-    function resizeCanvas(): void {
+    function resizeCanvas(_event: Event): void {
         console.log("Button OK wurde geklickt!");
+
 
         if (size1.checked == true) {
             canvas.width = 400;
@@ -56,11 +57,22 @@ namespace Zauberbild {
     }
 
     function createStar(): void {
-        let positionX: number = canvasstar.width;
-        let positionY: number = canvasstar.height;
+        // let number: number = 1;
+
+        // for (let i: number = 0; i < number; i++) {
+        //     let positionX: number = 110;
+        //     let positionY: number = 200;
+
+        //     let position: Vector = new Vector(0, 0);
+        //     let star: Star = new Star(position);
+        //     star.draw();
+        //     symbols.push(star);
+        // }
+        let positionX: number = 0;
+        let positionY: number = 0;
         let position: Vector = new Vector(positionX, positionY);
         let star: Star = new Star(position);
-        star.draw();
+        star.draw(cxtstar);
         console.log("I'm here!");
     }
 
