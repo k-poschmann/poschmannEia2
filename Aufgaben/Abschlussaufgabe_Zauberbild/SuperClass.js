@@ -7,9 +7,6 @@ var Zauberbild;
             this.color = ["blue", "red", "green"];
             if (_position)
                 this.position = _position.copy();
-            if (this.active == true) {
-                console.log("clicked");
-            }
         }
     }
     Zauberbild.SuperClass = SuperClass;

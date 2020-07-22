@@ -12,12 +12,10 @@ namespace Zauberbild {
             if (_position)
             this.position = _position.copy();
 
-            if (this.active == true) {
-                console.log("clicked");
-            }
+            
         }
 
-        abstract draw(): void;
+        abstract draw(context: CanvasRenderingContext2D): void;
 
 
         

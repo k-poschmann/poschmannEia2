@@ -18,6 +18,8 @@ var Zauberbild;
         canvasheart = document.querySelector("#canvasheart");
         canvasmoon = document.querySelector("#canvasmoon");
         canvasflash = document.querySelector("#canvasflash");
+        canvas.addEventListener("click", placeSymbols);
+        canvasstar.addEventListener("click", placeSymbols);
         size1 = document.querySelector("#sizeone");
         size2 = document.querySelector("#sizetwo");
         size3 = document.querySelector("#sizethree");
@@ -53,7 +55,7 @@ var Zauberbild;
             let positionY = 15;
             let position = new Zauberbild.Vector(positionX, positionY);
             let star = new Zauberbild.Star(position);
-            star.draw();
+            star.draw(Zauberbild.cxtstar);
             symbols.push(star);
             console.log("Sternchen ist hier!");
         }
@@ -84,18 +86,19 @@ var Zauberbild;
     }
     // Platzieren des Symbols
     function placeSymbols(_event) {
-        console.log("Symbol wurde geklickt");
+        //console.log();
         // let x: number = _event.offsetX;
         // let y: number = _event.offsetY;
         let target = _event.target;
         let id = target.id;
+        console.log(id);
         switch (id) {
             case "canvasstar":
-                let x = _event.offsetX;
-                let y = _event.offsetY;
+                let x = _event.clientX;
+                let y = _event.clientY;
                 let position = new Zauberbild.Vector(x, y);
                 let star = new Zauberbild.Star(position);
-                star.draw();
+                star.draw(Zauberbild.cxt);
                 symbols.push(star);
                 break;
         }

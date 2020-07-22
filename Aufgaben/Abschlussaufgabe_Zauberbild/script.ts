@@ -27,6 +27,9 @@ namespace Zauberbild {
         canvasmoon = <HTMLCanvasElement>document.querySelector("#canvasmoon");
         canvasflash = <HTMLCanvasElement>document.querySelector("#canvasflash");
 
+        canvas.addEventListener("click", placeSymbols);
+        canvasstar.addEventListener("click", placeSymbols);
+
         size1 = <HTMLInputElement>document.querySelector("#sizeone");
         size2 = <HTMLInputElement>document.querySelector("#sizetwo");
         size3 = <HTMLInputElement>document.querySelector("#sizethree");
@@ -75,7 +78,7 @@ namespace Zauberbild {
             let positionY: number = 15;
             let position: Vector = new Vector(positionX, positionY);
             let star: Star = new Star(position);
-            star.draw();
+            star.draw(cxtstar);
             symbols.push(star);
             console.log("Sternchen ist hier!");
         }
@@ -108,19 +111,20 @@ namespace Zauberbild {
 
     // Platzieren des Symbols
     function placeSymbols(_event: MouseEvent): void {
-        console.log("Symbol wurde geklickt");
+        //console.log();
         // let x: number = _event.offsetX;
         // let y: number = _event.offsetY;
         let target: HTMLElement = <HTMLElement>_event.target;
         let id: string = target.id;
+        console.log(id);
 
         switch (id) {
             case "canvasstar":
-                let x: number = _event.offsetX;
-                let y: number = _event.offsetY;
+                let x: number = _event.clientX;
+                let y: number = _event.clientY;
                 let position: Vector = new Vector (x, y);
                 let star: Star = new Star (position);
-                star.draw();
+                star.draw(cxt);
                 symbols.push(star);
 
                 break;
