@@ -77,6 +77,7 @@ namespace Zauberbild {
         star.draw();
         symbols.push(star);
         console.log("Sternchen ist hier!");
+
     }
 
     //Herz erzeugen
@@ -112,18 +113,8 @@ namespace Zauberbild {
     // Platzieren des Symbols
 
     function placeSymbols(_event: MouseEvent): void {
-        console.log("es wurde auf die Canvas geklick");
         let x: number = _event.offsetX;
         let y: number = _event.offsetY;
-        let target: HTMLElement = <HTMLElement>_event.target;
-        let id: string = target.id;
-
-        switch (id) {
-            case "canvasstar":
-                for (let symbol of symbols) {
-                    symbol.position.x = x;
-                    symbol.position.y = y;
-                }
+        console.log(x, y);
         }
     }
-}

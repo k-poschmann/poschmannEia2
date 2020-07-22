@@ -11,9 +11,14 @@ namespace Zauberbild {
         constructor(_position?: Vector) {
             if (_position)
             this.position = _position.copy();
+
+            if (this.active == true) {
+                console.log("clicked");
+            }
         }
 
         abstract draw(): void;
+
 
         
     }

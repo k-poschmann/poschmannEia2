@@ -88,18 +88,9 @@ var Zauberbild;
     }
     // Platzieren des Symbols
     function placeSymbols(_event) {
-        console.log("es wurde auf die Canvas geklick");
         let x = _event.offsetX;
         let y = _event.offsetY;
-        let target = _event.target;
-        let id = target.id;
-        switch (id) {
-            case "canvasstar":
-                for (let symbol of symbols) {
-                    symbol.position.x = x;
-                    symbol.position.y = y;
-                }
-        }
+        console.log(x, y);
     }
 })(Zauberbild || (Zauberbild = {}));
 //# sourceMappingURL=script.js.map
