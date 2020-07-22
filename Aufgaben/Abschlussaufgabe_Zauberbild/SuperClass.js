@@ -2,6 +2,7 @@
 var Zauberbild;
 (function (Zauberbild) {
     class SuperClass {
+        //type: string;
         constructor(_position) {
             this.color = ["blue", "red", "green"];
             if (_position)

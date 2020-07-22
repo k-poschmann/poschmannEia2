@@ -6,7 +6,7 @@ namespace Zauberbild {
         size: Vector;
         position: Vector;
         active: boolean;
-        type: string;
+        //type: string;
 
         constructor(_position?: Vector) {
             if (_position)
