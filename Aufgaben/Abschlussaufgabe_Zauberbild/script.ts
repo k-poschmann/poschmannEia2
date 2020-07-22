@@ -11,6 +11,7 @@ namespace Zauberbild {
     let size2: HTMLInputElement;
     let size3: HTMLInputElement;
 
+    export let cxt: CanvasRenderingContext2D;
     export let cxtstar: CanvasRenderingContext2D;
     export let cxtheart: CanvasRenderingContext2D;
     export let cxtmoon: CanvasRenderingContext2D;
@@ -31,6 +32,7 @@ namespace Zauberbild {
         size3 = <HTMLInputElement>document.querySelector("#sizethree");
         let btnOK: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnok");
 
+        cxt = <CanvasRenderingContext2D>canvas.getContext("2d");
         cxtstar = <CanvasRenderingContext2D>canvasstar.getContext("2d");
         cxtheart = <CanvasRenderingContext2D>canvasheart.getContext("2d");
         cxtmoon = <CanvasRenderingContext2D>canvasmoon.getContext("2d");
@@ -39,10 +41,8 @@ namespace Zauberbild {
         btnOK.addEventListener("click", resizeCanvas);
         canvas.addEventListener("click", placeSymbols);
 
-        createStar();
-        createHeart();
-        createMoon();
-        createFlash();
+        createSymbols();
+
     }
 
 
@@ -68,53 +68,62 @@ namespace Zauberbild {
         }
     }
 
-    //Stern erzeugen
-    function createStar(): void {
-        let positionX: number = 20;
-        let positionY: number = 15;
-        let position: Vector = new Vector(positionX, positionY);
-        let star: Star = new Star(position);
-        star.draw();
-        symbols.push(star);
-        console.log("Sternchen ist hier!");
 
-    }
-
-    //Herz erzeugen
-    function createHeart(): void {
-        let positionX: number = 0;
-        let positionY: number = -10;
-        let position: Vector = new Vector(positionX, positionY);
-        let heart: Heart = new Heart(position);
-        heart.draw();
-        console.log("Herzchen auch :)");
-    }
-
-    //Mond erzeugen
-    function createMoon(): void {
-        let positionX: number = 20;
-        let positionY: number = 5;
-        let position: Vector = new Vector(positionX, positionY);
-        let moon: Moon = new Moon(position);
-        moon.draw();
-        console.log("Mond ebenfalls!");
-    }
-
-    //Blitz erzeugen
-    function createFlash(): void {
-        let positionX: number = 120;
-        let positionY: number = 15;
-        let position: Vector = new Vector(positionX, positionY);
-        let flash: Flash = new Flash(position);
-        flash.draw();
-        console.log("Blitz anwesend :D");
-    }
-
-    // Platzieren des Symbols
-
-    function placeSymbols(_event: MouseEvent): void {
-        let x: number = _event.offsetX;
-        let y: number = _event.offsetY;
-        console.log(x, y);
+    function createSymbols(): void {
+        for (let i: number = 0; i < 1; i++) {
+            let positionX: number = 20;
+            let positionY: number = 15;
+            let position: Vector = new Vector(positionX, positionY);
+            let star: Star = new Star(position);
+            star.draw();
+            symbols.push(star);
+            console.log("Sternchen ist hier!");
+        }
+        for (let i: number = 0; i < 1; i++) {
+            let positionX: number = 0;
+            let positionY: number = -10;
+            let position: Vector = new Vector(positionX, positionY);
+            let heart: Heart = new Heart(position);
+            heart.draw();
+            console.log("Herzchen auch :)");
+        }
+        for (let i: number = 0; i < 1; i++) {
+            let positionX: number = 20;
+            let positionY: number = 5;
+            let position: Vector = new Vector(positionX, positionY);
+            let moon: Moon = new Moon(position);
+            moon.draw();
+            console.log("Mond ebenfalls!");
+        }
+        for (let i: number = 0; i < 1; i++) {
+            let positionX: number = 120;
+            let positionY: number = 15;
+            let position: Vector = new Vector(positionX, positionY);
+            let flash: Flash = new Flash(position);
+            flash.draw();
+            console.log("Blitz anwesend :D");
         }
     }
+
+
+    // Platzieren des Symbols
+    function placeSymbols(_event: MouseEvent): void {
+        console.log("Symbol wurde geklickt");
+        // let x: number = _event.offsetX;
+        // let y: number = _event.offsetY;
+        let target: HTMLElement = <HTMLElement>_event.target;
+        let id: string = target.id;
+
+        switch (id) {
+            case "canvasstar":
+                let x: number = _event.offsetX;
+                let y: number = _event.offsetY;
+                let position: Vector = new Vector (x, y);
+                let star: Star = new Star (position);
+                star.draw();
+                symbols.push(star);
+
+                break;
+        }
+    }
+}

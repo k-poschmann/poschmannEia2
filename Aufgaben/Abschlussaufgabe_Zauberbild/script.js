@@ -22,16 +22,14 @@ var Zauberbild;
         size2 = document.querySelector("#sizetwo");
         size3 = document.querySelector("#sizethree");
         let btnOK = document.querySelector("#btnok");
+        Zauberbild.cxt = canvas.getContext("2d");
         Zauberbild.cxtstar = canvasstar.getContext("2d");
         Zauberbild.cxtheart = canvasheart.getContext("2d");
         Zauberbild.cxtmoon = canvasmoon.getContext("2d");
         Zauberbild.cxtflash = canvasflash.getContext("2d");
         btnOK.addEventListener("click", resizeCanvas);
         canvas.addEventListener("click", placeSymbols);
-        createStar();
-        createHeart();
-        createMoon();
-        createFlash();
+        createSymbols();
     }
     // Leinwandgröße Ändern
     function resizeCanvas(_event) {
@@ -49,48 +47,58 @@ var Zauberbild;
             canvas.height = 400;
         }
     }
-    //Stern erzeugen
-    function createStar() {
-        let positionX = 20;
-        let positionY = 15;
-        let position = new Zauberbild.Vector(positionX, positionY);
-        let star = new Zauberbild.Star(position);
-        star.draw();
-        symbols.push(star);
-        console.log("Sternchen ist hier!");
-    }
-    //Herz erzeugen
-    function createHeart() {
-        let positionX = 0;
-        let positionY = -10;
-        let position = new Zauberbild.Vector(positionX, positionY);
-        let heart = new Zauberbild.Heart(position);
-        heart.draw();
-        console.log("Herzchen auch :)");
-    }
-    //Mond erzeugen
-    function createMoon() {
-        let positionX = 20;
-        let positionY = 5;
-        let position = new Zauberbild.Vector(positionX, positionY);
-        let moon = new Zauberbild.Moon(position);
-        moon.draw();
-        console.log("Mond ebenfalls!");
-    }
-    //Blitz erzeugen
-    function createFlash() {
-        let positionX = 120;
-        let positionY = 15;
-        let position = new Zauberbild.Vector(positionX, positionY);
-        let flash = new Zauberbild.Flash(position);
-        flash.draw();
-        console.log("Blitz anwesend :D");
+    function createSymbols() {
+        for (let i = 0; i < 1; i++) {
+            let positionX = 20;
+            let positionY = 15;
+            let position = new Zauberbild.Vector(positionX, positionY);
+            let star = new Zauberbild.Star(position);
+            star.draw();
+            symbols.push(star);
+            console.log("Sternchen ist hier!");
+        }
+        for (let i = 0; i < 1; i++) {
+            let positionX = 0;
+            let positionY = -10;
+            let position = new Zauberbild.Vector(positionX, positionY);
+            let heart = new Zauberbild.Heart(position);
+            heart.draw();
+            console.log("Herzchen auch :)");
+        }
+        for (let i = 0; i < 1; i++) {
+            let positionX = 20;
+            let positionY = 5;
+            let position = new Zauberbild.Vector(positionX, positionY);
+            let moon = new Zauberbild.Moon(position);
+            moon.draw();
+            console.log("Mond ebenfalls!");
+        }
+        for (let i = 0; i < 1; i++) {
+            let positionX = 120;
+            let positionY = 15;
+            let position = new Zauberbild.Vector(positionX, positionY);
+            let flash = new Zauberbild.Flash(position);
+            flash.draw();
+            console.log("Blitz anwesend :D");
+        }
     }
     // Platzieren des Symbols
     function placeSymbols(_event) {
-        let x = _event.offsetX;
-        let y = _event.offsetY;
-        console.log(x, y);
+        console.log("Symbol wurde geklickt");
+        // let x: number = _event.offsetX;
+        // let y: number = _event.offsetY;
+        let target = _event.target;
+        let id = target.id;
+        switch (id) {
+            case "canvasstar":
+                let x = _event.offsetX;
+                let y = _event.offsetY;
+                let position = new Zauberbild.Vector(x, y);
+                let star = new Zauberbild.Star(position);
+                star.draw();
+                symbols.push(star);
+                break;
+        }
     }
 })(Zauberbild || (Zauberbild = {}));
 //# sourceMappingURL=script.js.map
