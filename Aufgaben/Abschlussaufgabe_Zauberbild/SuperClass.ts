@@ -1,6 +1,6 @@
 namespace Zauberbild {
 
-    export class SuperClass {
+    export abstract class SuperClass {
         color: string[] = ["blue", "red", "green"];
         rotation: number;
         size: Vector;
@@ -8,10 +8,14 @@ namespace Zauberbild {
         active: boolean;
         type: string;
 
-        constructor() {
-            
-            
+        constructor(_position?: Vector) {
+            if (_position)
+            this.position = _position.copy();
         }
+
+        abstract draw(): void;
+
+        
     }
     
 }

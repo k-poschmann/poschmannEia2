@@ -56,6 +56,7 @@ var Zauberbild;
         let position = new Zauberbild.Vector(positionX, positionY);
         let star = new Zauberbild.Star(position);
         star.draw();
+        symbols.push(star);
         console.log("Sternchen ist hier!");
     }
     //Herz erzeugen
@@ -90,6 +91,15 @@ var Zauberbild;
         console.log("es wurde auf die Canvas geklick");
         let x = _event.offsetX;
         let y = _event.offsetY;
+        let target = _event.target;
+        let id = target.id;
+        switch (id) {
+            case "canvasstar":
+                for (let symbol of symbols) {
+                    symbol.position.x = x;
+                    symbol.position.y = y;
+                }
+        }
     }
 })(Zauberbild || (Zauberbild = {}));
 //# sourceMappingURL=script.js.map

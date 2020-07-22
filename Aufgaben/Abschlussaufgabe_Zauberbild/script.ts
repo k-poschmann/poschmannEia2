@@ -75,6 +75,7 @@ namespace Zauberbild {
         let position: Vector = new Vector(positionX, positionY);
         let star: Star = new Star(position);
         star.draw();
+        symbols.push(star);
         console.log("Sternchen ist hier!");
     }
 
@@ -114,5 +115,15 @@ namespace Zauberbild {
         console.log("es wurde auf die Canvas geklick");
         let x: number = _event.offsetX;
         let y: number = _event.offsetY;
+        let target: HTMLElement = <HTMLElement>_event.target;
+        let id: string = target.id;
+
+        switch (id) {
+            case "canvasstar":
+                for (let symbol of symbols) {
+                    symbol.position.x = x;
+                    symbol.position.y = y;
+                }
+        }
     }
 }

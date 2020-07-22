@@ -2,8 +2,10 @@
 var Zauberbild;
 (function (Zauberbild) {
     class SuperClass {
-        constructor() {
+        constructor(_position) {
             this.color = ["blue", "red", "green"];
+            if (_position)
+                this.position = _position.copy();
         }
     }
     Zauberbild.SuperClass = SuperClass;

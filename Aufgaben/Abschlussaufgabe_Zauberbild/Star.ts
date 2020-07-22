@@ -1,14 +1,11 @@
 namespace Zauberbild {
-    export class Star {
-        position: Vector;
-        size: Vector;
-        rotation: number;
+    export class Star extends SuperClass {
 
         constructor(_position: Vector) {
+            super(_position);
+
             if (_position)
-                this.position = _position;
-            else
-                this.position = new Vector(0, 0);
+            this.position = _position.copy();
         }
 
             draw(): void {
@@ -32,4 +29,4 @@ namespace Zauberbild {
                 cxtstar.fill();
             }
         }
-    }
+}

@@ -1,12 +1,11 @@
 "use strict";
 var Zauberbild;
 (function (Zauberbild) {
-    class Star {
+    class Star extends Zauberbild.SuperClass {
         constructor(_position) {
+            super(_position);
             if (_position)
-                this.position = _position;
-            else
-                this.position = new Zauberbild.Vector(0, 0);
+                this.position = _position.copy();
         }
         draw() {
             Zauberbild.cxtstar.beginPath();

@@ -14,6 +14,9 @@ var Zauberbild;
             this.x *= _factor;
             this.y *= _factor;
         }
+        copy() {
+            return new Vector(this.x, this.y);
+        }
     }
     Zauberbild.Vector = Vector;
 })(Zauberbild || (Zauberbild = {}));

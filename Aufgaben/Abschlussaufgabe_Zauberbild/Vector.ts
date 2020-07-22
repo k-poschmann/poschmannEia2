@@ -17,5 +17,9 @@ namespace Zauberbild {
             this.x *= _factor;
             this.y *= _factor;
         }
+
+        copy(): Vector {
+            return new Vector(this.x, this.y); 
+        }
     }
 }
