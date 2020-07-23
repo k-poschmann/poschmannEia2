@@ -10,6 +10,7 @@ var Zauberbild;
     let size1;
     let size2;
     let size3;
+    let id;
     //Array
     let symbols = [];
     function handleLoad() {
@@ -18,8 +19,11 @@ var Zauberbild;
         canvasheart = document.querySelector("#canvasheart");
         canvasmoon = document.querySelector("#canvasmoon");
         canvasflash = document.querySelector("#canvasflash");
-        canvas.addEventListener("click", placeSymbols);
-        canvasstar.addEventListener("click", placeSymbols);
+        canvas.addEventListener("click", drawSymbolOnCanvas);
+        canvasstar.addEventListener("click", getID);
+        canvasheart.addEventListener("click", getID);
+        canvasmoon.addEventListener("click", getID);
+        canvasflash.addEventListener("click", getID);
         size1 = document.querySelector("#sizeone");
         size2 = document.querySelector("#sizetwo");
         size3 = document.querySelector("#sizethree");
@@ -30,7 +34,6 @@ var Zauberbild;
         Zauberbild.cxtmoon = canvasmoon.getContext("2d");
         Zauberbild.cxtflash = canvasflash.getContext("2d");
         btnOK.addEventListener("click", resizeCanvas);
-        canvas.addEventListener("click", placeSymbols);
         createSymbols();
     }
     // Leinwandgröße Ändern
@@ -64,7 +67,8 @@ var Zauberbild;
             let positionY = -10;
             let position = new Zauberbild.Vector(positionX, positionY);
             let heart = new Zauberbild.Heart(position);
-            heart.draw();
+            heart.draw(Zauberbild.cxtheart);
+            symbols.push(heart);
             console.log("Herzchen auch :)");
         }
         for (let i = 0; i < 1; i++) {
@@ -72,7 +76,7 @@ var Zauberbild;
             let positionY = 5;
             let position = new Zauberbild.Vector(positionX, positionY);
             let moon = new Zauberbild.Moon(position);
-            moon.draw();
+            moon.draw(Zauberbild.cxtmoon);
             console.log("Mond ebenfalls!");
         }
         for (let i = 0; i < 1; i++) {
@@ -80,26 +84,50 @@ var Zauberbild;
             let positionY = 15;
             let position = new Zauberbild.Vector(positionX, positionY);
             let flash = new Zauberbild.Flash(position);
-            flash.draw();
+            flash.draw(Zauberbild.cxtflash);
             console.log("Blitz anwesend :D");
         }
     }
-    // Platzieren des Symbols
-    function placeSymbols(_event) {
-        //console.log();
-        // let x: number = _event.offsetX;
-        // let y: number = _event.offsetY;
+    //Abspeichern der ID der Symbole
+    function getID(_event) {
         let target = _event.target;
-        let id = target.id;
+        id = target.id;
         console.log(id);
+    }
+    //Symbole auf Canvas zeichnen
+    function drawSymbolOnCanvas(_event) {
         switch (id) {
             case "canvasstar":
-                let x = _event.clientX;
-                let y = _event.clientY;
-                let position = new Zauberbild.Vector(x, y);
-                let star = new Zauberbild.Star(position);
+                let StarX = _event.offsetX;
+                let StarY = _event.offsetY;
+                let StarPosition = new Zauberbild.Vector(StarX, StarY);
+                let star = new Zauberbild.Star(StarPosition);
                 star.draw(Zauberbild.cxt);
                 symbols.push(star);
+                break;
+            case "canvasheart":
+                let HeartX = _event.offsetX;
+                let HeartY = _event.offsetY;
+                let HeartPosition = new Zauberbild.Vector(HeartX, HeartY);
+                let heart = new Zauberbild.Heart(HeartPosition);
+                heart.draw(Zauberbild.cxt);
+                symbols.push(heart);
+                break;
+            case "canvasmoon":
+                let MoonX = _event.offsetX;
+                let MoonY = _event.offsetY;
+                let MoonPosition = new Zauberbild.Vector(MoonX, MoonY);
+                let moon = new Zauberbild.Moon(MoonPosition);
+                moon.draw(Zauberbild.cxt);
+                symbols.push(moon);
+                break;
+            case "canvasflash":
+                let FlashX = _event.offsetX;
+                let FlashY = _event.offsetY;
+                let FlashPosition = new Zauberbild.Vector(FlashX, FlashY);
+                let flash = new Zauberbild.Flash(FlashPosition);
+                flash.draw(Zauberbild.cxt);
+                symbols.push(flash);
                 break;
         }
     }

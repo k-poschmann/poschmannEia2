@@ -1,32 +1,29 @@
 "use strict";
 var Zauberbild;
 (function (Zauberbild) {
-    class Flash {
+    class Flash extends Zauberbild.SuperClass {
         constructor(_position) {
-            if (_position)
-                this.position = _position;
-            else
-                this.position = new Zauberbild.Vector(0, 0);
+            super(_position);
         }
-        draw() {
-            Zauberbild.cxtflash.save();
-            Zauberbild.cxtflash.translate(this.position.x, this.position.y);
+        draw(context) {
+            context.save();
+            context.translate(this.position.x, this.position.y);
             Zauberbild.cxtflash.scale(1.8, 0.7);
-            Zauberbild.cxtflash.fillStyle = "black";
-            Zauberbild.cxtflash.beginPath();
-            Zauberbild.cxtflash.lineTo(0, -10);
-            Zauberbild.cxtflash.lineTo(60, 30);
-            Zauberbild.cxtflash.lineTo(30, 60);
-            Zauberbild.cxtflash.lineTo(50, 85);
-            Zauberbild.cxtflash.lineTo(20, 120);
-            Zauberbild.cxtflash.lineTo(35, 140);
-            Zauberbild.cxtflash.lineTo(-10, 180);
-            Zauberbild.cxtflash.lineTo(0, 140);
-            Zauberbild.cxtflash.lineTo(-15, 120);
-            Zauberbild.cxtflash.lineTo(5, 90);
-            Zauberbild.cxtflash.lineTo(-20, 60);
-            Zauberbild.cxtflash.lineTo(0, -10);
-            Zauberbild.cxtflash.fill();
+            context.fillStyle = "black";
+            context.beginPath();
+            context.lineTo(0, -10);
+            context.lineTo(60, 30);
+            context.lineTo(30, 60);
+            context.lineTo(50, 85);
+            context.lineTo(20, 120);
+            context.lineTo(35, 140);
+            context.lineTo(-10, 180);
+            context.lineTo(0, 140);
+            context.lineTo(-15, 120);
+            context.lineTo(5, 90);
+            context.lineTo(-20, 60);
+            context.lineTo(0, -10);
+            context.fill();
         }
     }
     Zauberbild.Flash = Flash;
