@@ -148,9 +148,6 @@ var Zauberbild;
     function changeSymbol(_event) {
         let target = _event.target;
         id = target.id;
-        switch (id) {
-            case "":
-        }
     }
 })(Zauberbild || (Zauberbild = {}));
 //# sourceMappingURL=script.js.map

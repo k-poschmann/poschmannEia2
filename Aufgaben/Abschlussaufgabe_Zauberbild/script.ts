@@ -184,10 +184,6 @@ namespace Zauberbild {
     function changeSymbol(_event: Event): void {
         let target: HTMLElement = <HTMLElement>_event.target;
         id = target.id;
-
-        switch (id) {
-        case ""
-        }
     }
 
 }
