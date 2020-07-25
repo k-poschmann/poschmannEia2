@@ -1,5 +1,5 @@
 namespace Zauberbild {
-    export class Heart extends SuperClass{
+    export class Heart extends SuperClass {
         position: Vector;
         size: Vector;
         rotation: number;
@@ -11,6 +11,7 @@ namespace Zauberbild {
             draw(context: CanvasRenderingContext2D): void {
                 context.save(); 
                 cxtheart.scale(2, 1.2); 
+                //cxt.scale(0.4, 0.4);
                 context.translate(this.position.x, this.position.y);
                 context.fillStyle = "red";
                 context.beginPath();
@@ -22,6 +23,7 @@ namespace Zauberbild {
                 context.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
                 context.bezierCurveTo(85, 25, 75, 37, 75, 40);
                 context.fill();
+                context.restore();
             }
         }
     }

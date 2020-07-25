@@ -10,9 +10,12 @@ var Zauberbild;
     let size1;
     let size2;
     let size3;
-    let id;
+    let btnOK;
+    let btndelete;
     //Array
     let symbols = [];
+    let colors = ["red", "blue", "green"];
+    let id;
     function handleLoad() {
         canvas = document.querySelector("#maincanvas");
         canvasstar = document.querySelector("#canvasstar");
@@ -27,13 +30,15 @@ var Zauberbild;
         size1 = document.querySelector("#sizeone");
         size2 = document.querySelector("#sizetwo");
         size3 = document.querySelector("#sizethree");
-        let btnOK = document.querySelector("#btnok");
+        btnOK = document.querySelector("#btnok");
+        btndelete = document.querySelector("#btndelete");
         Zauberbild.cxt = canvas.getContext("2d");
         Zauberbild.cxtstar = canvasstar.getContext("2d");
         Zauberbild.cxtheart = canvasheart.getContext("2d");
         Zauberbild.cxtmoon = canvasmoon.getContext("2d");
         Zauberbild.cxtflash = canvasflash.getContext("2d");
         btnOK.addEventListener("click", resizeCanvas);
+        btndelete.addEventListener("click", deleteForm);
         createSymbols();
     }
     // Leinwandgröße Ändern
@@ -98,37 +103,53 @@ var Zauberbild;
     function drawSymbolOnCanvas(_event) {
         switch (id) {
             case "canvasstar":
-                let StarX = _event.offsetX;
-                let StarY = _event.offsetY;
-                let StarPosition = new Zauberbild.Vector(StarX, StarY);
-                let star = new Zauberbild.Star(StarPosition);
+                let starx = _event.offsetX;
+                let stary = _event.offsetY;
+                let starposition = new Zauberbild.Vector(starx, stary);
+                let star = new Zauberbild.Star(starposition);
                 star.draw(Zauberbild.cxt);
                 symbols.push(star);
+                id = "";
                 break;
             case "canvasheart":
-                let HeartX = _event.offsetX;
-                let HeartY = _event.offsetY;
-                let HeartPosition = new Zauberbild.Vector(HeartX, HeartY);
-                let heart = new Zauberbild.Heart(HeartPosition);
+                let heartx = _event.offsetX;
+                let hearty = _event.offsetY;
+                let heartposition = new Zauberbild.Vector(heartx, hearty);
+                let heart = new Zauberbild.Heart(heartposition);
                 heart.draw(Zauberbild.cxt);
                 symbols.push(heart);
+                id = "";
                 break;
             case "canvasmoon":
-                let MoonX = _event.offsetX;
-                let MoonY = _event.offsetY;
-                let MoonPosition = new Zauberbild.Vector(MoonX, MoonY);
-                let moon = new Zauberbild.Moon(MoonPosition);
+                let moonx = _event.offsetX;
+                let moony = _event.offsetY;
+                let moonposition = new Zauberbild.Vector(moonx, moony);
+                let moon = new Zauberbild.Moon(moonposition);
                 moon.draw(Zauberbild.cxt);
                 symbols.push(moon);
+                id = "";
                 break;
             case "canvasflash":
-                let FlashX = _event.offsetX;
-                let FlashY = _event.offsetY;
-                let FlashPosition = new Zauberbild.Vector(FlashX, FlashY);
-                let flash = new Zauberbild.Flash(FlashPosition);
+                let flashx = _event.offsetX;
+                let flashy = _event.offsetY;
+                let flashposition = new Zauberbild.Vector(flashx, flashy);
+                let flash = new Zauberbild.Flash(flashposition);
                 flash.draw(Zauberbild.cxt);
                 symbols.push(flash);
+                id = "";
                 break;
+        }
+    }
+    function deleteForm() {
+        console.log("form gelöscht");
+        // let i: number = symbols.indexOf(_form);
+        // symbols.splice(i, 1);
+    }
+    function changeSymbol(_event) {
+        let target = _event.target;
+        id = target.id;
+        switch (id) {
+            case "":
         }
     }
 })(Zauberbild || (Zauberbild = {}));

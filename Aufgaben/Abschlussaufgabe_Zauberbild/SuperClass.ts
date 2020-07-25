@@ -1,7 +1,7 @@
 namespace Zauberbild {
 
     export abstract class SuperClass {
-        color: string[] = ["blue", "red", "green"];
+        color: string;
         rotation: number;
         size: Vector;
         position: Vector;
@@ -12,13 +12,17 @@ namespace Zauberbild {
             if (_position)
             this.position = _position.copy();
 
+            if (this.active == true) {
+                console.log("This is true");
+            }
             
         }
 
         abstract draw(context: CanvasRenderingContext2D): void;
 
-
-        
+        changeColor(_color: string): void {
+            this.color = _color;
+        }
     }
     
 }

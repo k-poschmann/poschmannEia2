@@ -11,7 +11,9 @@ namespace Zauberbild {
     let size2: HTMLInputElement;
     let size3: HTMLInputElement;
 
-    let id: string;
+    let btnOK: HTMLButtonElement;
+    let btndelete: HTMLButtonElement;
+
 
     export let cxt: CanvasRenderingContext2D;
     export let cxtstar: CanvasRenderingContext2D;
@@ -21,6 +23,9 @@ namespace Zauberbild {
 
     //Array
     let symbols: SuperClass[] = [];
+    let colors: string[] = ["red", "blue", "green"];
+
+    let id: string;
 
     function handleLoad(): void {
         canvas = <HTMLCanvasElement>document.querySelector("#maincanvas");
@@ -38,7 +43,9 @@ namespace Zauberbild {
         size1 = <HTMLInputElement>document.querySelector("#sizeone");
         size2 = <HTMLInputElement>document.querySelector("#sizetwo");
         size3 = <HTMLInputElement>document.querySelector("#sizethree");
-        let btnOK: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#btnok");
+        btnOK = <HTMLButtonElement>document.querySelector("#btnok");
+
+        btndelete = <HTMLButtonElement>document.querySelector("#btndelete");
 
         cxt = <CanvasRenderingContext2D>canvas.getContext("2d");
         cxtstar = <CanvasRenderingContext2D>canvasstar.getContext("2d");
@@ -47,6 +54,7 @@ namespace Zauberbild {
         cxtflash = <CanvasRenderingContext2D>canvasflash.getContext("2d");
 
         btnOK.addEventListener("click", resizeCanvas);
+        btndelete.addEventListener("click", deleteForm);
 
         createSymbols();
 
@@ -123,41 +131,62 @@ namespace Zauberbild {
     }
 
     //Symbole auf Canvas zeichnen
-    function drawSymbolOnCanvas(_event: MouseEvent) {
+    function drawSymbolOnCanvas(_event: MouseEvent): void {
         switch (id) {
             case "canvasstar":
-                let StarX: number = _event.offsetX;
-                let StarY: number = _event.offsetY;
-                let StarPosition: Vector = new Vector(StarX, StarY);
-                let star: Star = new Star(StarPosition);
+                let starx: number = _event.offsetX;
+                let stary: number = _event.offsetY;
+                let starposition: Vector = new Vector(starx, stary);
+                let star: Star = new Star(starposition);
                 star.draw(cxt);
                 symbols.push(star);
+                id = "";
                 break;
 
             case "canvasheart":
-                let HeartX: number = _event.offsetX;
-                let HeartY: number = _event.offsetY;
-                let HeartPosition: Vector = new Vector(HeartX, HeartY);
-                let heart: Heart = new Heart(HeartPosition);
+                let heartx: number = _event.offsetX;
+                let hearty: number = _event.offsetY;
+                let heartposition: Vector = new Vector(heartx, hearty);
+                let heart: Heart = new Heart(heartposition);
                 heart.draw(cxt);
                 symbols.push(heart);
+                id = "";
                 break;
             case "canvasmoon":
-                let MoonX: number = _event.offsetX;
-                let MoonY: number = _event.offsetY;
-                let MoonPosition: Vector = new Vector(MoonX, MoonY);
-                let moon: Moon = new Moon(MoonPosition);
+                let moonx: number = _event.offsetX;
+                let moony: number = _event.offsetY;
+                let moonposition: Vector = new Vector(moonx, moony);
+                let moon: Moon = new Moon(moonposition);
                 moon.draw(cxt);
                 symbols.push(moon);
+                id = "";
                 break;
             case "canvasflash":
-                let FlashX: number = _event.offsetX;
-                let FlashY: number = _event.offsetY;
-                let FlashPosition: Vector = new Vector(FlashX, FlashY);
-                let flash: Flash = new Flash(FlashPosition);
+                let flashx: number = _event.offsetX;
+                let flashy: number = _event.offsetY;
+                let flashposition: Vector = new Vector(flashx, flashy);
+                let flash: Flash = new Flash(flashposition);
                 flash.draw(cxt);
                 symbols.push(flash);
+                id = "";
                 break;
+        }
+    
+    }
+
+    function deleteForm(): void {
+        console.log("form gelöscht");
+        // let i: number = symbols.indexOf(_form);
+        // symbols.splice(i, 1);
+
+    }
+
+    function changeSymbol(_event: Event): void {
+        let target: HTMLElement = <HTMLElement>_event.target;
+        id = target.id;
+
+        switch (id) {
+        case ""
         }
     }
 

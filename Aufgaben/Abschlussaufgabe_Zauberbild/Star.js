@@ -10,6 +10,7 @@ var Zauberbild;
             context.save();
             context.translate(this.position.x, this.position.y);
             Zauberbild.cxtstar.scale(1.2, 0.6);
+            // cxt.scale(0.4, 0.4);
             context.moveTo(108, 0.0);
             context.lineTo(141, 70);
             context.lineTo(218, 78.3);
@@ -24,6 +25,10 @@ var Zauberbild;
             context.closePath();
             context.fillStyle = "yellow";
             context.fill();
+            context.restore();
+        }
+        changeColor(_color) {
+            super.changeColor(_color);
         }
     }
     Zauberbild.Star = Star;
