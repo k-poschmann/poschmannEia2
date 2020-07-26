@@ -136,6 +136,10 @@ namespace Zauberbild {
 
     //Symbole auf Canvas zeichnen
     function drawSymbolOnCanvas(_event: MouseEvent): void {
+        for (let symbol of symbols) {
+            symbol.active = false;
+        }
+
         switch (id) {
             case "canvasstar":
                 let starx: number = _event.offsetX;
@@ -191,12 +195,13 @@ namespace Zauberbild {
         coloring = colors[Math.floor(Math.random()) * colors.length];
     }
 
-    function changeColor(_event: Event): void {
-
+    function changeColor(_event: MouseEvent): void {
+        randomColor();
         for (let symbol of symbols) {
             if (symbol.active == true) {
                 symbol.color = coloring;
             }
+
             console.log(symbol);
         }
 

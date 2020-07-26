@@ -105,6 +105,9 @@ var Zauberbild;
     }
     //Symbole auf Canvas zeichnen
     function drawSymbolOnCanvas(_event) {
+        for (let symbol of symbols) {
+            symbol.active = false;
+        }
         switch (id) {
             case "canvasstar":
                 let starx = _event.offsetX;
@@ -153,6 +156,7 @@ var Zauberbild;
         coloring = colors[Math.floor(Math.random()) * colors.length];
     }
     function changeColor(_event) {
+        randomColor();
         for (let symbol of symbols) {
             if (symbol.active == true) {
                 symbol.color = coloring;
