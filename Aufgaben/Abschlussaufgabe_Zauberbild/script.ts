@@ -13,6 +13,7 @@ namespace Zauberbild {
 
     let btnOK: HTMLButtonElement;
     let btndelete: HTMLButtonElement;
+    let btncolor: HTMLButtonElement;
 
 
     export let cxt: CanvasRenderingContext2D;
@@ -46,6 +47,7 @@ namespace Zauberbild {
         btnOK = <HTMLButtonElement>document.querySelector("#btnok");
 
         btndelete = <HTMLButtonElement>document.querySelector("#btndelete");
+        btncolor = <HTMLButtonElement>document.querySelector("#btncolor");
 
         cxt = <CanvasRenderingContext2D>canvas.getContext("2d");
         cxtstar = <CanvasRenderingContext2D>canvasstar.getContext("2d");
@@ -55,6 +57,7 @@ namespace Zauberbild {
 
         btnOK.addEventListener("click", resizeCanvas);
         btndelete.addEventListener("click", deleteForm);
+        btncolor.addEventListener("click", changeColor);
 
         createSymbols();
 
@@ -64,7 +67,7 @@ namespace Zauberbild {
 
     // Leinwandgröße Ändern
     function resizeCanvas(_event: Event): void {
-        console.log("Button OK wurde geklickt!");
+       // console.log("Button OK wurde geklickt!");
 
 
         if (size1.checked == true) {
@@ -92,7 +95,7 @@ namespace Zauberbild {
             let star: Star = new Star(position);
             star.draw(cxtstar);
             symbols.push(star);
-            console.log("Sternchen ist hier!");
+           // console.log("Sternchen ist hier!");
         }
         for (let i: number = 0; i < 1; i++) {
             let positionX: number = 0;
@@ -101,7 +104,7 @@ namespace Zauberbild {
             let heart: Heart = new Heart(position);
             heart.draw(cxtheart);
             symbols.push(heart);
-            console.log("Herzchen auch :)");
+           // console.log("Herzchen auch :)");
         }
         for (let i: number = 0; i < 1; i++) {
             let positionX: number = 20;
@@ -109,7 +112,7 @@ namespace Zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let moon: Moon = new Moon(position);
             moon.draw(cxtmoon);
-            console.log("Mond ebenfalls!");
+           // console.log("Mond ebenfalls!");
         }
         for (let i: number = 0; i < 1; i++) {
             let positionX: number = 120;
@@ -117,7 +120,7 @@ namespace Zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let flash: Flash = new Flash(position);
             flash.draw(cxtflash);
-            console.log("Blitz anwesend :D");
+           // console.log("Blitz anwesend :D");
         }
     }
 
@@ -181,9 +184,11 @@ namespace Zauberbild {
 
     }
 
-    function changeSymbol(_event: Event): void {
+    function changeColor(_event: Event): void {
         let target: HTMLElement = <HTMLElement>_event.target;
         id = target.id;
+        console.log();
+
     }
 
 }

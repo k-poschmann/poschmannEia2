@@ -12,6 +12,7 @@ var Zauberbild;
     let size3;
     let btnOK;
     let btndelete;
+    let btncolor;
     //Array
     let symbols = [];
     let colors = ["red", "blue", "green"];
@@ -32,6 +33,7 @@ var Zauberbild;
         size3 = document.querySelector("#sizethree");
         btnOK = document.querySelector("#btnok");
         btndelete = document.querySelector("#btndelete");
+        btncolor = document.querySelector("#btncolor");
         Zauberbild.cxt = canvas.getContext("2d");
         Zauberbild.cxtstar = canvasstar.getContext("2d");
         Zauberbild.cxtheart = canvasheart.getContext("2d");
@@ -39,11 +41,12 @@ var Zauberbild;
         Zauberbild.cxtflash = canvasflash.getContext("2d");
         btnOK.addEventListener("click", resizeCanvas);
         btndelete.addEventListener("click", deleteForm);
+        btncolor.addEventListener("click", changeColor);
         createSymbols();
     }
     // Leinwandgröße Ändern
     function resizeCanvas(_event) {
-        console.log("Button OK wurde geklickt!");
+        // console.log("Button OK wurde geklickt!");
         if (size1.checked == true) {
             canvas.width = 400;
             canvas.height = 400;
@@ -65,7 +68,7 @@ var Zauberbild;
             let star = new Zauberbild.Star(position);
             star.draw(Zauberbild.cxtstar);
             symbols.push(star);
-            console.log("Sternchen ist hier!");
+            // console.log("Sternchen ist hier!");
         }
         for (let i = 0; i < 1; i++) {
             let positionX = 0;
@@ -74,7 +77,7 @@ var Zauberbild;
             let heart = new Zauberbild.Heart(position);
             heart.draw(Zauberbild.cxtheart);
             symbols.push(heart);
-            console.log("Herzchen auch :)");
+            // console.log("Herzchen auch :)");
         }
         for (let i = 0; i < 1; i++) {
             let positionX = 20;
@@ -82,7 +85,7 @@ var Zauberbild;
             let position = new Zauberbild.Vector(positionX, positionY);
             let moon = new Zauberbild.Moon(position);
             moon.draw(Zauberbild.cxtmoon);
-            console.log("Mond ebenfalls!");
+            // console.log("Mond ebenfalls!");
         }
         for (let i = 0; i < 1; i++) {
             let positionX = 120;
@@ -90,7 +93,7 @@ var Zauberbild;
             let position = new Zauberbild.Vector(positionX, positionY);
             let flash = new Zauberbild.Flash(position);
             flash.draw(Zauberbild.cxtflash);
-            console.log("Blitz anwesend :D");
+            // console.log("Blitz anwesend :D");
         }
     }
     //Abspeichern der ID der Symbole
@@ -145,9 +148,10 @@ var Zauberbild;
         // let i: number = symbols.indexOf(_form);
         // symbols.splice(i, 1);
     }
-    function changeSymbol(_event) {
+    function changeColor(_event) {
         let target = _event.target;
         id = target.id;
+        console.log();
     }
 })(Zauberbild || (Zauberbild = {}));
 //# sourceMappingURL=script.js.map
