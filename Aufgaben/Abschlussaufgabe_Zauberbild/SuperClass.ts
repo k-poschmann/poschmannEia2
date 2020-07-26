@@ -12,9 +12,7 @@ namespace Zauberbild {
             if (_position)
             this.position = _position.copy();
 
-            // if (this.active == true) {
-            //     console.log("This is true");
-            // }
+            this.color = "green";
             
         }
 

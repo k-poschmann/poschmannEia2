@@ -7,9 +7,7 @@ var Zauberbild;
             this.active = true;
             if (_position)
                 this.position = _position.copy();
-            // if (this.active == true) {
-            //     console.log("This is true");
-            // }
+            this.color = "green";
         }
         changeColor(_color) {
             this.color = _color;
