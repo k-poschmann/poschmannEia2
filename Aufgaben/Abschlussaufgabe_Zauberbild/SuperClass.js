@@ -2,15 +2,17 @@
 var Zauberbild;
 (function (Zauberbild) {
     class SuperClass {
-        //type: string;
         constructor(_position) {
-            this.active = true;
             if (_position)
                 this.position = _position.copy();
+            this.active = true;
             this.color = "green";
         }
         changeColor(_color) {
             this.color = _color;
+        }
+        rotate(_factor) {
+            this.rotation = _factor;
         }
     }
     Zauberbild.SuperClass = SuperClass;

@@ -4,13 +4,14 @@ var Zauberbild;
     class Flash extends Zauberbild.SuperClass {
         constructor(_position) {
             super(_position);
+            this.color = "black";
         }
         draw(context) {
             context.save();
             context.translate(this.position.x, this.position.y);
             Zauberbild.cxtflash.scale(1.8, 0.7);
-            // cxt.scale(0.4, 0.4);
-            context.fillStyle = "black";
+            Zauberbild.cxt.scale(0.4, 0.4);
+            context.fillStyle = this.color;
             context.beginPath();
             context.lineTo(0, -10);
             context.lineTo(60, 30);
@@ -25,7 +26,7 @@ var Zauberbild;
             context.lineTo(-20, 60);
             context.lineTo(0, -10);
             context.fill();
-            context.restore;
+            context.restore();
         }
     }
     Zauberbild.Flash = Flash;

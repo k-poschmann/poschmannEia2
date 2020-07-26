@@ -15,7 +15,8 @@ var Zauberbild;
     let btncolor;
     //Array
     let symbols = [];
-    let colors = ["red", "blue", "green"];
+    let colors = ["#FFC0CB", "#FF1493", "#E6E6FA", "#9370DB", "#4B0082", "#FA8072", "#DC143C", "#FF0000", "#FFA500", "#FFD700", "#FFFF00",
+        "#FFE4B5", "#32CD32", "#90EE90", "#008000", "#66CDAA", "#48D1CC", "#B0C4DE", "#87CEFA", "#0000FF", "#DCDCDC", "#FFFAFA", "#F5F5DC"];
     let id;
     let coloring;
     function handleLoad() {
@@ -146,15 +147,23 @@ var Zauberbild;
                 id = "";
                 break;
         }
-        console.log(symbols);
+    }
+    function animation(_event) {
+        let target = _event.target;
+        let id = target.id;
+        for (let symbol of symbols) {
+            if (symbol.active == false) {
+                switch (id) {
+                    case "btnrotate":
+                }
+            }
+        }
     }
     function deleteForm() {
         console.log("form gelöscht");
-        // let i: number = symbols.indexOf(_form);
-        // symbols.splice(i, 1);
     }
     function randomColor() {
-        coloring = colors[Math.floor(Math.random()) * colors.length];
+        coloring = colors[Math.floor(Math.random() * colors.length)];
     }
     function changeColor(_event) {
         randomColor();
@@ -163,7 +172,10 @@ var Zauberbild;
                 symbol.color = coloring;
                 symbol.draw(Zauberbild.cxt);
             }
-            console.log(symbol);
+            else {
+                symbol.active = true;
+            }
+            //console.log(symbol);
         }
     }
 })(Zauberbild || (Zauberbild = {}));

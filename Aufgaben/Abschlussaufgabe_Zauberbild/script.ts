@@ -24,7 +24,8 @@ namespace Zauberbild {
 
     //Array
     let symbols: SuperClass[] = [];
-    let colors: string[] = ["red", "blue", "green"];
+    let colors: string[] = ["#FFC0CB", "#FF1493", "#E6E6FA", "#9370DB", "#4B0082", "#FA8072", "#DC143C", "#FF0000", "#FFA500", "#FFD700", "#FFFF00",
+        "#FFE4B5", "#32CD32", "#90EE90", "#008000", "#66CDAA", "#48D1CC", "#B0C4DE", "#87CEFA", "#0000FF", "#DCDCDC", "#FFFAFA", "#F5F5DC"];
 
     let id: string;
     let coloring: string;
@@ -150,7 +151,6 @@ namespace Zauberbild {
                 symbols.push(star);
                 id = "";
                 break;
-
             case "canvasheart":
                 let heartx: number = _event.offsetX;
                 let hearty: number = _event.offsetY;
@@ -179,21 +179,30 @@ namespace Zauberbild {
                 id = "";
                 break;
         }
-        console.log(symbols);
 
+    }
+
+    function animation(_event: MouseEvent): void {
+        let target: HTMLElement = <HTMLElement>_event.target;
+        let id: string = target.id;
+        for (let symbol of symbols) {
+            if (symbol.active == false) {
+                switch (id) {
+                    case "btnrotate":
+                        
+                }
+            }
+        }
     }
 
     function deleteForm(): void {
         console.log("form gelöscht");
-        // let i: number = symbols.indexOf(_form);
-        // symbols.splice(i, 1);
-
     }
 
 
 
     function randomColor(): void {
-        coloring = colors[Math.floor(Math.random()) * colors.length];
+        coloring = colors[Math.floor(Math.random() * colors.length)];
     }
 
     function changeColor(_event: MouseEvent): void {
@@ -202,9 +211,11 @@ namespace Zauberbild {
             if (symbol.active == false) {
                 symbol.color = coloring;
                 symbol.draw(cxt);
+            } else {
+                symbol.active = true;
             }
 
-            console.log(symbol);
+            //console.log(symbol);
         }
 
     }

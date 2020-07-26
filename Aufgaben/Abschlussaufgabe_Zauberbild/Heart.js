@@ -4,13 +4,14 @@ var Zauberbild;
     class Heart extends Zauberbild.SuperClass {
         constructor(_position) {
             super(_position);
+            this.color = "red";
         }
         draw(context) {
             context.save();
             Zauberbild.cxtheart.scale(2, 1.2);
-            //cxt.scale(0.4, 0.4);
+            Zauberbild.cxt.scale(0.5, 0.6);
             context.translate(this.position.x, this.position.y);
-            context.fillStyle = "red";
+            context.fillStyle = this.color;
             context.beginPath();
             context.moveTo(75, 40);
             context.bezierCurveTo(75, 37, 70, 25, 50, 25);

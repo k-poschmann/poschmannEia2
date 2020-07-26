@@ -6,14 +6,15 @@ namespace Zauberbild {
 
         constructor(_position: Vector) {
             super(_position);
+            this.color = "black";
         }
 
         draw(context: CanvasRenderingContext2D): void {
             context.save();
             context.translate(this.position.x, this.position.y);
             cxtflash.scale(1.8, 0.7);
-            // cxt.scale(0.4, 0.4);
-            context.fillStyle = "black";
+            cxt.scale(0.4, 0.4);
+            context.fillStyle = this.color;
             context.beginPath();
             context.lineTo(0, -10);
             context.lineTo(60, 30);
@@ -28,7 +29,7 @@ namespace Zauberbild {
             context.lineTo(-20, 60);
             context.lineTo(0, -10);
             context.fill();
-            context.restore;
+            context.restore();
         }
     }
 }

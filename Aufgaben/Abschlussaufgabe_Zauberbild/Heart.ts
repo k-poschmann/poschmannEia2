@@ -6,14 +6,15 @@ namespace Zauberbild {
 
         constructor(_position: Vector) {
             super(_position);
+            this.color = "red";
         }
 
             draw(context: CanvasRenderingContext2D): void {
                 context.save(); 
                 cxtheart.scale(2, 1.2); 
-                //cxt.scale(0.4, 0.4);
+                cxt.scale(0.5, 0.6);
                 context.translate(this.position.x, this.position.y);
-                context.fillStyle = "red";
+                context.fillStyle = this.color;
                 context.beginPath();
                 context.moveTo(75, 40);
                 context.bezierCurveTo(75, 37, 70, 25, 50, 25);

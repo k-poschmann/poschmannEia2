@@ -5,13 +5,13 @@ namespace Zauberbild {
         rotation: number;
         size: Vector;
         position: Vector;
-        active: boolean = true;
-        //type: string;
+        active: boolean;
 
         constructor(_position?: Vector) {
             if (_position)
             this.position = _position.copy();
 
+            this.active = true;
             this.color = "green";
             
         }
@@ -20,6 +20,10 @@ namespace Zauberbild {
 
         changeColor(_color: string): void {
             this.color = _color;
+        }
+
+        rotate(_factor: number): void {
+            this.rotation = _factor;
         }
     }
     
