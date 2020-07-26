@@ -27,6 +27,7 @@ namespace Zauberbild {
     let colors: string[] = ["red", "blue", "green"];
 
     let id: string;
+    let coloring: string;
 
     function handleLoad(): void {
         canvas = <HTMLCanvasElement>document.querySelector("#maincanvas");
@@ -67,7 +68,7 @@ namespace Zauberbild {
 
     // Leinwandgröße Ändern
     function resizeCanvas(_event: Event): void {
-       // console.log("Button OK wurde geklickt!");
+        // console.log("Button OK wurde geklickt!");
 
 
         if (size1.checked == true) {
@@ -95,7 +96,7 @@ namespace Zauberbild {
             let star: Star = new Star(position);
             star.draw(cxtstar);
             symbols.push(star);
-           // console.log("Sternchen ist hier!");
+            // console.log("Sternchen ist hier!");
         }
         for (let i: number = 0; i < 1; i++) {
             let positionX: number = 0;
@@ -104,7 +105,7 @@ namespace Zauberbild {
             let heart: Heart = new Heart(position);
             heart.draw(cxtheart);
             symbols.push(heart);
-           // console.log("Herzchen auch :)");
+            // console.log("Herzchen auch :)");
         }
         for (let i: number = 0; i < 1; i++) {
             let positionX: number = 20;
@@ -112,7 +113,7 @@ namespace Zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let moon: Moon = new Moon(position);
             moon.draw(cxtmoon);
-           // console.log("Mond ebenfalls!");
+            // console.log("Mond ebenfalls!");
         }
         for (let i: number = 0; i < 1; i++) {
             let positionX: number = 120;
@@ -120,7 +121,7 @@ namespace Zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let flash: Flash = new Flash(position);
             flash.draw(cxtflash);
-           // console.log("Blitz anwesend :D");
+            // console.log("Blitz anwesend :D");
         }
     }
 
@@ -174,7 +175,7 @@ namespace Zauberbild {
                 id = "";
                 break;
         }
-    
+
     }
 
     function deleteForm(): void {
@@ -184,10 +185,20 @@ namespace Zauberbild {
 
     }
 
+
+
+    function randomColor(): void {
+        coloring = colors[Math.floor(Math.random()) * colors.length];
+    }
+
     function changeColor(_event: Event): void {
-        let target: HTMLElement = <HTMLElement>_event.target;
-        id = target.id;
-        console.log();
+
+        for (let symbol of symbols) {
+            if (symbol.active == true) {
+                symbol.color = coloring;
+            }
+            console.log(symbol);
+        }
 
     }
 

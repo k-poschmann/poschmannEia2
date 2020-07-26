@@ -17,6 +17,7 @@ var Zauberbild;
     let symbols = [];
     let colors = ["red", "blue", "green"];
     let id;
+    let coloring;
     function handleLoad() {
         canvas = document.querySelector("#maincanvas");
         canvasstar = document.querySelector("#canvasstar");
@@ -148,10 +149,16 @@ var Zauberbild;
         // let i: number = symbols.indexOf(_form);
         // symbols.splice(i, 1);
     }
+    function randomColor() {
+        coloring = colors[Math.floor(Math.random()) * colors.length];
+    }
     function changeColor(_event) {
-        let target = _event.target;
-        id = target.id;
-        console.log();
+        for (let symbol of symbols) {
+            if (symbol.active == true) {
+                symbol.color = coloring;
+            }
+            console.log(symbol);
+        }
     }
 })(Zauberbild || (Zauberbild = {}));
 //# sourceMappingURL=script.js.map

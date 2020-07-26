@@ -5,16 +5,16 @@ namespace Zauberbild {
         rotation: number;
         size: Vector;
         position: Vector;
-        active: boolean;
+        active: boolean = true;
         //type: string;
 
         constructor(_position?: Vector) {
             if (_position)
             this.position = _position.copy();
 
-            if (this.active == true) {
-                console.log("This is true");
-            }
+            // if (this.active == true) {
+            //     console.log("This is true");
+            // }
             
         }
 

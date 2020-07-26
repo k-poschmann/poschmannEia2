@@ -4,11 +4,12 @@ var Zauberbild;
     class SuperClass {
         //type: string;
         constructor(_position) {
+            this.active = true;
             if (_position)
                 this.position = _position.copy();
-            if (this.active == true) {
-                console.log("This is true");
-            }
+            // if (this.active == true) {
+            //     console.log("This is true");
+            // }
         }
         changeColor(_color) {
             this.color = _color;
