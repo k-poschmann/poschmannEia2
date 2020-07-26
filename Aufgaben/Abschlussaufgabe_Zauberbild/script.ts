@@ -95,7 +95,7 @@ namespace Zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let star: Star = new Star(position);
             star.draw(cxtstar);
-            symbols.push(star);
+            //symbols.push(star);
             // console.log("Sternchen ist hier!");
         }
         for (let i: number = 0; i < 1; i++) {
@@ -104,7 +104,7 @@ namespace Zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let heart: Heart = new Heart(position);
             heart.draw(cxtheart);
-            symbols.push(heart);
+            //symbols.push(heart);
             // console.log("Herzchen auch :)");
         }
         for (let i: number = 0; i < 1; i++) {
@@ -179,6 +179,7 @@ namespace Zauberbild {
                 id = "";
                 break;
         }
+        console.log(symbols);
 
     }
 

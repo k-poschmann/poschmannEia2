@@ -68,7 +68,7 @@ var Zauberbild;
             let position = new Zauberbild.Vector(positionX, positionY);
             let star = new Zauberbild.Star(position);
             star.draw(Zauberbild.cxtstar);
-            symbols.push(star);
+            //symbols.push(star);
             // console.log("Sternchen ist hier!");
         }
         for (let i = 0; i < 1; i++) {
@@ -77,7 +77,7 @@ var Zauberbild;
             let position = new Zauberbild.Vector(positionX, positionY);
             let heart = new Zauberbild.Heart(position);
             heart.draw(Zauberbild.cxtheart);
-            symbols.push(heart);
+            //symbols.push(heart);
             // console.log("Herzchen auch :)");
         }
         for (let i = 0; i < 1; i++) {
@@ -146,6 +146,7 @@ var Zauberbild;
                 id = "";
                 break;
         }
+        console.log(symbols);
     }
     function deleteForm() {
         console.log("form gelöscht");
