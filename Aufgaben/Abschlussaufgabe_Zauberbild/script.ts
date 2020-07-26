@@ -58,7 +58,7 @@ namespace Zauberbild {
         cxtflash = <CanvasRenderingContext2D>canvasflash.getContext("2d");
 
         btnOK.addEventListener("click", resizeCanvas);
-        btndelete.addEventListener("click", deleteForm);
+        btndelete.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
 
         createSymbols();
@@ -185,18 +185,25 @@ namespace Zauberbild {
     function animation(_event: MouseEvent): void {
         let target: HTMLElement = <HTMLElement>_event.target;
         let id: string = target.id;
+
         for (let symbol of symbols) {
-            if (symbol.active == false) {
-                switch (id) {
-                    case "btnrotate":
-                        
-                }
+            switch (id) {
+                case "btndelete":
+                    deleteForm(symbol);
+                    break;
             }
         }
     }
 
-    function deleteForm(): void {
+    function deleteForm(_figure: SuperClass): void {
         console.log("form gelöscht");
+        let index: number = symbols.indexOf(_figure, 0);
+        for (let symbol of symbols) {
+            if (symbol.active == false) {
+                symbols.splice(index, 1);
+                //console.log(index);
+            }
+        }
     }
 
 

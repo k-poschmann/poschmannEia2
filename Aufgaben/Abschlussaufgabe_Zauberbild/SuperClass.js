@@ -5,7 +5,7 @@ var Zauberbild;
         constructor(_position) {
             if (_position)
                 this.position = _position.copy();
-            this.active = true;
+            this.active = false;
             this.color = "green";
         }
         changeColor(_color) {

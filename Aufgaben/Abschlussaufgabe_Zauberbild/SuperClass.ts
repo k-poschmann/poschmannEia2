@@ -11,7 +11,7 @@ namespace Zauberbild {
             if (_position)
             this.position = _position.copy();
 
-            this.active = true;
+            this.active = false;
             this.color = "green";
             
         }

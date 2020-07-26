@@ -42,7 +42,7 @@ var Zauberbild;
         Zauberbild.cxtmoon = canvasmoon.getContext("2d");
         Zauberbild.cxtflash = canvasflash.getContext("2d");
         btnOK.addEventListener("click", resizeCanvas);
-        btndelete.addEventListener("click", deleteForm);
+        btndelete.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
         createSymbols();
     }
@@ -152,15 +152,22 @@ var Zauberbild;
         let target = _event.target;
         let id = target.id;
         for (let symbol of symbols) {
-            if (symbol.active == false) {
-                switch (id) {
-                    case "btnrotate":
-                }
+            switch (id) {
+                case "btndelete":
+                    deleteForm(symbol);
+                    break;
             }
         }
     }
-    function deleteForm() {
+    function deleteForm(_figure) {
         console.log("form gelöscht");
+        let index = symbols.indexOf(_figure, 0);
+        for (let symbol of symbols) {
+            if (symbol.active == false) {
+                symbols.splice(index, 1);
+                //console.log(index);
+            }
+        }
     }
     function randomColor() {
         coloring = colors[Math.floor(Math.random() * colors.length)];
