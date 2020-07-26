@@ -199,8 +199,9 @@ namespace Zauberbild {
     function changeColor(_event: MouseEvent): void {
         randomColor();
         for (let symbol of symbols) {
-            if (symbol.active == true) {
+            if (symbol.active == false) {
                 symbol.color = coloring;
+                symbol.draw(cxt);
             }
 
             console.log(symbol);

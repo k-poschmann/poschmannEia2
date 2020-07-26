@@ -159,8 +159,9 @@ var Zauberbild;
     function changeColor(_event) {
         randomColor();
         for (let symbol of symbols) {
-            if (symbol.active == true) {
+            if (symbol.active == false) {
                 symbol.color = coloring;
+                symbol.draw(Zauberbild.cxt);
             }
             console.log(symbol);
         }
