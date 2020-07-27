@@ -7,6 +7,7 @@ var Zauberbild;
     let canvasheart;
     let canvasmoon;
     let canvasflash;
+    let backgroudnImage;
     let size1;
     let size2;
     let size3;
@@ -44,8 +45,9 @@ var Zauberbild;
         btnOK.addEventListener("click", resizeCanvas);
         btndelete.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
-        //window.setInterval(animation, 20);
+        window.setInterval(animate, 20);
         createSymbols();
+        backgroudnImage = Zauberbild.cxt.getImageData(0, 0, canvas.width, canvas.height);
     }
     // Leinwandgröße Ändern
     function resizeCanvas(_event) {
@@ -150,16 +152,18 @@ var Zauberbild;
         }
     }
     //Das funktioniert teilweise :
-    // function animate(): void {
-    //     for (let figure of symbols) {
-    //         if (figure.active == false) {
-    //         figure.move(1 / 200);
-    //         figure.draw(cxt);
-    //         }
-    //     }
-    // }
+    function animate() {
+        Zauberbild.cxt.putImageData(backgroudnImage, 0, 0);
+        for (let figure of symbols) {
+            if (figure.active == false) {
+                figure.move(1 / 200);
+                figure.draw(Zauberbild.cxt);
+            }
+        }
+    }
     // Das funktioniert nicht...
     function animation(_event) {
+        // cxt.putImageData(backgroudnImage, 0, 0);
         let target = _event.target;
         let id = target.id;
         for (let symbol of symbols) {

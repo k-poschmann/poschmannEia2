@@ -6,6 +6,7 @@ namespace Zauberbild {
     let canvasheart: HTMLCanvasElement;
     let canvasmoon: HTMLCanvasElement;
     let canvasflash: HTMLCanvasElement;
+    let backgroudnImage: ImageData;
 
     let size1: HTMLInputElement;
     let size2: HTMLInputElement;
@@ -60,10 +61,10 @@ namespace Zauberbild {
         btnOK.addEventListener("click", resizeCanvas);
         btndelete.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
-       //window.setInterval(animation, 20);
+        window.setInterval(animate, 20);
 
         createSymbols();
-
+        backgroudnImage = cxt.getImageData(0, 0, canvas.width, canvas.height);
     }
 
 
@@ -185,19 +186,20 @@ namespace Zauberbild {
 
     //Das funktioniert teilweise :
 
-    // function animate(): void {
-
-    //     for (let figure of symbols) {
-    //         if (figure.active == false) {
-    //         figure.move(1 / 200);
-    //         figure.draw(cxt);
-    //         }
-    //     }
-    // }
+    function animate(): void {
+        cxt.putImageData(backgroudnImage, 0, 0);
+        for (let figure of symbols) {
+            if (figure.active == false) {
+                figure.move(1 / 200);
+                figure.draw(cxt);
+            }
+        }
+    }
 
     // Das funktioniert nicht...
-    
+
     function animation(_event: MouseEvent): void {
+        // cxt.putImageData(backgroudnImage, 0, 0);
         let target: HTMLElement = <HTMLElement>_event.target;
         let id: string = target.id;
 
@@ -208,9 +210,9 @@ namespace Zauberbild {
                     break;
                 case "btnmove":
                     if (symbol.active == false) {
-                    symbol.move(1 / 200);
-                    symbol.draw(cxt);
-                    console.log(symbol);
+                        symbol.move(1 / 200);
+                        symbol.draw(cxt);
+                        console.log(symbol);
                     }
             }
         }
