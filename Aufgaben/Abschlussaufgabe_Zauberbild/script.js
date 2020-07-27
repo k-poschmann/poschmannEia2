@@ -44,6 +44,7 @@ var Zauberbild;
         btnOK.addEventListener("click", resizeCanvas);
         btndelete.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
+        //window.setInterval(animation, 20);
         createSymbols();
     }
     // Leinwandgröße Ändern
@@ -148,6 +149,16 @@ var Zauberbild;
                 break;
         }
     }
+    //Das funktioniert teilweise :
+    // function animate(): void {
+    //     for (let figure of symbols) {
+    //         if (figure.active == false) {
+    //         figure.move(1 / 200);
+    //         figure.draw(cxt);
+    //         }
+    //     }
+    // }
+    // Das funktioniert nicht...
     function animation(_event) {
         let target = _event.target;
         let id = target.id;
@@ -157,9 +168,11 @@ var Zauberbild;
                     deleteForm(symbol);
                     break;
                 case "btnmove":
-                    symbol.move(1 / 200);
-                    symbol.draw(Zauberbild.cxt);
-                    console.log(symbol);
+                    if (symbol.active == false) {
+                        symbol.move(1 / 200);
+                        symbol.draw(Zauberbild.cxt);
+                        console.log(symbol);
+                    }
             }
         }
     }

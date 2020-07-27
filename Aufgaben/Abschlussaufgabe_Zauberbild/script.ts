@@ -60,6 +60,7 @@ namespace Zauberbild {
         btnOK.addEventListener("click", resizeCanvas);
         btndelete.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
+       //window.setInterval(animation, 20);
 
         createSymbols();
 
@@ -182,6 +183,20 @@ namespace Zauberbild {
 
     }
 
+    //Das funktioniert teilweise :
+
+    // function animate(): void {
+
+    //     for (let figure of symbols) {
+    //         if (figure.active == false) {
+    //         figure.move(1 / 200);
+    //         figure.draw(cxt);
+    //         }
+    //     }
+    // }
+
+    // Das funktioniert nicht...
+    
     function animation(_event: MouseEvent): void {
         let target: HTMLElement = <HTMLElement>_event.target;
         let id: string = target.id;
@@ -192,9 +207,11 @@ namespace Zauberbild {
                     deleteForm(symbol);
                     break;
                 case "btnmove":
+                    if (symbol.active == false) {
                     symbol.move(1 / 200);
                     symbol.draw(cxt);
                     console.log(symbol);
+                    }
             }
         }
     }
@@ -204,10 +221,10 @@ namespace Zauberbild {
             if (symbol.active == false) {
                 let index: number = symbols.indexOf(_figure, 0);
                 symbols.splice(index, 1);
-            
+
             }
             console.log(symbols);
-        } 
+        }
     }
 
 
@@ -231,5 +248,5 @@ namespace Zauberbild {
     }
 
 
-}
 
+}
