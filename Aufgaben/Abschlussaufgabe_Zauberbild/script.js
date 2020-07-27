@@ -156,17 +156,20 @@ var Zauberbild;
                 case "btndelete":
                     deleteForm(symbol);
                     break;
+                case "btnmove":
+                    symbol.move(1 / 200);
+                    symbol.draw(Zauberbild.cxt);
+                    console.log(symbol);
             }
         }
     }
     function deleteForm(_figure) {
-        console.log("form gelöscht");
-        let index = symbols.indexOf(_figure, 0);
         for (let symbol of symbols) {
             if (symbol.active == false) {
+                let index = symbols.indexOf(_figure, 0);
                 symbols.splice(index, 1);
-                //console.log(index);
             }
+            console.log(symbols);
         }
     }
     function randomColor() {

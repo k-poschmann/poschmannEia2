@@ -31,6 +31,9 @@ var Zauberbild;
         changeColor(_color) {
             super.changeColor(_color);
         }
+        move(_timeslice) {
+            super.move(_timeslice);
+        }
     }
     Zauberbild.Star = Star;
 })(Zauberbild || (Zauberbild = {}));
