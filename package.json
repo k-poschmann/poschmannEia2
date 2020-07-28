@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node Aufgaben/Aufgabe_7/Server/Server.js"
+    "start": "node Aufgaben/Abschlussaufgabe_Zauberbild/Server/Server.js"
   },
   "repository": {
     "type": "git",

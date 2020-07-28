@@ -43,14 +43,6 @@ var Zauberbild;
         window.setInterval(animate, 20);
         createSymbols();
     }
-    function drawBackground() {
-        let gradient = Zauberbild.cxt.createLinearGradient(0, 20, 0, 200);
-        gradient.addColorStop(0, "#143b39");
-        gradient.addColorStop(1, "#9e2f73");
-        Zauberbild.cxt.fillStyle = gradient;
-        Zauberbild.cxt.fillRect(0, 0, Zauberbild.cxt.canvas.width, Zauberbild.cxt.canvas.height);
-        backgroundImage = Zauberbild.cxt.getImageData(0, 0, canvas.width, canvas.height);
-    }
     // Leinwandgröße Ändern
     function resizeCanvas(_event) {
         //console.log("Change geklickt");
@@ -58,18 +50,29 @@ var Zauberbild;
         let id = target.id;
         switch (id) {
             case "sizeone":
-                canvas.width = 400;
-                canvas.height = 400;
+                Zauberbild.cxt.canvas.width = 400;
+                Zauberbild.cxt.canvas.height = 400;
+                drawBackground();
                 break;
             case "sizetwo":
-                canvas.width = 500;
-                canvas.height = 300;
+                Zauberbild.cxt.canvas.width = 500;
+                Zauberbild.cxt.canvas.height = 300;
+                drawBackground();
                 break;
             case "sizethree":
-                canvas.width = 600;
-                canvas.height = 400;
+                Zauberbild.cxt.canvas.width = 600;
+                Zauberbild.cxt.canvas.height = 400;
+                drawBackground();
                 break;
         }
+    }
+    function drawBackground() {
+        let gradient = Zauberbild.cxt.createLinearGradient(0, 120, 0, 200);
+        gradient.addColorStop(0, "#143b39");
+        gradient.addColorStop(1, "#5e1943");
+        Zauberbild.cxt.fillStyle = gradient;
+        Zauberbild.cxt.fillRect(0, 0, canvas.width, canvas.height);
+        backgroundImage = Zauberbild.cxt.getImageData(0, 0, canvas.width, canvas.height);
     }
     function createSymbols() {
         for (let i = 0; i < 1; i++) {
@@ -78,7 +81,6 @@ var Zauberbild;
             let position = new Zauberbild.Vector(positionX, positionY);
             let star = new Zauberbild.Star(position);
             star.draw(Zauberbild.cxtstar);
-            //symbols.push(star);
             // console.log("Sternchen ist hier!");
         }
         for (let i = 0; i < 1; i++) {
@@ -87,7 +89,6 @@ var Zauberbild;
             let position = new Zauberbild.Vector(positionX, positionY);
             let heart = new Zauberbild.Heart(position);
             heart.draw(Zauberbild.cxtheart);
-            //symbols.push(heart);
             // console.log("Herzchen auch :)");
         }
         for (let i = 0; i < 1; i++) {
