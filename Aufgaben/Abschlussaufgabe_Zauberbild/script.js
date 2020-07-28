@@ -7,11 +7,8 @@ var Zauberbild;
     let canvasheart;
     let canvasmoon;
     let canvasflash;
-    let backgroudnImage;
-    let size1;
-    let size2;
-    let size3;
-    let btnOK;
+    let backgroundImage;
+    let rdbtn;
     let btndelete;
     let btncolor;
     //Array
@@ -31,10 +28,7 @@ var Zauberbild;
         canvasheart.addEventListener("click", getID);
         canvasmoon.addEventListener("click", getID);
         canvasflash.addEventListener("click", getID);
-        size1 = document.querySelector("#sizeone");
-        size2 = document.querySelector("#sizetwo");
-        size3 = document.querySelector("#sizethree");
-        btnOK = document.querySelector("#btnok");
+        rdbtn = document.querySelector("#radiobuttons");
         btndelete = document.querySelector("#btndelete");
         btncolor = document.querySelector("#btncolor");
         Zauberbild.cxt = canvas.getContext("2d");
@@ -42,27 +36,39 @@ var Zauberbild;
         Zauberbild.cxtheart = canvasheart.getContext("2d");
         Zauberbild.cxtmoon = canvasmoon.getContext("2d");
         Zauberbild.cxtflash = canvasflash.getContext("2d");
-        btnOK.addEventListener("click", resizeCanvas);
+        drawBackground();
+        rdbtn.addEventListener("change", resizeCanvas);
         btndelete.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
         window.setInterval(animate, 20);
         createSymbols();
-        backgroudnImage = Zauberbild.cxt.getImageData(0, 0, canvas.width, canvas.height);
+    }
+    function drawBackground() {
+        let gradient = Zauberbild.cxt.createLinearGradient(0, 20, 0, 200);
+        gradient.addColorStop(0, "#143b39");
+        gradient.addColorStop(1, "#9e2f73");
+        Zauberbild.cxt.fillStyle = gradient;
+        Zauberbild.cxt.fillRect(0, 0, Zauberbild.cxt.canvas.width, Zauberbild.cxt.canvas.height);
+        backgroundImage = Zauberbild.cxt.getImageData(0, 0, canvas.width, canvas.height);
     }
     // Leinwandgröße Ändern
     function resizeCanvas(_event) {
-        // console.log("Button OK wurde geklickt!");
-        if (size1.checked == true) {
-            canvas.width = 400;
-            canvas.height = 400;
-        }
-        if (size2.checked == true) {
-            canvas.width = 500;
-            canvas.height = 300;
-        }
-        if (size3.checked == true) {
-            canvas.width = 600;
-            canvas.height = 400;
+        //console.log("Change geklickt");
+        let target = _event.target;
+        let id = target.id;
+        switch (id) {
+            case "sizeone":
+                canvas.width = 400;
+                canvas.height = 400;
+                break;
+            case "sizetwo":
+                canvas.width = 500;
+                canvas.height = 300;
+                break;
+            case "sizethree":
+                canvas.width = 600;
+                canvas.height = 400;
+                break;
         }
     }
     function createSymbols() {
@@ -153,7 +159,7 @@ var Zauberbild;
     }
     //Das funktioniert teilweise :
     function animate() {
-        Zauberbild.cxt.putImageData(backgroudnImage, 0, 0);
+        Zauberbild.cxt.putImageData(backgroundImage, 0, 0);
         for (let figure of symbols) {
             if (figure.active == false) {
                 figure.move(1 / 200);
@@ -163,7 +169,6 @@ var Zauberbild;
     }
     // Das funktioniert nicht...
     function animation(_event) {
-        // cxt.putImageData(backgroudnImage, 0, 0);
         let target = _event.target;
         let id = target.id;
         for (let symbol of symbols) {

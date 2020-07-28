@@ -22,28 +22,33 @@
             der Canvas und gib diesem eine Animation/Farbe nach Wahl.
         </h5>
         <p>Wähle zunächst die Größe der Canvas:</p>
-        <input type="radio" id="sizeone" name="CanvasSize" value="SizeOne">
-        <label for="sizeone">400 x 400</label><br>
-        <input type="radio" id="sizetwo" name="CanvasSize" value="SizeTwo">
-        <label for="sizetwo">500 x 300</label><br>
-        <input type="radio" id="sizethree" name="CanvasSize" value="SizeThree">
-        <label for="sizethree">600 x 400</label>
-        <button id="btnok">OK</button>
 
-        <button id="btncolor">Farbe</button>
-        <button id="btnrotation">Rotation</button>
-        <button id="btnmove">Bewegen</button>
+        <div id="radiobuttons">
+            <input type="radio" id="sizeone" name="CanvasSize" value="SizeOne">
+            <label for="sizeone">400 x 400</label>
+            <input type="radio" id="sizetwo" name="CanvasSize" value="SizeTwo">
+            <label for="sizetwo">500 x 300</label>
+            <input type="radio" id="sizethree" name="CanvasSize" value="SizeThree">
+            <label for="sizethree">600 x 400</label>
+        </div>
 
-        <canvas id="canvasstar"></canvas>
-        <canvas id="canvasheart"></canvas>
-        <canvas id="canvasmoon"></canvas>
-        <canvas id="canvasflash"></canvas>
-        
+        <div id="controllers">
+            <button id="btncolor">Farbe</button>
+            <button id="btnrotation">Rotation</button>
+            <button id="btnmove">Bewegen</button>
+        </div>
 
-        <!-- <canvas width="600" height="400"></canvas> -->
-        <canvas id="maincanvas"></canvas>
-        
-        
+        <div id="canvasforms">
+            <canvas id="canvasstar"></canvas>
+            <canvas id="canvasheart"></canvas>
+            <canvas id="canvasmoon"></canvas>
+            <canvas id="canvasflash"></canvas>
+        </div>
+
+        <div id="canvasmain">
+            <canvas id="maincanvas"></canvas>
+        </div>
+
         <section>
             <button id="btndelete">Form Löschen</button>
             <input type="text" id="title" placeholder="Titel eingeben">

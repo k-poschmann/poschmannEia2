@@ -6,13 +6,10 @@ namespace Zauberbild {
     let canvasheart: HTMLCanvasElement;
     let canvasmoon: HTMLCanvasElement;
     let canvasflash: HTMLCanvasElement;
-    let backgroudnImage: ImageData;
+    let backgroundImage: ImageData;
 
-    let size1: HTMLInputElement;
-    let size2: HTMLInputElement;
-    let size3: HTMLInputElement;
+    let rdbtn: HTMLDivElement;
 
-    let btnOK: HTMLButtonElement;
     let btndelete: HTMLButtonElement;
     let btncolor: HTMLButtonElement;
 
@@ -44,10 +41,7 @@ namespace Zauberbild {
         canvasmoon.addEventListener("click", getID);
         canvasflash.addEventListener("click", getID);
 
-        size1 = <HTMLInputElement>document.querySelector("#sizeone");
-        size2 = <HTMLInputElement>document.querySelector("#sizetwo");
-        size3 = <HTMLInputElement>document.querySelector("#sizethree");
-        btnOK = <HTMLButtonElement>document.querySelector("#btnok");
+        rdbtn = <HTMLDivElement>document.querySelector("#radiobuttons");
 
         btndelete = <HTMLButtonElement>document.querySelector("#btndelete");
         btncolor = <HTMLButtonElement>document.querySelector("#btncolor");
@@ -58,35 +52,46 @@ namespace Zauberbild {
         cxtmoon = <CanvasRenderingContext2D>canvasmoon.getContext("2d");
         cxtflash = <CanvasRenderingContext2D>canvasflash.getContext("2d");
 
-        btnOK.addEventListener("click", resizeCanvas);
+        drawBackground();
+        rdbtn.addEventListener("change", resizeCanvas);
         btndelete.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
         window.setInterval(animate, 20);
-
         createSymbols();
-        backgroudnImage = cxt.getImageData(0, 0, canvas.width, canvas.height);
+        
     }
 
 
 
+    function drawBackground(): void {
+        let gradient: CanvasGradient = cxt.createLinearGradient(0, 20, 0, 200);
+        gradient.addColorStop(0, "#143b39");
+        gradient.addColorStop(1, "#9e2f73");
+        cxt.fillStyle = gradient;
+        cxt.fillRect(0, 0, cxt.canvas.width, cxt.canvas.height);
+
+        backgroundImage = cxt.getImageData(0, 0, canvas.width, canvas.height); 
+    }
+
     // Leinwandgröße Ändern
     function resizeCanvas(_event: Event): void {
-        // console.log("Button OK wurde geklickt!");
+        //console.log("Change geklickt");
+        let target: HTMLElement = <HTMLElement>_event.target; 
+        let id: string = target.id;
 
-
-        if (size1.checked == true) {
+        switch (id) {
+            case "sizeone":
             canvas.width = 400;
             canvas.height = 400;
-        }
-
-        if (size2.checked == true) {
+            break;
+            case "sizetwo":
             canvas.width = 500;
             canvas.height = 300;
-        }
-
-        if (size3.checked == true) {
+            break;
+            case "sizethree":
             canvas.width = 600;
             canvas.height = 400;
+            break;
         }
     }
 
@@ -187,7 +192,7 @@ namespace Zauberbild {
     //Das funktioniert teilweise :
 
     function animate(): void {
-        cxt.putImageData(backgroudnImage, 0, 0);
+        cxt.putImageData(backgroundImage, 0, 0);
         for (let figure of symbols) {
             if (figure.active == false) {
                 figure.move(1 / 200);
@@ -199,7 +204,6 @@ namespace Zauberbild {
     // Das funktioniert nicht...
 
     function animation(_event: MouseEvent): void {
-        // cxt.putImageData(backgroudnImage, 0, 0);
         let target: HTMLElement = <HTMLElement>_event.target;
         let id: string = target.id;
 
