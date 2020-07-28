@@ -22,7 +22,7 @@ var Zauberbild;
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        orders = mongoClient.db("Household").collection("Orders");
+        orders = mongoClient.db("Album").collection("Pictures");
         console.log("Database connection ", orders != undefined);
     }
     function handleRequest(_request, _response) {

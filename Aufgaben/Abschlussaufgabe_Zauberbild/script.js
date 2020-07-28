@@ -11,6 +11,7 @@ var Zauberbild;
     let rdbtn;
     let btndelete;
     let btncolor;
+    let controllers;
     //Array
     let symbols = [];
     let colors = ["#FFC0CB", "#FF1493", "#E6E6FA", "#9370DB", "#4B0082", "#FA8072", "#DC143C", "#FF0000", "#FFA500", "#FFD700", "#FFFF00",
@@ -31,6 +32,7 @@ var Zauberbild;
         rdbtn = document.querySelector("#radiobuttons");
         btndelete = document.querySelector("#btndelete");
         btncolor = document.querySelector("#btncolor");
+        controllers = document.querySelector("#controllers");
         Zauberbild.cxt = canvas.getContext("2d");
         Zauberbild.cxtstar = canvasstar.getContext("2d");
         Zauberbild.cxtheart = canvasheart.getContext("2d");
@@ -39,6 +41,7 @@ var Zauberbild;
         drawBackground();
         rdbtn.addEventListener("change", resizeCanvas);
         btndelete.addEventListener("click", animation);
+        controllers.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
         window.setInterval(animate, 20);
         createSymbols();
@@ -158,7 +161,7 @@ var Zauberbild;
                 break;
         }
     }
-    //Das funktioniert teilweise :
+    //Das funktioniert:
     function animate() {
         Zauberbild.cxt.putImageData(backgroundImage, 0, 0);
         for (let figure of symbols) {
@@ -168,7 +171,7 @@ var Zauberbild;
             }
         }
     }
-    // Das funktioniert nicht...
+    // Das funktioniert nicht...soll aber:
     function animation(_event) {
         let target = _event.target;
         let id = target.id;
@@ -180,7 +183,11 @@ var Zauberbild;
                 case "btnmove":
                     if (symbol.active == false) {
                         symbol.move(1 / 200);
-                        symbol.draw(Zauberbild.cxt);
+                        console.log(symbol);
+                    }
+                case "btnrotate":
+                    if (symbol.active == false) {
+                        // animate();
                         console.log(symbol);
                     }
             }

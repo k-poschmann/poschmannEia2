@@ -31,7 +31,7 @@ export namespace Zauberbild {
         let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        orders = mongoClient.db("Household").collection("Orders");
+        orders = mongoClient.db("Album").collection("Pictures");
         console.log("Database connection ", orders != undefined);
     }
 
@@ -55,6 +55,7 @@ export namespace Zauberbild {
 
         _response.end();
     }
+    
     function storeOrder(_order: Picture): void {
         orders.insert(_order);
     }
