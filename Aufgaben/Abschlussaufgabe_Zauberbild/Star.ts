@@ -5,6 +5,7 @@ namespace Zauberbild {
             super(_position);
 
             this.color = "yellow";
+            //this.velocity.random(20, 30);
         }
 
         draw(context: CanvasRenderingContext2D): void {

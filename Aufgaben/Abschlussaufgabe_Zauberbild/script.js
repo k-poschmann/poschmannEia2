@@ -2,6 +2,7 @@
 var Zauberbild;
 (function (Zauberbild) {
     window.addEventListener("load", handleLoad);
+    let url = "https://hfucocktailbar.herokuapp.com/";
     let canvas;
     let canvasstar;
     let canvasheart;
@@ -40,7 +41,7 @@ var Zauberbild;
         Zauberbild.cxtflash = canvasflash.getContext("2d");
         drawBackground();
         rdbtn.addEventListener("change", resizeCanvas);
-        btndelete.addEventListener("click", animation);
+        //btndelete.addEventListener("click", deleteForm);
         controllers.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
         window.setInterval(animate, 20);
@@ -177,19 +178,12 @@ var Zauberbild;
         let id = target.id;
         for (let symbol of symbols) {
             switch (id) {
-                case "btndelete":
-                    deleteForm(symbol);
-                    break;
                 case "btnmove":
-                    if (symbol.active == false) {
-                        symbol.move(1 / 200);
-                        console.log(symbol);
-                    }
+                    symbol.move(1 / 200);
+                    break;
                 case "btnrotate":
-                    if (symbol.active == false) {
-                        // animate();
-                        console.log(symbol);
-                    }
+                    symbol.rotate();
+                    break;
             }
         }
     }
@@ -217,6 +211,15 @@ var Zauberbild;
             }
             //console.log(symbol);
         }
+    }
+    async function sendPicture() {
+        console.log("send order");
+        let formData = new FormData(document.forms[0]);
+        let query = new URLSearchParams(formData);
+        let response = await fetch(url + "?" + query.toString());
+        let responseText = await response.text();
+        //await fetch("index.html?" + query.toString());
+        alert(responseText);
     }
 })(Zauberbild || (Zauberbild = {}));
 //# sourceMappingURL=script.js.map

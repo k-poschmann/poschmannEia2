@@ -1,6 +1,7 @@
 namespace Zauberbild {
     window.addEventListener("load", handleLoad);
 
+    let url: string = "https://hfucocktailbar.herokuapp.com/";
     let canvas: HTMLCanvasElement;
     let canvasstar: HTMLCanvasElement;
     let canvasheart: HTMLCanvasElement;
@@ -56,7 +57,7 @@ namespace Zauberbild {
 
         drawBackground();
         rdbtn.addEventListener("change", resizeCanvas);
-        btndelete.addEventListener("click", animation);
+        //btndelete.addEventListener("click", deleteForm);
         controllers.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
         window.setInterval(animate, 20);
@@ -211,21 +212,15 @@ namespace Zauberbild {
 
         for (let symbol of symbols) {
             switch (id) {
-                case "btndelete":
-                    deleteForm(symbol);
-                    break;
                 case "btnmove":
-                    if (symbol.active == false) {
-                        symbol.move(1 / 200);
-                        console.log(symbol);
-                    }
+                    symbol.move(1 / 200);
+                    break;
                 case "btnrotate":
-                    if (symbol.active == false) {
-                        // animate();
-                        console.log(symbol);
-                    }
+                    symbol.rotate();
+                    break;
             }
         }
+
     }
 
     function deleteForm(_figure: SuperClass): void {
@@ -257,6 +252,18 @@ namespace Zauberbild {
             //console.log(symbol);
         }
 
+    }
+
+
+
+    async function sendPicture(): Promise<void> {
+        console.log("send order");
+        let formData: FormData = new FormData(document.forms[0]);
+        let query: URLSearchParams = new URLSearchParams(<any>formData);
+        let response: Response = await fetch (url + "?" + query.toString());
+        let responseText: string = await response.text();
+        //await fetch("index.html?" + query.toString());
+        alert(responseText);
     }
 
 

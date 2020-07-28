@@ -13,9 +13,8 @@ namespace Zauberbild {
 
             this.active = false;
             this.color = "green";
-
             this.velocity = new Vector(0, 0);
-            this.velocity.random(50, 100);
+            this.velocity.random(0, 0);
         }
 
         abstract draw(context: CanvasRenderingContext2D): void;
@@ -26,6 +25,7 @@ namespace Zauberbild {
 
         rotate(_factor: number): void {
             this.rotation = _factor;
+
         }
 
         move(_timeslice: number): void {

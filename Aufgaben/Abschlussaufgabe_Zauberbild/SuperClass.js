@@ -8,7 +8,7 @@ var Zauberbild;
             this.active = false;
             this.color = "green";
             this.velocity = new Zauberbild.Vector(0, 0);
-            this.velocity.random(50, 100);
+            this.velocity.random(0, 0);
         }
         changeColor(_color) {
             this.color = _color;
