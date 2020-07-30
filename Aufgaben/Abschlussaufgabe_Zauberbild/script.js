@@ -2,7 +2,6 @@
 var Zauberbild;
 (function (Zauberbild) {
     window.addEventListener("load", handleLoad);
-    let url = "https://hfucocktailbar.herokuapp.com/";
     let canvas;
     let canvasstar;
     let canvasheart;
@@ -13,6 +12,7 @@ var Zauberbild;
     let btndelete;
     let btncolor;
     let controllers;
+    let btnsave;
     //Array
     let symbols = [];
     let colors = ["#FFC0CB", "#FF1493", "#E6E6FA", "#9370DB", "#4B0082", "#FA8072", "#DC143C", "#FF0000", "#FFA500", "#FFD700", "#FFFF00",
@@ -34,6 +34,7 @@ var Zauberbild;
         btndelete = document.querySelector("#btndelete");
         btncolor = document.querySelector("#btncolor");
         controllers = document.querySelector("#controllers");
+        btnsave = document.querySelector("#btnsave");
         Zauberbild.cxt = canvas.getContext("2d");
         Zauberbild.cxtstar = canvasstar.getContext("2d");
         Zauberbild.cxtheart = canvasheart.getContext("2d");
@@ -44,6 +45,7 @@ var Zauberbild;
         //btndelete.addEventListener("click", deleteForm);
         controllers.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
+        btnsave.addEventListener("click", saveTitle);
         window.setInterval(animate, 20);
         createSymbols();
     }
@@ -182,7 +184,7 @@ var Zauberbild;
                     symbol.move(1 / 200);
                     break;
                 case "btnrotate":
-                    symbol.rotate();
+                    //symbol.rotate();
                     break;
             }
         }
@@ -212,14 +214,15 @@ var Zauberbild;
             //console.log(symbol);
         }
     }
-    async function sendPicture() {
-        console.log("send order");
-        let formData = new FormData(document.forms[0]);
-        let query = new URLSearchParams(formData);
-        let response = await fetch(url + "?" + query.toString());
-        let responseText = await response.text();
-        //await fetch("index.html?" + query.toString());
-        alert(responseText);
+    // Titel speichern / abfragen
+    function saveTitle() {
+        let picsName = prompt("Bitte einen eindeutigen Titel eingeben");
+        if (picsName == "" || picsName == null) {
+            alert("Bild kann nicht gespeichert werden");
+        }
+        else {
+            savePic(picsName);
+        }
     }
 })(Zauberbild || (Zauberbild = {}));
 //# sourceMappingURL=script.js.map

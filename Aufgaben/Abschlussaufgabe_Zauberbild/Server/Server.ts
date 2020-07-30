@@ -40,12 +40,15 @@ export namespace Zauberbild {
 
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
+        console.log(_request.url);
 
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
             for (let key in url.query) {
                 _response.write(key + ":" + url.query[key] + "<br>");
             }
+
+            //Split?
 
             let jsonString: string = JSON.stringify(url.query);
             _response.write(jsonString);

@@ -1,7 +1,6 @@
 namespace Zauberbild {
     window.addEventListener("load", handleLoad);
 
-    let url: string = "https://hfucocktailbar.herokuapp.com/";
     let canvas: HTMLCanvasElement;
     let canvasstar: HTMLCanvasElement;
     let canvasheart: HTMLCanvasElement;
@@ -14,6 +13,7 @@ namespace Zauberbild {
     let btndelete: HTMLButtonElement;
     let btncolor: HTMLButtonElement;
     let controllers: HTMLDivElement;
+    let btnsave: HTMLButtonElement;
 
 
     export let cxt: CanvasRenderingContext2D;
@@ -48,6 +48,7 @@ namespace Zauberbild {
         btndelete = <HTMLButtonElement>document.querySelector("#btndelete");
         btncolor = <HTMLButtonElement>document.querySelector("#btncolor");
         controllers = <HTMLDivElement>document.querySelector("#controllers");
+        btnsave = <HTMLButtonElement>document.querySelector ("#btnsave");
 
         cxt = <CanvasRenderingContext2D>canvas.getContext("2d");
         cxtstar = <CanvasRenderingContext2D>canvasstar.getContext("2d");
@@ -60,6 +61,7 @@ namespace Zauberbild {
         //btndelete.addEventListener("click", deleteForm);
         controllers.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
+        btnsave.addEventListener("click", saveTitle);
         window.setInterval(animate, 20);
         createSymbols();
 
@@ -216,7 +218,7 @@ namespace Zauberbild {
                     symbol.move(1 / 200);
                     break;
                 case "btnrotate":
-                    symbol.rotate();
+                    //symbol.rotate();
                     break;
             }
         }
@@ -255,17 +257,15 @@ namespace Zauberbild {
     }
 
 
+    // Titel speichern / abfragen
 
-    async function sendPicture(): Promise<void> {
-        console.log("send order");
-        let formData: FormData = new FormData(document.forms[0]);
-        let query: URLSearchParams = new URLSearchParams(<any>formData);
-        let response: Response = await fetch (url + "?" + query.toString());
-        let responseText: string = await response.text();
-        //await fetch("index.html?" + query.toString());
-        alert(responseText);
+    function saveTitle(): void {
+        let picsName = prompt("Bitte einen eindeutigen Titel eingeben");
+        if (picsName == "" || picsName == null) {
+            alert ("Bild kann nicht gespeichert werden");
+        } else {
+            savePic(picsName);
+        }
     }
-
-
 
 }
