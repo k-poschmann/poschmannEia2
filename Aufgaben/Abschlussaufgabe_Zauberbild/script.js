@@ -2,7 +2,6 @@
 var Zauberbild;
 (function (Zauberbild) {
     window.addEventListener("load", handleLoad);
-    let canvas;
     let canvasstar;
     let canvasheart;
     let canvasmoon;
@@ -14,18 +13,18 @@ var Zauberbild;
     let controllers;
     let btnsave;
     //Array
-    let symbols = [];
+    Zauberbild.symbols = [];
     let colors = ["#FFC0CB", "#FF1493", "#E6E6FA", "#9370DB", "#4B0082", "#FA8072", "#DC143C", "#FF0000", "#FFA500", "#FFD700", "#FFFF00",
         "#FFE4B5", "#32CD32", "#90EE90", "#008000", "#66CDAA", "#48D1CC", "#B0C4DE", "#87CEFA", "#0000FF", "#DCDCDC", "#FFFAFA", "#F5F5DC"];
     let id;
     let coloring;
     function handleLoad() {
-        canvas = document.querySelector("#maincanvas");
+        Zauberbild.canvas = document.querySelector("#maincanvas");
         canvasstar = document.querySelector("#canvasstar");
         canvasheart = document.querySelector("#canvasheart");
         canvasmoon = document.querySelector("#canvasmoon");
         canvasflash = document.querySelector("#canvasflash");
-        canvas.addEventListener("click", drawSymbolOnCanvas);
+        Zauberbild.canvas.addEventListener("click", drawSymbolOnCanvas);
         canvasstar.addEventListener("click", getID);
         canvasheart.addEventListener("click", getID);
         canvasmoon.addEventListener("click", getID);
@@ -35,14 +34,16 @@ var Zauberbild;
         btncolor = document.querySelector("#btncolor");
         controllers = document.querySelector("#controllers");
         btnsave = document.querySelector("#btnsave");
-        Zauberbild.cxt = canvas.getContext("2d");
+        Zauberbild.cxt = Zauberbild.canvas.getContext("2d");
         Zauberbild.cxtstar = canvasstar.getContext("2d");
         Zauberbild.cxtheart = canvasheart.getContext("2d");
         Zauberbild.cxtmoon = canvasmoon.getContext("2d");
         Zauberbild.cxtflash = canvasflash.getContext("2d");
         drawBackground();
         rdbtn.addEventListener("change", resizeCanvas);
-        //btndelete.addEventListener("click", deleteForm);
+        btndelete.addEventListener("click", function () {
+            deleteForm();
+        });
         controllers.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
         btnsave.addEventListener("click", saveTitle);
@@ -77,8 +78,8 @@ var Zauberbild;
         gradient.addColorStop(0, "#143b39");
         gradient.addColorStop(1, "#5e1943");
         Zauberbild.cxt.fillStyle = gradient;
-        Zauberbild.cxt.fillRect(0, 0, canvas.width, canvas.height);
-        backgroundImage = Zauberbild.cxt.getImageData(0, 0, canvas.width, canvas.height);
+        Zauberbild.cxt.fillRect(0, 0, Zauberbild.canvas.width, Zauberbild.canvas.height);
+        backgroundImage = Zauberbild.cxt.getImageData(0, 0, Zauberbild.canvas.width, Zauberbild.canvas.height);
     }
     function createSymbols() {
         for (let i = 0; i < 1; i++) {
@@ -122,7 +123,7 @@ var Zauberbild;
     }
     //Symbole auf Canvas zeichnen
     function drawSymbolOnCanvas(_event) {
-        for (let symbol of symbols) {
+        for (let symbol of Zauberbild.symbols) {
             symbol.active = false;
         }
         switch (id) {
@@ -132,7 +133,7 @@ var Zauberbild;
                 let starposition = new Zauberbild.Vector(starx, stary);
                 let star = new Zauberbild.Star(starposition);
                 star.draw(Zauberbild.cxt);
-                symbols.push(star);
+                Zauberbild.symbols.push(star);
                 id = "";
                 break;
             case "canvasheart":
@@ -141,7 +142,7 @@ var Zauberbild;
                 let heartposition = new Zauberbild.Vector(heartx, hearty);
                 let heart = new Zauberbild.Heart(heartposition);
                 heart.draw(Zauberbild.cxt);
-                symbols.push(heart);
+                Zauberbild.symbols.push(heart);
                 id = "";
                 break;
             case "canvasmoon":
@@ -150,7 +151,7 @@ var Zauberbild;
                 let moonposition = new Zauberbild.Vector(moonx, moony);
                 let moon = new Zauberbild.Moon(moonposition);
                 moon.draw(Zauberbild.cxt);
-                symbols.push(moon);
+                Zauberbild.symbols.push(moon);
                 id = "";
                 break;
             case "canvasflash":
@@ -159,7 +160,7 @@ var Zauberbild;
                 let flashposition = new Zauberbild.Vector(flashx, flashy);
                 let flash = new Zauberbild.Flash(flashposition);
                 flash.draw(Zauberbild.cxt);
-                symbols.push(flash);
+                Zauberbild.symbols.push(flash);
                 id = "";
                 break;
         }
@@ -167,7 +168,7 @@ var Zauberbild;
     //Das funktioniert:
     function animate() {
         Zauberbild.cxt.putImageData(backgroundImage, 0, 0);
-        for (let figure of symbols) {
+        for (let figure of Zauberbild.symbols) {
             if (figure.active == false) {
                 figure.move(1 / 200);
                 figure.draw(Zauberbild.cxt);
@@ -178,7 +179,7 @@ var Zauberbild;
     function animation(_event) {
         let target = _event.target;
         let id = target.id;
-        for (let symbol of symbols) {
+        for (let symbol of Zauberbild.symbols) {
             switch (id) {
                 case "btnmove":
                     symbol.move(1 / 200);
@@ -189,13 +190,15 @@ var Zauberbild;
             }
         }
     }
-    function deleteForm(_figure) {
-        for (let symbol of symbols) {
+    function deleteForm(_event, _figure) {
+        let target = _event.target;
+        // Mausposition, abziehen von Maincanvas --> siehe Nelly!
+        for (let symbol of Zauberbild.symbols) {
             if (symbol.active == false) {
-                let index = symbols.indexOf(_figure, 0);
-                symbols.splice(index, 1);
+                let index = Zauberbild.symbols.indexOf(_figure, 0);
+                Zauberbild.symbols.splice(index, 1);
             }
-            console.log(symbols);
+            console.log(Zauberbild.symbols);
         }
     }
     function randomColor() {
@@ -203,7 +206,7 @@ var Zauberbild;
     }
     function changeColor(_event) {
         randomColor();
-        for (let symbol of symbols) {
+        for (let symbol of Zauberbild.symbols) {
             if (symbol.active == false) {
                 symbol.color = coloring;
                 symbol.draw(Zauberbild.cxt);
@@ -221,7 +224,7 @@ var Zauberbild;
             alert("Bild kann nicht gespeichert werden");
         }
         else {
-            savePic(picsName);
+            Zauberbild.savePic(picsName);
         }
     }
 })(Zauberbild || (Zauberbild = {}));

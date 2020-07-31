@@ -1,7 +1,7 @@
 namespace Zauberbild {
     window.addEventListener("load", handleLoad);
 
-    let canvas: HTMLCanvasElement;
+    export let canvas: HTMLCanvasElement;
     let canvasstar: HTMLCanvasElement;
     let canvasheart: HTMLCanvasElement;
     let canvasmoon: HTMLCanvasElement;
@@ -23,7 +23,7 @@ namespace Zauberbild {
     export let cxtflash: CanvasRenderingContext2D;
 
     //Array
-    let symbols: SuperClass[] = [];
+    export let symbols: SuperClass[] = [];
     let colors: string[] = ["#FFC0CB", "#FF1493", "#E6E6FA", "#9370DB", "#4B0082", "#FA8072", "#DC143C", "#FF0000", "#FFA500", "#FFD700", "#FFFF00",
         "#FFE4B5", "#32CD32", "#90EE90", "#008000", "#66CDAA", "#48D1CC", "#B0C4DE", "#87CEFA", "#0000FF", "#DCDCDC", "#FFFAFA", "#F5F5DC"];
 
@@ -58,7 +58,9 @@ namespace Zauberbild {
 
         drawBackground();
         rdbtn.addEventListener("change", resizeCanvas);
-        //btndelete.addEventListener("click", deleteForm);
+        btndelete.addEventListener("click", function(): void {
+            deleteForm();
+        });
         controllers.addEventListener("click", animation);
         btncolor.addEventListener("click", changeColor);
         btnsave.addEventListener("click", saveTitle);
@@ -225,7 +227,11 @@ namespace Zauberbild {
 
     }
 
-    function deleteForm(_figure: SuperClass): void {
+    function deleteForm(_event: Event, _figure: SuperClass): void {
+        let target: HTMLElement = <HTMLElement>_event.target;
+
+        // Mausposition, abziehen von Maincanvas --> siehe Nelly!
+
         for (let symbol of symbols) {
             if (symbol.active == false) {
                 let index: number = symbols.indexOf(_figure, 0);
@@ -260,7 +266,7 @@ namespace Zauberbild {
     // Titel speichern / abfragen
 
     function saveTitle(): void {
-        let picsName = prompt("Bitte einen eindeutigen Titel eingeben");
+        let picsName: string | null = prompt("Bitte einen eindeutigen Titel eingeben");
         if (picsName == "" || picsName == null) {
             alert ("Bild kann nicht gespeichert werden");
         } else {

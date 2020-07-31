@@ -35,7 +35,6 @@ var Zauberbild;
             for (let key in url.query) {
                 _response.write(key + ":" + url.query[key] + "<br>");
             }
-            //Split?
             let jsonString = JSON.stringify(url.query);
             _response.write(jsonString);
             storeOrder(url.query);

@@ -48,7 +48,6 @@ export namespace Zauberbild {
                 _response.write(key + ":" + url.query[key] + "<br>");
             }
 
-            //Split?
 
             let jsonString: string = JSON.stringify(url.query);
             _response.write(jsonString);
