@@ -30,9 +30,9 @@ namespace Zauberbild {
             this.scale(length);
         }
         
-        add(_addend: Vector): void {
-            this.x += _addend.x;
-            this.y += _addend.y;
+        add(_added: Vector): void {
+            this.x += _added.x;
+            this.y += _added.y;
         }
     }
 }

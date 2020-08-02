@@ -10,7 +10,6 @@ var Zauberbild;
     let rdbtn;
     let btndelete;
     let btncolor;
-    let controllers;
     let btnsave;
     //Array
     Zauberbild.symbols = [];
@@ -32,7 +31,6 @@ var Zauberbild;
         rdbtn = document.querySelector("#radiobuttons");
         btndelete = document.querySelector("#btndelete");
         btncolor = document.querySelector("#btncolor");
-        controllers = document.querySelector("#controllers");
         btnsave = document.querySelector("#btnsave");
         Zauberbild.cxt = Zauberbild.canvas.getContext("2d");
         Zauberbild.cxtstar = canvasstar.getContext("2d");
@@ -41,10 +39,7 @@ var Zauberbild;
         Zauberbild.cxtflash = canvasflash.getContext("2d");
         drawBackground();
         rdbtn.addEventListener("change", resizeCanvas);
-        btndelete.addEventListener("click", function () {
-            deleteForm();
-        });
-        controllers.addEventListener("click", animation);
+        btndelete.addEventListener("click", deleteCanvas);
         btncolor.addEventListener("click", changeColor);
         btnsave.addEventListener("click", saveTitle);
         window.setInterval(animate, 20);
@@ -73,6 +68,7 @@ var Zauberbild;
                 break;
         }
     }
+    //Hintergrund wird gezeichnet
     function drawBackground() {
         let gradient = Zauberbild.cxt.createLinearGradient(0, 120, 0, 200);
         gradient.addColorStop(0, "#143b39");
@@ -165,56 +161,54 @@ var Zauberbild;
                 break;
         }
     }
-    //Das funktioniert:
+    //Animation Move
     function animate() {
         Zauberbild.cxt.putImageData(backgroundImage, 0, 0);
-        for (let figure of Zauberbild.symbols) {
-            if (figure.active == false) {
-                figure.move(1 / 200);
-                figure.draw(Zauberbild.cxt);
-            }
+        for (let index = 0; index < Zauberbild.symbols.length; index++) {
+            Zauberbild.symbols[index].move(1 / 200);
+            Zauberbild.symbols[index].draw(Zauberbild.cxt);
         }
     }
-    // Das funktioniert nicht...soll aber:
-    function animation(_event) {
-        let target = _event.target;
-        let id = target.id;
-        for (let symbol of Zauberbild.symbols) {
-            switch (id) {
-                case "btnmove":
-                    symbol.move(1 / 200);
-                    break;
-                case "btnrotate":
-                    //symbol.rotate();
-                    break;
-            }
-        }
+    // Canvas löschen
+    function deleteCanvas(_event) {
+        Zauberbild.symbols = [];
     }
-    function deleteForm(_event, _figure) {
-        let target = _event.target;
-        // Mausposition, abziehen von Maincanvas --> siehe Nelly!
-        for (let symbol of Zauberbild.symbols) {
-            if (symbol.active == false) {
-                let index = Zauberbild.symbols.indexOf(_figure, 0);
-                Zauberbild.symbols.splice(index, 1);
-            }
-            console.log(Zauberbild.symbols);
-        }
-    }
+    // Farben ändern
     function randomColor() {
         coloring = colors[Math.floor(Math.random() * colors.length)];
     }
     function changeColor(_event) {
-        randomColor();
         for (let symbol of Zauberbild.symbols) {
-            if (symbol.active == false) {
+            if (symbol instanceof Zauberbild.Star) {
+                randomColor();
+                symbol.active = true;
                 symbol.color = coloring;
                 symbol.draw(Zauberbild.cxt);
             }
-            else {
+        }
+        for (let symbol of Zauberbild.symbols) {
+            if (symbol instanceof Zauberbild.Heart) {
+                randomColor();
                 symbol.active = true;
+                symbol.color = coloring;
+                symbol.draw(Zauberbild.cxt);
             }
-            //console.log(symbol);
+        }
+        for (let symbol of Zauberbild.symbols) {
+            if (symbol instanceof Zauberbild.Moon) {
+                randomColor();
+                symbol.active = true;
+                symbol.color = coloring;
+                symbol.draw(Zauberbild.cxt);
+            }
+        }
+        for (let symbol of Zauberbild.symbols) {
+            if (symbol instanceof Zauberbild.Flash) {
+                randomColor();
+                symbol.active = true;
+                symbol.color = coloring;
+                symbol.draw(Zauberbild.cxt);
+            }
         }
     }
     // Titel speichern / abfragen

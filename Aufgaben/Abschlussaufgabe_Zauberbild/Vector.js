@@ -23,9 +23,9 @@ var Zauberbild;
             this.set(Math.cos(direction), Math.sin(direction));
             this.scale(length);
         }
-        add(_addend) {
-            this.x += _addend.x;
-            this.y += _addend.y;
+        add(_added) {
+            this.x += _added.x;
+            this.y += _added.y;
         }
     }
     Zauberbild.Vector = Vector;

@@ -4,6 +4,7 @@ var Zauberbild;
     class Flash extends Zauberbild.SuperClass {
         constructor(_position) {
             super(_position);
+            this.velocity.random(0, 0);
             this.color = "black";
         }
         draw(context) {
@@ -25,8 +26,16 @@ var Zauberbild;
             context.lineTo(5, 90);
             context.lineTo(-20, 60);
             context.lineTo(0, -10);
+            if (this.active == true) {
+                context.strokeStyle = "green";
+                context.lineWidth = 5;
+                context.stroke();
+            }
             context.fill();
             context.restore();
+        }
+        changeColor(_color) {
+            super.changeColor(_color);
         }
     }
     Zauberbild.Flash = Flash;

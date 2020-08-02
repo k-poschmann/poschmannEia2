@@ -12,7 +12,6 @@ namespace Zauberbild {
 
     let btndelete: HTMLButtonElement;
     let btncolor: HTMLButtonElement;
-    let controllers: HTMLDivElement;
     let btnsave: HTMLButtonElement;
 
 
@@ -47,8 +46,7 @@ namespace Zauberbild {
 
         btndelete = <HTMLButtonElement>document.querySelector("#btndelete");
         btncolor = <HTMLButtonElement>document.querySelector("#btncolor");
-        controllers = <HTMLDivElement>document.querySelector("#controllers");
-        btnsave = <HTMLButtonElement>document.querySelector ("#btnsave");
+        btnsave = <HTMLButtonElement>document.querySelector("#btnsave");
 
         cxt = <CanvasRenderingContext2D>canvas.getContext("2d");
         cxtstar = <CanvasRenderingContext2D>canvasstar.getContext("2d");
@@ -58,10 +56,7 @@ namespace Zauberbild {
 
         drawBackground();
         rdbtn.addEventListener("change", resizeCanvas);
-        btndelete.addEventListener("click", function(): void {
-            deleteForm();
-        });
-        controllers.addEventListener("click", animation);
+        btndelete.addEventListener("click", deleteCanvas);
         btncolor.addEventListener("click", changeColor);
         btnsave.addEventListener("click", saveTitle);
         window.setInterval(animate, 20);
@@ -96,6 +91,7 @@ namespace Zauberbild {
         }
     }
 
+    //Hintergrund wird gezeichnet
     function drawBackground(): void {
         let gradient: CanvasGradient = cxt.createLinearGradient(0, 120, 0, 200);
         gradient.addColorStop(0, "#143b39");
@@ -197,81 +193,74 @@ namespace Zauberbild {
 
     }
 
-    //Das funktioniert:
-
+    //Animation Move
     function animate(): void {
         cxt.putImageData(backgroundImage, 0, 0);
-        for (let figure of symbols) {
-            if (figure.active == false) {
-                figure.move(1 / 200);
-                figure.draw(cxt);
-            }
-        }
-    }
 
-    // Das funktioniert nicht...soll aber:
-    function animation(_event: MouseEvent): void {
-        let target: HTMLElement = <HTMLElement>_event.target;
-        let id: string = target.id;
-
-        for (let symbol of symbols) {
-            switch (id) {
-                case "btnmove":
-                    symbol.move(1 / 200);
-                    break;
-                case "btnrotate":
-                    //symbol.rotate();
-                    break;
-            }
+        for (let index: number = 0; index < symbols.length; index++) {
+            symbols[index].move(1 / 200);
+            symbols[index].draw(cxt);
         }
+
 
     }
 
-    function deleteForm(_event: Event, _figure: SuperClass): void {
-        let target: HTMLElement = <HTMLElement>_event.target;
-
-        // Mausposition, abziehen von Maincanvas --> siehe Nelly!
-
-        for (let symbol of symbols) {
-            if (symbol.active == false) {
-                let index: number = symbols.indexOf(_figure, 0);
-                symbols.splice(index, 1);
-
-            }
-            console.log(symbols);
-        }
+    // Canvas löschen
+    function deleteCanvas(_event: MouseEvent): void {
+        symbols = [];
     }
 
-
+    // Farben ändern
     function randomColor(): void {
         coloring = colors[Math.floor(Math.random() * colors.length)];
     }
 
     function changeColor(_event: MouseEvent): void {
-        randomColor();
         for (let symbol of symbols) {
-            if (symbol.active == false) {
+            if (symbol instanceof Star) {
+                randomColor();
+                symbol.active = true;
                 symbol.color = coloring;
                 symbol.draw(cxt);
-            } else {
-                symbol.active = true;
             }
-
-            //console.log(symbol);
         }
 
+        for (let symbol of symbols) {
+            if (symbol instanceof Heart) {
+                randomColor();
+                symbol.active = true;
+                symbol.color = coloring;
+                symbol.draw(cxt);
+            }
+        }
+        for (let symbol of symbols) {
+            if (symbol instanceof Moon) {
+                randomColor();
+                symbol.active = true;
+                symbol.color = coloring;
+                symbol.draw(cxt);
+            }
+        }
+        for (let symbol of symbols) {
+            if (symbol instanceof Flash) {
+                randomColor();
+                symbol.active = true;
+                symbol.color = coloring;
+                symbol.draw(cxt);
+            }
+        }
     }
 
 
     // Titel speichern / abfragen
-
     function saveTitle(): void {
         let picsName: string | null = prompt("Bitte einen eindeutigen Titel eingeben");
         if (picsName == "" || picsName == null) {
-            alert ("Bild kann nicht gespeichert werden");
+            alert("Bild kann nicht gespeichert werden");
         } else {
             savePic(picsName);
         }
     }
 
 }
+

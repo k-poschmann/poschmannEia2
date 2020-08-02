@@ -9,25 +9,26 @@ var Zauberbild;
             let figure = {
                 "position": symbol.position,
                 "color": symbol.color,
+                "rotation": symbol.rotation,
                 "velocity": symbol.velocity,
                 "active": symbol.active
             };
             infos.push(figure);
         }
-        sendData(infos);
+        sendData(infos, _title);
     }
     Zauberbild.savePic = savePic;
     //Funktion, die die Daten an Datenbank schickt (sendData)
-    async function sendData(_infos) {
+    async function sendData(_infos, _title) {
         let width = Zauberbild.canvas.width.toString();
         let height = Zauberbild.canvas.height.toString();
         //falls noch änderbare HG-Farbe, dann hier definieren
         let canvasinfo = [width, height];
         let canvasjsn = JSON.stringify(canvasinfo);
         let canvasquery = new URLSearchParams(canvasjsn);
-        let infos = JSON.stringify(_infos);
+        let infos = JSON.stringify(_infos); // in JSON String umwandeln, um für Server lesbar zu machen
         let query = new URLSearchParams(infos);
-        let response = await fetch(url + "?" + query + "&" + canvasquery);
+        let response = await fetch(url + "?" + query + "&" + canvasquery + "&" + _title);
         let responsetext = await response.text();
         console.log(responsetext);
         alert("Bild wurde gespeichert");

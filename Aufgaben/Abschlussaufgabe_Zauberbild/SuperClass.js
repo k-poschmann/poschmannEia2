@@ -5,16 +5,13 @@ var Zauberbild;
         constructor(_position) {
             if (_position)
                 this.position = _position.copy();
-            this.active = false;
             this.color = "green";
             this.velocity = new Zauberbild.Vector(0, 0);
-            this.velocity.random(0, 0);
+            this.velocity.random(100, 200);
+            //this.radius = new Vector(0, 0);
         }
         changeColor(_color) {
             this.color = _color;
-        }
-        rotate(_factor) {
-            this.rotation = _factor;
         }
         move(_timeslice) {
             let offset = new Zauberbild.Vector(this.velocity.x, this.velocity.y);
