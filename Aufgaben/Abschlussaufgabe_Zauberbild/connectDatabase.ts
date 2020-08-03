@@ -41,7 +41,8 @@ namespace Zauberbild {
 
         let infos: string = JSON.stringify(_infos);  // in JSON String umwandeln, um für Server lesbar zu machen
         let query: URLSearchParams = new URLSearchParams(infos);
-        let response: Response = await fetch(url + "?" + query + "&" + canvasquery + "&" + _title);
+        let response: Response = await fetch(url + "?savePicture" + query.toString() + "&" + canvasquery.toString());
+        await fetch(url + "?insertName&" + _title);
 
         let responsetext: string = await response.text();
         console.log(responsetext);

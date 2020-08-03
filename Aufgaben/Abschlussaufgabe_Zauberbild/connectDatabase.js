@@ -28,7 +28,8 @@ var Zauberbild;
         let canvasquery = new URLSearchParams(canvasjsn);
         let infos = JSON.stringify(_infos); // in JSON String umwandeln, um für Server lesbar zu machen
         let query = new URLSearchParams(infos);
-        let response = await fetch(url + "?" + query + "&" + canvasquery + "&" + _title);
+        let response = await fetch(url + "?savePicture" + query.toString() + "&" + canvasquery.toString());
+        await fetch(url + "?insertName&" + _title);
         let responsetext = await response.text();
         console.log(responsetext);
         alert("Bild wurde gespeichert");
