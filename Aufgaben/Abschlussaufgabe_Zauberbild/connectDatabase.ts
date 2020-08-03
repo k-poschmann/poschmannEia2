@@ -132,7 +132,7 @@ namespace Zauberbild {
                 let option: HTMLOptionElement = document.createElement("option");
                 option.setAttribute("name", entry);
                 option.value = entry;
-                list.appendChild(option);
+                picture.appendChild(option);
             }
         }
     }

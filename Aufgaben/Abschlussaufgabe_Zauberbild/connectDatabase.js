@@ -112,7 +112,7 @@ var Zauberbild;
                 let option = document.createElement("option");
                 option.setAttribute("name", entry);
                 option.value = entry;
-                Zauberbild.list.appendChild(option);
+                picture.appendChild(option);
             }
         }
     }
