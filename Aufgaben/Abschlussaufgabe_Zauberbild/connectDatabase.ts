@@ -108,11 +108,6 @@ namespace Zauberbild {
         let pretty: string = responseText.replace(/\\|\[|{|}|"|_id|insertName|]/g, "");
         let correction: string = pretty.replace(/,,,/g, ",");
         createDataList(correction);
-        // let response: Response = await fetch(url + "?getTitles&");
-        // let text: string = await response.text();
-        // console.log(text);
-
-        // showTitles(text);
     }
 
 

@@ -43,7 +43,7 @@ namespace Zauberbild {
         canvasmoon.addEventListener("click", getID);
         canvasflash.addEventListener("click", getID);
 
-        list = <HTMLInputElement>document.querySelector("#yourpics");
+        list = <HTMLInputElement>document.querySelector("#album");
 
         rdbtn = <HTMLDivElement>document.querySelector("#radiobuttons");
         btndelete = <HTMLButtonElement>document.querySelector("#btndelete");

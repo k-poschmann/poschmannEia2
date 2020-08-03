@@ -91,10 +91,6 @@ var Zauberbild;
         let pretty = responseText.replace(/\\|\[|{|}|"|_id|insertName|]/g, "");
         let correction = pretty.replace(/,,,/g, ",");
         createDataList(correction);
-        // let response: Response = await fetch(url + "?getTitles&");
-        // let text: string = await response.text();
-        // console.log(text);
-        // showTitles(text);
     }
     Zauberbild.findPicture = findPicture;
     //Datalist wird generiert

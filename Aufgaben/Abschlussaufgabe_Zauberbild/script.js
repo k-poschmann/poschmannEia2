@@ -28,7 +28,7 @@ var Zauberbild;
         canvasheart.addEventListener("click", getID);
         canvasmoon.addEventListener("click", getID);
         canvasflash.addEventListener("click", getID);
-        Zauberbild.list = document.querySelector("#yourpics");
+        Zauberbild.list = document.querySelector("#album");
         rdbtn = document.querySelector("#radiobuttons");
         btndelete = document.querySelector("#btndelete");
         btncolor = document.querySelector("#btncolor");
