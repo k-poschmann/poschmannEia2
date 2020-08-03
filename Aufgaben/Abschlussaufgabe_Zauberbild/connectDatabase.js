@@ -99,7 +99,7 @@ var Zauberbild;
     Zauberbild.findPicture = findPicture;
     //Datalist wird generiert
     function createDataList(_response) {
-        let picture = document.querySelector("#album");
+        let picture = document.querySelector("#yourpics");
         titleoption = _response.split(",");
         while (picture.firstChild) {
             picture.removeChild(picture.firstChild);

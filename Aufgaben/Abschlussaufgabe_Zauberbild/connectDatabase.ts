@@ -118,7 +118,7 @@ namespace Zauberbild {
 
     //Datalist wird generiert
     function createDataList(_response: string): void {
-        let picture: HTMLDataListElement = <HTMLDataListElement>document.querySelector("#album");
+        let picture: HTMLDataListElement = <HTMLDataListElement>document.querySelector("#yourpics");
         titleoption = _response.split(",");
         while (picture.firstChild) {
             picture.removeChild(picture.firstChild);
