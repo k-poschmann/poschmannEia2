@@ -86,7 +86,7 @@ var Zauberbild;
     Zauberbild.loadPic = loadPic;
     // Funktion, die Namen aus Server holt
     async function findPicture() {
-        let response = await fetch(url + "?" + "getPicture=yes");
+        let response = await fetch(url + "?" + "getPicture");
         let responseText = await response.text();
         let pretty = responseText.replace(/\\|\[|{|}|"|_id|getTitle|]/g, "");
         let correction = pretty.replace(/,,,/g, ",");

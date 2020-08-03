@@ -103,7 +103,7 @@ namespace Zauberbild {
 
     // Funktion, die Namen aus Server holt
     export async function findPicture(): Promise<void> {
-        let response: Response = await fetch(url + "?" + "getPicture=yes");
+        let response: Response = await fetch(url + "?" + "getPicture");
         let responseText: string = await response.text();
         let pretty: string = responseText.replace(/\\|\[|{|}|"|_id|getTitle|]/g, "");
         let correction: string = pretty.replace(/,,,/g, ",");
