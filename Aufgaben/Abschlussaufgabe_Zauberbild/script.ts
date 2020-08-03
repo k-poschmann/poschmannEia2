@@ -9,10 +9,11 @@ namespace Zauberbild {
     let backgroundImage: ImageData;
 
     let rdbtn: HTMLDivElement;
-
     let btndelete: HTMLButtonElement;
     let btncolor: HTMLButtonElement;
     let btnsave: HTMLButtonElement;
+
+    export let list: HTMLDataListElement;
 
 
     export let cxt: CanvasRenderingContext2D;
@@ -42,8 +43,9 @@ namespace Zauberbild {
         canvasmoon.addEventListener("click", getID);
         canvasflash.addEventListener("click", getID);
 
-        rdbtn = <HTMLDivElement>document.querySelector("#radiobuttons");
+        list = <HTMLDataListElement>document.querySelector("#yourpics");
 
+        rdbtn = <HTMLDivElement>document.querySelector("#radiobuttons");
         btndelete = <HTMLButtonElement>document.querySelector("#btndelete");
         btncolor = <HTMLButtonElement>document.querySelector("#btncolor");
         btnsave = <HTMLButtonElement>document.querySelector("#btnsave");
@@ -61,6 +63,8 @@ namespace Zauberbild {
         btnsave.addEventListener("click", saveTitle);
         window.setInterval(animate, 20);
         createSymbols();
+
+        fetchTitles();
 
     }
 

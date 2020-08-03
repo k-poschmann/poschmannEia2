@@ -28,6 +28,7 @@ var Zauberbild;
         canvasheart.addEventListener("click", getID);
         canvasmoon.addEventListener("click", getID);
         canvasflash.addEventListener("click", getID);
+        Zauberbild.list = document.querySelector("#yourpics");
         rdbtn = document.querySelector("#radiobuttons");
         btndelete = document.querySelector("#btndelete");
         btncolor = document.querySelector("#btncolor");
@@ -44,6 +45,7 @@ var Zauberbild;
         btnsave.addEventListener("click", saveTitle);
         window.setInterval(animate, 20);
         createSymbols();
+        Zauberbild.fetchTitles();
     }
     // Leinwandgröße Ändern
     function resizeCanvas(_event) {

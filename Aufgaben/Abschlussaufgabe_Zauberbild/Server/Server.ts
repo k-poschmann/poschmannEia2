@@ -3,17 +3,16 @@ import * as Url from "url";
 import * as Mongo from "mongodb";
 
 export namespace Zauberbild {
-    interface Picture {
-        [type: string]: string | undefined | string[];
-    }
 
     let orders: Mongo.Collection;
+    let mongoClient: Mongo.MongoClient;
+    let allPics: string[] = [];
+    let databaseUrl: string = "mongodb+srv://dbPoschmann:2ILoveMedia3@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
+
 
     let port: number | string | undefined = process.env.PORT;
     if (port == undefined)
-    port = 5002;
-
-    let databaseUrl: string = "mongodb+srv://dbPoschmann:2ILoveMedia3@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
+        port = 5002;
 
     startServer(port);
     connectDatabase(databaseUrl);
@@ -35,7 +34,7 @@ export namespace Zauberbild {
         console.log("Database connection ", orders != undefined);
     }
 
-    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
+    async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
         console.log("What's Up?");
 
         _response.setHeader("content-type", "text/html; charset=utf-8");
@@ -43,22 +42,48 @@ export namespace Zauberbild {
         console.log(_request.url);
 
         if (_request.url) {
+
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
-            for (let key in url.query) {
-                _response.write(key + ":" + url.query[key] + "<br>");
+            let spliturl: string[] = _request.url.split("&");
+
+            if (spliturl[0] == "/?safeImage") {
+                orders = mongoClient.db("Album").collection("Pictures");
+                await (orders).insertOne(url.query);
+                _response.write("Bild gespeichert");
+                allPics = [];
             }
 
+            if (spliturl[0] == "/?getImage") {
+                let pic: Mongo.Cursor<any> = orders.find({ name: spliturl[1] });
+                await pic.forEach(showPicture);
+                let jsonString: string = JSON.stringify(allPics);
+                jsonString.toString();
+                _response.write(jsonString);
+                allPics = [];
+            }
 
-            let jsonString: string = JSON.stringify(url.query);
-            _response.write(jsonString);
+            if (spliturl[0] == "/?getTitles") {
+                let titles: Mongo.Cursor<any> = orders.find({ projection: { _id: 0, name: true } });
+                await titles.forEach(showPicture);
+                let jsonString: string = JSON.stringify(allPics);
+                jsonString.toString();
 
-            storeOrder(url.query);
+                _response.write(jsonString);
+                _response.write(titles.toString());
+                allPics = [];
+                console.log(titles);
+            }
+
+            _response.end();
         }
 
-        _response.end();
-    }
-    
-    function storeOrder(_order: Picture): void {
-        orders.insert(_order);
+        function showPicture(_item: Object): void {
+            let jsonString: string = JSON.stringify(_item);
+            allPics.push(jsonString);
+        }
+
+        // function storeOrder(_order: Picture): void {
+        //     orders.insert(_order);
+        // }
     }
 }

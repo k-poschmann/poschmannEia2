@@ -6,10 +6,12 @@ const Mongo = require("mongodb");
 var Zauberbild;
 (function (Zauberbild) {
     let orders;
+    let mongoClient;
+    let allPics = [];
+    let databaseUrl = "mongodb+srv://dbPoschmann:2ILoveMedia3@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
     let port = process.env.PORT;
     if (port == undefined)
         port = 5002;
-    let databaseUrl = "mongodb+srv://dbPoschmann:2ILoveMedia3@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
     startServer(port);
     connectDatabase(databaseUrl);
     function startServer(_port) {
@@ -25,24 +27,47 @@ var Zauberbild;
         orders = mongoClient.db("Album").collection("Pictures");
         console.log("Database connection ", orders != undefined);
     }
-    function handleRequest(_request, _response) {
+    async function handleRequest(_request, _response) {
         console.log("What's Up?");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         console.log(_request.url);
         if (_request.url) {
             let url = Url.parse(_request.url, true);
-            for (let key in url.query) {
-                _response.write(key + ":" + url.query[key] + "<br>");
+            let spliturl = _request.url.split("&");
+            if (spliturl[0] == "/?safeImage") {
+                orders = mongoClient.db("Album").collection("Pictures");
+                await (orders).insertOne(url.query);
+                _response.write("Bild gespeichert");
+                allPics = [];
             }
-            let jsonString = JSON.stringify(url.query);
-            _response.write(jsonString);
-            storeOrder(url.query);
+            if (spliturl[0] == "/?getImage") {
+                let pic = orders.find({ name: spliturl[1] });
+                await pic.forEach(showPicture);
+                let jsonString = JSON.stringify(allPics);
+                jsonString.toString();
+                _response.write(jsonString);
+                allPics = [];
+            }
+            if (spliturl[0] == "/?getTitles") {
+                let titles = orders.find({ projection: { _id: 0, name: true } });
+                await titles.forEach(showPicture);
+                let jsonString = JSON.stringify(allPics);
+                jsonString.toString();
+                _response.write(jsonString);
+                _response.write(titles.toString());
+                allPics = [];
+                console.log(titles);
+            }
+            _response.end();
         }
-        _response.end();
-    }
-    function storeOrder(_order) {
-        orders.insert(_order);
+        function showPicture(_item) {
+            let jsonString = JSON.stringify(_item);
+            allPics.push(jsonString);
+        }
+        // function storeOrder(_order: Picture): void {
+        //     orders.insert(_order);
+        // }
     }
 })(Zauberbild = exports.Zauberbild || (exports.Zauberbild = {}));
 //# sourceMappingURL=Server.js.map
