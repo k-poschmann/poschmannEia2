@@ -45,7 +45,7 @@ var Zauberbild;
         btnsave.addEventListener("click", saveTitle);
         window.setInterval(animate, 20);
         createSymbols();
-        Zauberbild.fetchTitles();
+        Zauberbild.findPicture();
     }
     // Leinwandgröße Ändern
     function resizeCanvas(_event) {

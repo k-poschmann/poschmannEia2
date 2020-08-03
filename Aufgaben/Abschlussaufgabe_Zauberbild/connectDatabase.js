@@ -2,6 +2,7 @@
 var Zauberbild;
 (function (Zauberbild) {
     let url = "https://hfucocktailbar.herokuapp.com/";
+    let titleoption;
     //Funktion, die Farbe, Animation und Position speichert, sowie die Canvasgröße
     function savePic(_title) {
         let infos = [];
@@ -34,39 +35,45 @@ var Zauberbild;
     }
     // Funktion, die die Bilder aus der Datenbank findet
     async function loadPic(_title) {
-        let response = await fetch(url + "?getImage" + _title);
+        Zauberbild.symbols = [];
+        let name = Zauberbild.list.value;
+        let response = await fetch(url + "findPicture&" + name);
         let text = await response.text();
-        let replace = text.replace(/\\|\[|{|}|"|name|:|]/g, "");
-        let correctArray = replace.split(",");
-        console.log(correctArray);
-        Zauberbild.cxt.canvas.width = parseInt(correctArray[1]);
-        Zauberbild.cxt.canvas.height = parseInt(correctArray[2]);
-        correctArray.splice(0, 6);
+        console.log(text);
+        let replace = text.replace(/\\|\[|{|}|"|_id|saveTitle|]/g, "");
+        let removetitle = replace.replace(name, "");
+        let correction = removetitle.replace(/,,,/g, "");
+        let removekeys = correction.replace(/position:|color:|rotation:|velocity:|active:/g, "");
+        let data = removekeys.split(",");
+        console.log(data);
+        Zauberbild.canvas.width = parseInt(data[1]);
+        Zauberbild.canvas.height = parseInt(data[2]);
+        data.splice(0, 6);
         let info = [];
-        for (let i = 0; i < correctArray.length; i++) {
-            switch (correctArray[i]) {
-                case "star":
+        for (let i = 0; i < data.length; i++) {
+            switch (data[i]) {
+                case "Star":
                     let positionStar = new Zauberbild.Vector(parseInt(info[1]), parseInt(info[2]));
                     let star = new Zauberbild.Star(positionStar);
                     star.draw(Zauberbild.cxt);
                     Zauberbild.symbols.push(star);
                     info = [];
                     break;
-                case "heart":
+                case "Heart":
                     let positionHeart = new Zauberbild.Vector(parseInt(info[1]), parseInt(info[2]));
                     let heart = new Zauberbild.Heart(positionHeart);
                     heart.draw(Zauberbild.cxt);
                     Zauberbild.symbols.push(heart);
                     info = [];
                     break;
-                case "moon":
+                case "Moon":
                     let positionMoon = new Zauberbild.Vector(parseInt(info[1]), parseInt(info[2]));
                     let moon = new Zauberbild.Heart(positionMoon);
                     moon.draw(Zauberbild.cxt);
                     Zauberbild.symbols.push(moon);
                     info = [];
                     break;
-                case "flash":
+                case "Flash":
                     let positionFlash = new Zauberbild.Vector(parseInt(info[1]), parseInt(info[2]));
                     let flash = new Zauberbild.Heart(positionFlash);
                     flash.draw(Zauberbild.cxt);
@@ -78,23 +85,26 @@ var Zauberbild;
     }
     Zauberbild.loadPic = loadPic;
     // Funktion, die Namen aus Server holt
-    async function fetchTitles() {
-        let response = await fetch(url + "?getTitles&");
-        let text = await response.text();
-        console.log(text);
-        showTitles(text);
+    async function findPicture() {
+        let response = await fetch(url + "?" + "getPicture=yes");
+        let responseText = await response.text();
+        let pretty = responseText.replace(/\\|\[|{|}|"|_id|insertName|]/g, "");
+        let correction = pretty.replace(/,,,/g, ",");
+        createDataList(correction);
+        // let response: Response = await fetch(url + "?getTitles&");
+        // let text: string = await response.text();
+        // console.log(text);
+        // showTitles(text);
     }
-    Zauberbild.fetchTitles = fetchTitles;
-    //Funktion, die die Titel zeigt
-    async function showTitles(_title) {
-        let dbContent = document.querySelector("#album");
-        let replace = _title.replace(/\\|\[|Object|object|{|}|"|name|:|]/g, "");
-        let correctArray = replace.split(",");
-        dbContent.innerHTML = "";
-        while (Zauberbild.list.firstChild) {
-            Zauberbild.list.removeChild(Zauberbild.list.firstChild);
+    Zauberbild.findPicture = findPicture;
+    //Datalist wird generiert
+    function createDataList(_response) {
+        let picture = document.querySelector("#album");
+        titleoption = _response.split(",");
+        while (picture.firstChild) {
+            picture.removeChild(picture.firstChild);
         }
-        for (let entry of correctArray) {
+        for (let entry of titleoption) {
             if (entry == "") {
                 //überspringen
             }

@@ -35,35 +35,45 @@ var Zauberbild;
         if (_request.url) {
             let url = Url.parse(_request.url, true);
             let spliturl = _request.url.split("&");
-            if (spliturl[0] == "/?safeImage") {
-                orders = mongoClient.db("Album").collection("Pictures");
-                await (orders).insertOne(url.query);
-                _response.write("Bild gespeichert");
-                allPics = [];
-            }
-            if (spliturl[0] == "/?getImage") {
-                let pic = orders.find({ name: spliturl[1] });
-                await pic.forEach(showPicture);
+            if (spliturl[0] == "/?getPicture=yes") {
+                let pictures = mongoClient.db("Album").collection("Pictures");
+                let cursor = await pictures.find();
+                await cursor.forEach(showPicture);
                 let jsonString = JSON.stringify(allPics);
-                jsonString.toString();
+                // orders = mongoClient.db("Album").collection("Pictures");
+                // await (orders).insertOne(url.query);
                 _response.write(jsonString);
                 allPics = [];
             }
-            if (spliturl[0] == "/?getTitles") {
-                let titles = orders.find({ projection: { _id: 0, name: true } });
-                await titles.forEach(showPicture);
+            if (spliturl[0] == "/?findPicture") {
+                let picture = mongoClient.db("Album").collection(spliturl[1]);
+                let cursor = await picture.find();
+                await cursor.forEach(showPicture);
                 let jsonString = JSON.stringify(allPics);
-                jsonString.toString();
-                _response.write(jsonString);
-                _response.write(titles.toString());
+                let answer = jsonString.toString();
+                _response.write(answer);
                 allPics = [];
-                console.log(titles);
             }
+            if (spliturl[0] == "/?insertName") {
+                let pictures = mongoClient.db("Album").collection("Pictures");
+                await pictures.insertOne(url.query);
+            }
+            // if (spliturl[0] == "/?getTitles") {
+            //     let titles: Mongo.Cursor<any> = orders.find({ projection: { _id: 0, name: true } });
+            //     await titles.forEach(showPicture);
+            //     let jsonString: string = JSON.stringify(allPics);
+            //     jsonString.toString();
+            //     _response.write(jsonString);
+            //     _response.write(titles.toString());
+            //     allPics = [];
+            //     console.log(titles);
+            // }
             _response.end();
         }
         function showPicture(_item) {
-            let jsonString = JSON.stringify(_item);
-            allPics.push(jsonString);
+            for (let key in _item) {
+                allPics.push(key);
+            }
         }
         // function storeOrder(_order: Picture): void {
         //     orders.insert(_order);
