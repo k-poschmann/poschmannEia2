@@ -73,9 +73,12 @@ export namespace Zauberbild {
                 await pictures.insertOne(url.query);
             }
 
-            // if (spliturl[0] == "/?savePicture") {
-            //     let newCollection: 
-            // }
+            
+
+            if (spliturl[0] == "/?savePicture") {
+                let newCollection: Promise <Mongo.Collection<any>> = mongoClient.db("Album").createCollection(spliturl[1]);
+                await (await newCollection).insertOne(url.query); 
+            }
 
             // if (spliturl[0] == "/?getTitles") {
             //     let titles: Mongo.Cursor<any> = orders.find({ projection: { _id: 0, name: true } });

@@ -41,7 +41,7 @@ var Zauberbild;
         let response = await fetch(url + "findPicture&" + name);
         let text = await response.text();
         console.log(text);
-        let replace = text.replace(/\\|\[|{|}|"|_id|findPicture|]/g, "");
+        let replace = text.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
         let removetitle = replace.replace(name, "");
         let correction = removetitle.replace(/,,,/g, "");
         let removekeys = correction.replace(/position:|color:|rotation:|velocity:|active:/g, "");
@@ -87,9 +87,9 @@ var Zauberbild;
     Zauberbild.loadPic = loadPic;
     // Funktion, die Namen aus Server holt
     async function findPicture() {
-        let response = await fetch(url + "?" + "getPicture");
+        let response = await fetch(url + "?" + "getPicture=yes");
         let responseText = await response.text();
-        let pretty = responseText.replace(/\\|\[|{|}|"|_id|getTitle|]/g, "");
+        let pretty = responseText.replace(/\\|\[|{|}|"|_id|insertName|]/g, "");
         let correction = pretty.replace(/,,,/g, ",");
         createDataList(correction);
     }

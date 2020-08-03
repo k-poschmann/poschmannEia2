@@ -56,7 +56,7 @@ namespace Zauberbild {
         let response: Response = await fetch(url + "findPicture&" + name);
         let text: string = await response.text();
         console.log(text);
-        let replace: string = text.replace(/\\|\[|{|}|"|_id|findPicture|]/g, "");
+        let replace: string = text.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
         let removetitle: string = replace.replace(name, "");
         let correction: string = removetitle.replace(/,,,/g, "");
         let removekeys: string = correction.replace(/position:|color:|rotation:|velocity:|active:/g, "");
@@ -104,9 +104,9 @@ namespace Zauberbild {
 
     // Funktion, die Namen aus Server holt
     export async function findPicture(): Promise<void> {
-        let response: Response = await fetch(url + "?" + "getPicture");
+        let response: Response = await fetch(url + "?" + "getPicture=yes");
         let responseText: string = await response.text();
-        let pretty: string = responseText.replace(/\\|\[|{|}|"|_id|getTitle|]/g, "");
+        let pretty: string = responseText.replace(/\\|\[|{|}|"|_id|insertName|]/g, "");
         let correction: string = pretty.replace(/,,,/g, ",");
         createDataList(correction);
     }
