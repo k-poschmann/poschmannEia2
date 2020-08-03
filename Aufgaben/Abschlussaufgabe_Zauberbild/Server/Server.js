@@ -7,6 +7,7 @@ var Zauberbild;
 (function (Zauberbild) {
     let orders;
     let mongoClient;
+    let options;
     let allPics = [];
     let databaseUrl = "mongodb+srv://dbPoschmann:2ILoveMedia3@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
     let port = process.env.PORT;
@@ -21,8 +22,8 @@ var Zauberbild;
         server.addListener("request", handleRequest);
     }
     async function connectDatabase(_url) {
-        let options = { useNewUrlParser: true, useUnifiedTopology: true };
-        let mongoClient = new Mongo.MongoClient(_url, options);
+        options = { useNewUrlParser: true, useUnifiedTopology: true };
+        mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
         orders = mongoClient.db("Album").collection("Pictures");
         console.log("Database connection ", orders != undefined);

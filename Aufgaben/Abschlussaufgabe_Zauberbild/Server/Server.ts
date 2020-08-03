@@ -6,6 +6,7 @@ export namespace Zauberbild {
 
     let orders: Mongo.Collection;
     let mongoClient: Mongo.MongoClient;
+    let options: Mongo.MongoClientOptions;
     let allPics: string[] = [];
     let databaseUrl: string = "mongodb+srv://dbPoschmann:2ILoveMedia3@poschmanneia2-goavs.mongodb.net/test?retryWrites=true&w=majority";
 
@@ -27,8 +28,8 @@ export namespace Zauberbild {
     }
 
     async function connectDatabase(_url: string): Promise<void> {
-        let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
-        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+        options = { useNewUrlParser: true, useUnifiedTopology: true };
+        mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
         orders = mongoClient.db("Album").collection("Pictures");
         console.log("Database connection ", orders != undefined);
