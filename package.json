@@ -7,7 +7,6 @@
     "@types/mongodb": "^3.5.20",
     "mongodb": "^3.5.8"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node Aufgaben/Abschlussaufgabe_Zauberbild/Server/Server.js"
   },

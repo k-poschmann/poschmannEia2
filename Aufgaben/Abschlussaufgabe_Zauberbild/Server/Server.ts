@@ -67,7 +67,7 @@ export namespace Zauberbild {
                 allPics = [];
             }
 
-            if (spliturl[0] == "/?insertName"){
+            if (spliturl[0] == "/?insertName") {
                 let pictures = mongoClient.db("Album").collection("Pictures");
                 await pictures.insertOne(url.query);
             }
