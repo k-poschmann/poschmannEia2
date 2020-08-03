@@ -105,7 +105,7 @@ namespace Zauberbild {
     export async function findPicture(): Promise<void> {
         let response: Response = await fetch(url + "?" + "getPicture=yes");
         let responseText: string = await response.text();
-        let pretty: string = responseText.replace(/\\|\[|{|}|"|_id|insertName|]/g, "");
+        let pretty: string = responseText.replace(/\\|\[|{|}|"|_id|getTitle|]/g, "");
         let correction: string = pretty.replace(/,,,/g, ",");
         createDataList(correction);
     }
