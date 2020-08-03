@@ -62,16 +62,16 @@ var Zauberbild;
             // if (spliturl[0] == "/?savePicture") {
             //     let newCollection: 
             // }
-            // if (spliturl[0] == "/?getTitles") {
-            //     let titles: Mongo.Cursor<any> = orders.find({ projection: { _id: 0, name: true } });
-            //     await titles.forEach(showPicture);
-            //     let jsonString: string = JSON.stringify(allPics);
-            //     jsonString.toString();
-            //     _response.write(jsonString);
-            //     _response.write(titles.toString());
-            //     allPics = [];
-            //     console.log(titles);
-            // }
+            if (spliturl[0] == "/?getTitles") {
+                let titles = orders.find({ projection: { _id: 0, name: true } });
+                await titles.forEach(showPicture);
+                let jsonString = JSON.stringify(allPics);
+                jsonString.toString();
+                _response.write(jsonString);
+                _response.write(titles.toString());
+                allPics = [];
+                console.log(titles);
+            }
             _response.end();
         }
         function showPicture(_item) {
