@@ -40,7 +40,7 @@ var Zauberbild;
         let response = await fetch(url + "findPicture&" + name);
         let text = await response.text();
         console.log(text);
-        let replace = text.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
+        let replace = text.replace(/\\|\[|{|}|"|_id|findPicture|]/g, "");
         let removetitle = replace.replace(name, "");
         let correction = removetitle.replace(/,,,/g, "");
         let removekeys = correction.replace(/position:|color:|rotation:|velocity:|active:/g, "");

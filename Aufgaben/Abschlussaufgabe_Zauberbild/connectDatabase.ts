@@ -55,7 +55,7 @@ namespace Zauberbild {
         let response: Response = await fetch(url + "findPicture&" + name);
         let text: string = await response.text();
         console.log(text);
-        let replace: string = text.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
+        let replace: string = text.replace(/\\|\[|{|}|"|_id|findPicture|]/g, "");
         let removetitle: string = replace.replace(name, "");
         let correction: string = removetitle.replace(/,,,/g, "");
         let removekeys: string = correction.replace(/position:|color:|rotation:|velocity:|active:/g, "");

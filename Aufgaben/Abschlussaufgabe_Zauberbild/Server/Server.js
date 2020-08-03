@@ -59,6 +59,9 @@ var Zauberbild;
                 let pictures = mongoClient.db("Album").collection("Pictures");
                 await pictures.insertOne(url.query);
             }
+            // if (spliturl[0] == "/?savePicture") {
+            //     let newCollection: 
+            // }
             // if (spliturl[0] == "/?getTitles") {
             //     let titles: Mongo.Cursor<any> = orders.find({ projection: { _id: 0, name: true } });
             //     await titles.forEach(showPicture);
