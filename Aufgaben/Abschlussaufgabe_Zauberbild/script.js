@@ -72,11 +72,14 @@ var Zauberbild;
     }
     //Hintergrund wird gezeichnet
     function drawBackground() {
-        let gradient = Zauberbild.cxt.createLinearGradient(0, 120, 0, 200);
-        gradient.addColorStop(0, "#143b39");
-        gradient.addColorStop(1, "#5e1943");
-        Zauberbild.cxt.fillStyle = gradient;
+        // let gradient: CanvasGradient = cxt.createLinearGradient(0, 120, 0, 200);
+        // gradient.addColorStop(0, "#143b39");
+        // gradient.addColorStop(1, "#5e1943");
+        Zauberbild.cxt.fillStyle = "#000000";
+        Zauberbild.cxt.strokeStyle = "#ffffff";
+        Zauberbild.cxt.lineWidth = 7;
         Zauberbild.cxt.fillRect(0, 0, Zauberbild.canvas.width, Zauberbild.canvas.height);
+        Zauberbild.cxt.strokeRect(0, 0, Zauberbild.canvas.width, Zauberbild.canvas.height);
         backgroundImage = Zauberbild.cxt.getImageData(0, 0, Zauberbild.canvas.width, Zauberbild.canvas.height);
     }
     function createSymbols() {

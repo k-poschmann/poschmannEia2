@@ -5,7 +5,7 @@ var Zauberbild;
         constructor(_position) {
             super(_position);
             this.velocity.random(0, 0);
-            this.color = "black";
+            this.color = "orange";
         }
         draw(context) {
             context.save();

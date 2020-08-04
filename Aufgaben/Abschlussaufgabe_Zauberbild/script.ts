@@ -97,11 +97,14 @@ namespace Zauberbild {
 
     //Hintergrund wird gezeichnet
     function drawBackground(): void {
-        let gradient: CanvasGradient = cxt.createLinearGradient(0, 120, 0, 200);
-        gradient.addColorStop(0, "#143b39");
-        gradient.addColorStop(1, "#5e1943");
-        cxt.fillStyle = gradient;
+        // let gradient: CanvasGradient = cxt.createLinearGradient(0, 120, 0, 200);
+        // gradient.addColorStop(0, "#143b39");
+        // gradient.addColorStop(1, "#5e1943");
+        cxt.fillStyle = "#000000";
+        cxt.strokeStyle = "#ffffff";
+        cxt.lineWidth = 7;
         cxt.fillRect(0, 0, canvas.width, canvas.height);
+        cxt.strokeRect(0, 0, canvas.width, canvas.height);
         backgroundImage = cxt.getImageData(0, 0, canvas.width, canvas.height);
     }
 

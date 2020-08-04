@@ -7,7 +7,7 @@ namespace Zauberbild {
         constructor(_position: Vector) {
             super(_position);
             this.velocity.random(0, 0);
-            this.color = "black";
+            this.color = "orange";
         }
 
         draw(context: CanvasRenderingContext2D): void {
