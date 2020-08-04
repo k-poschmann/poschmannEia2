@@ -1,0 +1,23 @@
+{
+  "name": "haushaltshilfe",
+  "version": "1.0.0",
+  "description": "EIA 2",
+  "main": "",
+  "dependencies": {
+    "@types/mongodb": "^3.5.20",
+    "mongodb": "^3.5.8"
+  },
+  "scripts": {
+    "start": "node Server/Server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k-poschmann/poschmannEia2.git"
+  },
+  "author": "Kristin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k-poschmann/poschmannEia2/issues"
+  },
+  "homepage": "https://github.com/k-poschmann/poschmannEia2#readme"
+}
